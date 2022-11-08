@@ -1,0 +1,471 @@
+body {
+    overflow: scroll;
+    padding: 0px;
+    margin: 0px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+del {
+    color: red;
+}
+
+#main {
+    margin-right: -150pt;
+}
+
+#logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 300px;
+}
+
+#edt_search {
+    padding: 10px;
+    border-radius: 30px;
+    border-width: 0px;
+    font-style: italic;
+    margin-right: 5px;
+}
+
+#btn_search {
+    background-color: #ffffff;
+    color: black;
+    padding: 4px;
+    border-radius: 5px;
+    transition: background-color 0.4s, font-weight 0.4s;
+    border-width: 0px;
+}
+
+#btn_search:hover {
+    background-color: #ce820a;
+    color: black;
+    padding: 4px;
+    border-radius: 5px;
+    border-width: 0px;
+}
+
+#head1 {
+    background-color: #4D448B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 90%;
+    padding: 2pt;
+}
+
+.h1 {
+    background-color: orange;
+    text-decoration-line: none;
+    margin: 5pt;
+    height: 100%;
+    color: black;
+    border-radius: 30px;
+    padding: 9px;
+    font-weight: bold;
+    transition: 0.75s color;
+}
+
+.h1:hover {
+    background-color: white;
+    color: rgb(255, 0, 0);
+    height: 100%;
+    text-decoration-line: none;
+    border-radius: 30px;
+    padding: 9px;
+    margin: 5pt;
+}
+
+.h1a {
+    background-color: transparent;
+    color: white;
+    height: 100%;
+    padding: 9px;
+    text-decoration-line: none;
+    margin: 5pt;
+    border-width: 0px;
+    font-weight: bold;
+}
+
+.h1a:hover {
+    background-color: #3d2e9c;
+    color: white;
+    height: 100%;
+    border-radius: 30px;
+    padding: 9px;
+    text-decoration-line: none;
+    margin: 5pt;
+    border-width: 0px;
+    font-weight: bold;
+}
+
+#head2 {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.h2 {
+    color: #4D448B;
+    background-color: #fed100;
+    text-decoration-line: none;
+    font-weight: bold;
+    padding: 8pt 35pt 8pt 35pt;
+    transition: 0.4s background-color;
+    margin-right: 1pt;
+}
+
+.h2-select {
+    color: #4D448B;
+    background-color: #fe7700;
+    text-decoration-line: none;
+    font-weight: bold;
+    padding: 8pt 35pt 8pt 35pt;
+    transition: 0.4s background-color;
+    margin-right: 1pt;
+}
+
+.h2:hover {
+    color: rgb(184, 52, 0);
+    background-color: white;
+    text-decoration-line: none;
+    padding: 8pt 35pt 8pt 35pt;
+}
+
+#listphone {
+    margin: 15px;
+    display: flex;
+    width: 25%;
+    float: left;
+}
+.icon-avatar{
+    width: 160px;
+    height: 160px;  
+}
+.profile {
+    display: inline-block;
+    color: #4D448B;
+    padding: 10px;
+    width: 50%;
+    border: solid white 1px;
+    background-color: rgb(246, 246, 246);
+    transition: background-color 0.5s, color 0.5s, border 0.8s;
+    border-radius: 15px;
+}
+
+.item {
+    color: #4D448B;
+    text-decoration-line: none;
+    padding: 5px;
+    width: 100%;
+    border: solid white 1px;
+    background-color: rgb(246, 246, 246);
+    transition: background-color 0.5s, color 0.5s, border 0.8s;
+    border-radius: 15px;
+}
+
+.item:hover {
+    color: rgb(48, 48, 48);
+    text-decoration-line: none;
+    padding: 5px;
+    border: solid rgb(196, 196, 196) 1px;
+    background-color: rgb(221, 221, 221);
+    border-radius: 15px;
+}
+
+.device {
+    width: 30%;
+    transition: width 0.4s;
+}
+
+.device:hover {
+    width: 38%;
+}
+
+.details {
+    font-weight: normal;
+    color: rgb(118, 155, 135);
+}
+
+.main_device {
+    margin: 15px;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgb(236, 236, 236);
+}
+
+.bg {
+    display: inline-block;
+    width: 40%;
+    border-radius: 10px;
+    margin-left: 30px;
+}
+
+.left {
+    width: 20%;
+    transition: width 0.5s;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.left:hover {
+    width: 24%
+}
+
+.right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.buy {
+    background-color: #0071e3;
+    padding: 10px 25px 10px 25px;
+    color: white;
+    border-width: 0px;
+    transition: 0.4s background-color;
+    border-radius: 30px;
+}
+
+.buy:hover {
+    background-color: #0011ff;
+    padding: 10px 25px 10px 25px;
+    color: white;
+    border-width: 0px;
+    border-radius: 30px;
+}
+
+.add {
+    background-color: yellow;
+    padding: 10px 25px 10px 25px;
+    color: black;
+    transition: 0.4s background-color;
+    border-width: 0px;
+    border-radius: 30px;
+}
+
+.add:hover {
+    background-color: rgb(255, 214, 29);
+    padding: 10px 25px 10px 25px;
+    color: black;
+    border-width: 0px;
+    border-radius: 30px;
+}
+
+.about {
+    font-family: cursive;
+    text-align: center;
+    font-size: small;
+}
+
+.banner {
+    width: 20%;
+    margin: 10px;
+    border-radius: 0px;
+    transition: border-radius 0.4s, opacity 0.4s;
+}
+
+.banner:hover {
+    width: 20%;
+    margin: 10px;
+    opacity: 0.9;
+    border-radius: 50px;
+}
+
+.banner2 {
+    width: 50%;
+    margin: 10px;
+    transition: opacity 0.5s;
+}
+
+.banner2:hover {
+    width: 50%;
+    margin: 10px;
+    opacity: 0.8;
+}
+
+#uses {
+    color: rgb(0, 60, 255);
+}
+
+.rate {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgb(230, 230, 230);
+}
+
+.content_rate {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgb(241, 241, 241);
+}
+
+.line {
+    display: flex;
+    float: left;
+    border-radius: 10px;
+    text-decoration-line: none;
+    padding: 10px;
+    background-color: rgb(236, 236, 236);
+    margin: 10px;
+}
+
+.imgnews {
+    width: 16%;
+    display: inline;
+    border-radius: 20px;
+    margin-right: 10px;
+    transition: 0.4s opacity;
+}
+
+.imgnews:hover {
+    width: 16%;
+    display: inline;
+    border-radius: 20px;
+    opacity: 0.9;
+    margin-right: 10px;
+}
+
+.contentnews {
+    display: inline;
+    font-weight: normal;
+    color: rgb(100, 100, 100);
+    vertical-align: top;
+    transition: 0.4s color;
+}
+
+.contentnews:hover {
+    display: inline;
+    font-weight: normal;
+    color: rgb(44, 44, 44);
+    vertical-align: top;
+}
+
+.uses {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    font-style: italic;
+    background-color: rgb(241, 241, 241);
+}
+
+#technology {
+    margin-left: 20px;
+}
+
+/*  */
+body {
+    background-color: #4D448B;
+    text-align: center;
+}
+
+.title {
+    color: #6CD1E1;
+    font-size: 45pt;
+    font-style: italic;
+    font-weight: bold;
+    text-shadow: 1px 1px rgb(255, 40, 226);
+    margin: 10px;
+}
+
+.text {
+    color: #FFDBB3;
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+.icon {
+    width: 45px;
+    height: 45px;
+}
+
+.input-form {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 50px;
+}
+
+.item-form,
+form {
+    display: inline-block;
+}
+
+.input {
+    background-color: white;
+    border: solid 0px;
+    border-radius: 30px;
+    height: 45px;
+    padding-left: 10px;
+    width: 350px;
+}
+
+.input-square {
+    background-color: white;
+    border: solid 0px;
+    border-radius: 30px;
+    height: 150px;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 150px;
+}
+
+.input-rectangle {
+    background-color: white;
+    border: solid 0px;
+    border-radius: 30px;
+    height: 150px;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 350px;
+}
+
+.btn-feature {
+    color: white;
+    background-color: #6CD1E1;
+    border: solid 0px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 15pt;
+    padding: 10px;
+    width: 200px;
+    height: 45px;
+    margin: 10px;
+}
+
+.btn-feature:hover {
+    color: white;
+    background-color: #51c6d8;
+    border: solid 0px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 15pt;
+    padding: 10px;
+    width: 200px;
+    margin: 10px;
+}
+
+.btn-feature-2 {
+    color: white;
+    background-color: #6CA6E1;
+    border: solid 0px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 15pt;
+    padding: 10px;
+    width: 200px;
+    height: 45px;
+    margin: 10px;
+}
+
+.btn-feature-2:hover {
+    color: white;
+    background-color: #6c81e1;
+    border: solid 0px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 15pt;
+    padding: 10px;
+    width: 200px;
+    margin: 10px;
+}
