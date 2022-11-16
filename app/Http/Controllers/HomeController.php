@@ -7,6 +7,8 @@ use App\Models\QuanTriVien;
 use Illuminate\Support\Facades\Hash;
 use App\Models\BaiDang;
 use App\Models\QuanTam;
+use App\Models\Notifications;
+use App\Models\Comments;
 
 class HomeController extends Controller
 {   
@@ -22,10 +24,7 @@ class HomeController extends Controller
         $lsBaiDang=BaiDang::where('id_type', '=', 'loss')->get();
         return view('user.trang-chu',compact('lsBaiDang'));
     }
-    public function indexAdmin(){
-        $lsBaiDang=BaiDang::all();
-        return view('admin.trang-chu',compact('lsBaiDang'));
-    }
+
     public function dangNhap(){
         return view('user.dang-nhap');
     }
@@ -52,6 +51,11 @@ class HomeController extends Controller
     }
     public function xuLyDangKy(Request $request)
     {
+        if($request->hasFile('background'))
+        {
+            $files = $request->file('background');
+            $files->move('anhavatar',$files->getClientOriginalName(),'public');
+        }
         $taiKhoan=QuanTriVien::create([
             'username'=>$request->tai_khoan,
             'pass'=>Hash::make($request->mat_khau),
@@ -59,6 +63,7 @@ class HomeController extends Controller
             'fullname'=>$request->ho_ten,
             'sex'=>$request->sex,
             'phone'=>$request->dien_thoai,
+            'picture'=>$request->background->getClientOriginalName(),
             'birthday'=>$request->birthday,
             'address'=>$request->address,
         ]);
@@ -76,12 +81,10 @@ class HomeController extends Controller
     public function profile(){
         return view('user.thong-tin-ca-nhan');
     }
-    public function quanLyTaiKhoan(){
-        $quanTriVien = QuanTriVien::all();
-        return view('admin.quan-ly-tai-khoan',['arr'=>$quanTriVien]);
-    }
+
     public function thongBao(){
-        return view('user.thong-bao');
+        $thongBao = Notifications::all();
+        return view('user.thong-bao',['thongBao'=>$thongBao]);
     }
     public function doiMatKhau(){
         return view('user.doi-mat-khau');
@@ -118,7 +121,7 @@ class HomeController extends Controller
         }
         return redirect()->route('trang-chu');
     }
-
+   
 
 
 
@@ -128,7 +131,10 @@ class HomeController extends Controller
     
     //////////////////////////////////
     //admin
-    
+    public function indexAdmin(){
+        $lsBaiDang=BaiDang::all();
+        return view('admin.trang-chu',compact('lsBaiDang'));
+    }
     public function dangNhapAdmin(){
         return view('admin.dang-nhap');
     }
@@ -164,6 +170,7 @@ class HomeController extends Controller
                 'pass'=>Hash::make($request->password),
                 'permission'=>1,
                 'fullname'=>'admin',
+                'picture'=>'admin',
                 'sex'=>'1',
                 'phone'=>'1',
                 'address'=>'1',
@@ -221,5 +228,17 @@ class HomeController extends Controller
             QuanTriVien::where('username', '=', $request->id)->update(array('stt' => 1));
         }
         return redirect()->route('quan-ly-tai-khoan');
+    }
+    public function quanLyTaiKhoan(){
+        $quanTriVien = QuanTriVien::all();
+        return view('admin.quan-ly-tai-khoan',['arr'=>$quanTriVien]);
+    }
+    public function thongBaoAdmin(){
+        $thongBao = Notifications::all();
+        return view('admin.thong-bao',['thongBao'=>$thongBao]);
+    }
+    public function xoaThongBao(Request $request){
+        $result = Notifications::where('id','=', $request->id)->delete();
+        return redirect()->route('thong-bao-admin');
     }
 }

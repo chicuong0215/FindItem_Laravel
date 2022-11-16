@@ -13,7 +13,7 @@ try{
 <div class="baidang">
     <div class="register-form">
         <div class="item-form">
-        <form action="{{route('xl-dang-bai')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('xl-dang-bai')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="{{Auth::user()->username}}" name="username">
                 <div class="form-group">
@@ -38,13 +38,13 @@ try{
                     <input type="text" name="address" class="input-rectangle">
                 </div>
                 <br />
-                     <div class="text" style="display:inline-block">ẢNH</div>
-                <br/>
-                <input type="file" name="background" class="input-rectangle" />
-                        
+                <div class="text" style="display:inline-block">ẢNH</div>
                 <br />
-                                  <img class="icon" src="icons/lock.png" />
-               
+                <input type="file" name="background" class="input-rectangle" />
+
+                <br />
+                <img class="icon" src="icons/lock.png" />
+
                 <div class="form-group tm-text-right text">
                     <button type="submit" class="btn-feature">Đăng Bài</button>
                 </div>

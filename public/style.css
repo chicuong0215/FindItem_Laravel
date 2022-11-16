@@ -310,6 +310,12 @@ del {
     border-radius: 15px;
     background-color: rgb(230, 230, 230);
 }
+.rate2 {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgb(206, 206, 206);
+}
 
 .content_rate {
     margin: 15px;
@@ -319,8 +325,7 @@ del {
 }
 
 .line {
-    display: flex;
-    float: left;
+    text-align: left    ;
     border-radius: 10px;
     text-decoration-line: none;
     padding: 10px;
@@ -329,7 +334,8 @@ del {
 }
 
 .imgnews {
-    width: 16%;
+    width: 100px;
+    height: 100px;
     display: inline;
     border-radius: 20px;
     margin-right: 10px;
@@ -337,7 +343,6 @@ del {
 }
 
 .imgnews:hover {
-    width: 16%;
     display: inline;
     border-radius: 20px;
     opacity: 0.9;

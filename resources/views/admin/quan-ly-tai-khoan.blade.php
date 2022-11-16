@@ -17,7 +17,7 @@ try{
 @csrf
 <div id="">
     <hr />
-    <img src="/icons/image.png" class="icon" />
+    <img src="/anhavatar/{{$data['picture']}}" class="icon" />
     <b>Tài khoản: {{$data['username']}}</b>
     <div class="">Họ và tên: {{$data['fullname']}} - Giới tính: {{$data['sex']==1?'Nam':'Nữ'}} - Điện thoại: {{$data['phone']}} - Sinh nhật: {{$data['birthday']}}</div>
     <a href="{{route('xoa-tai-khoan',['id'=>$data['username']])}}"><button class="buy" style="margin-bottom: 10px;background-color:{{$data['stt']==1?'red':'blue'}}">{{$data['stt']==1?'Xóa tài khoản':'Khôi phục tài khoản'}}</button></a>

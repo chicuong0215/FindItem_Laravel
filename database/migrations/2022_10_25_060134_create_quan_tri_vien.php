@@ -21,6 +21,7 @@ class CreateQuanTriVien extends Migration
             $table->string('fullname');
             $table->integer('sex');
             $table->string('phone');
+            $table->string('picture');
             $table->datetime('birthday')->useCurrent();
             $table->string('address');
             $table->boolean('stt')->default(true);

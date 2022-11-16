@@ -12,14 +12,13 @@ try{
 <br />
 
 <div class="profile" style="text-align:left;padding-left:5%">
-    <img src="icons/image.png" class="icon-avatar" />
+    <img src="anhavatar/{{Auth::user()->picture}}" class="icon-avatar" />
     <div>
         <h1>Họ tên: {{Auth::user()->fullname}}</h1>
         <h3>Ngày sinh: {{Auth::user()->birthday}}</h3>
         <h3>Giới tính: {{Auth::user()->sex==1?'Nam':'Nữ'}}</h3>
         <h3>Số điện thoại: {{Auth::user()->phone}}</h3>
         <h3>Địa chỉ: {{Auth::user()->address}}</h3>
-        <a href="#"><button class="btn-feature" >Xóa tài khoản</button></a>
     </div>
 
     <a href="{{route('cap-nhat-thong-tin',['id'=>Auth::user()->username])}}"><button class="buy" style="margin-bottom: 10px">Cập nhật thông tin</button></a>

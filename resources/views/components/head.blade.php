@@ -26,7 +26,7 @@
         <a href="{{route('profile')}}" id="laptop" class="h2">TRANG CÁ NHÂN</a>
         <a href="{{route('quan-tam')}}" id="tablet" class="h2">QUAN TÂM</a>
         <a href="{{route('bai-dang-cua-ban')}}" id="accessories" class="h2">BÀI ĐĂNG CỦA BẠN</a>
-        <a href="{{route('thong-bao')}}" id="smartwatch" class="h2">GÓC CẢNH GIÁC</a>
+        <a href="{{route('thong-bao')}}" id="smartwatch" class="h2">THÔNG BÁO</a>
 
     </div>
 

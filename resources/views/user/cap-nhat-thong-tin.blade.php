@@ -64,7 +64,7 @@
                         <div class="text">ẢNH</div>
                         <div>
                             <img class="icon" src="icons/lock.png" />
-                            <input type="file" name="background" class="input-rectangle" />
+                            <input type="file" name="background" class="input-rectangle"/>
                         </div>
                         <br />
                     </tr>

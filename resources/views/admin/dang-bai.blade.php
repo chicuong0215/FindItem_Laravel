@@ -13,7 +13,7 @@ try{
 <div class="baidang">
     <div class="register-form">
         <div class="item-form">
-            <form action="{{route('xl-dang-bai-admin')}}" method="POST">
+            <form action="{{route('xl-dang-bai-admin')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="{{Auth::user()->username}}" name="username">
                 <div class="form-group">

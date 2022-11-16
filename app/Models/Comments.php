@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Notifications extends Model
+class Comments extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table="notifications";
+    protected $table="comments";
     protected $fillable=[
+        'id_post',
+        'id_account',
         'content',
-        'picture'
+        'picture',
+        'id_account_rep'
     ];
 }

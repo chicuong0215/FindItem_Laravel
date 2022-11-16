@@ -12,13 +12,13 @@ try{
 <br />
 <?php
             foreach ($lsBaiDang as $data) {
-                if($data['id_account']==Auth::user()->username){
+                if($data['id_account']==Auth::user()->username&&$data['stt']==1){
             ?>
 @csrf
 <div id="listphone">
     <div class="item">
         </br>
-        <img src="icons/image.png" class="icon" />
+        <img src="anhavatar/{{Auth::user()->picture}}" class="icon" />
         <b>Người đăng: {{$data['id_account']}}</b>
         <h4 class="name">Tiêu đề:<br />{{$data['title']}}</h4>
         <h5 class="details">Nội dung:<br />{{$data['content']}}</h5>
@@ -26,11 +26,13 @@ try{
         <img src="anhbaidang/{{ $data['picture'] }}" class="device" />
         <h5 class="name"></h5>
         <b>Ngày đăng: {{$data['created_at']}}</b>
-        <br /><br />5
+        <br /><br />
         <a href="{{route('chinh-sua-bai-dang',['id'=>$data['id']])}}"><button class="buy"
                 style="margin-bottom: 10px">Chỉnh sửa bài đăng</button></a>
         <a href="{{route('chi-tiet-bai-dang-cua-ban',['id'=>$data['id']])}}"><button class="add"
                 style="margin-bottom: 10px">Chi tiết</button></a>
+        <a href="{{route('xoa-bai-dang',['id'=>$data['id']])}}"><button class="buy"
+                style="margin-bottom: 10px;background-color:red">Xóa bài đăng</button></a>
     </div>
 </div>
 <?php }} ?>

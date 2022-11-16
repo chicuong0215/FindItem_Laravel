@@ -18,6 +18,7 @@ class QuanTriVien extends Authenticatable
         'permission',
         'fullname',
         'sex',
+        'picture',
         'phone',
         'birhday',
         'address'

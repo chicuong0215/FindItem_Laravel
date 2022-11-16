@@ -12,7 +12,7 @@
 <body>
     <div>
         <div class="register-form">
-            <form action="{{ route('xl-dang-ky')}}" method="post">
+            <form action="{{ route('xl-dang-ky')}}" method="post"  enctype="multipart/form-data">
                 @csrf
                 <div class="item-form">
                     <div class="title">ĐĂNG KÝ</div>
