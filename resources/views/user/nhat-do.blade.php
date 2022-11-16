@@ -34,7 +34,7 @@ try{
         <h5 class="details">Nội dung:<br />{{$data['content']}}</h5>
         <h5 class="details">Loại: {{$data['id_type']=='find'?'Tìm đồ':'Nhặt đồ'}}</h5>
         <h5 class="details">Địa chỉ:{{$data['address']}}</h5>
-        <img src="img/galaxys21.png" class="device" />
+        <img src="anhbaidang/{{ $data['picture'] }}" class="device" />
         <h5 class="name"></h5>
         <b>Ngày đăng: {{$data['created_at']}}</b>
         <br /><br />

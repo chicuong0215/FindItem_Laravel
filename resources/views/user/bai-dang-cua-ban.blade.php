@@ -23,7 +23,7 @@ try{
         <h4 class="name">Tiêu đề:<br />{{$data['title']}}</h4>
         <h5 class="details">Nội dung:<br />{{$data['content']}}</h5>
         <h5 class="details">Địa chỉ:<br />{{$data['address']}}</h5>
-        <img src="img/galaxys21.png" class="device" />
+        <img src="anhbaidang/{{ $data['picture'] }}" class="device" />
         <h5 class="name"></h5>
         <b>Ngày đăng: {{$data['created_at']}}</b>
         <br /><br />5

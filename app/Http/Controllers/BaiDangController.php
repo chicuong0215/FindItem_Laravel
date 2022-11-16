@@ -49,14 +49,22 @@ class BaiDangController extends Controller
         $lsBaiDang=BaiDang::all();
         $dt = new DateTime();
         $dt2 = $dt->format('dmY');
+        if($request->hasFile('background'))
+        {
+            $files = $request->file('background');
+            $files->move('anhbaidang',$files->getClientOriginalName(),'public');
+        }
         $baiDang=BaiDang::create([
+            'id'=>"acc_".$dt2,
+            'id_post'=>"acc_".$dt2,
             'id_account'=>$request->username,
             'id_type'=>$request->id_type,
             'id_object'=>$request->title,
             'title'=>$request->title,
             'content'=>$request->content,   
-            'picture'=>$request->title,
+            'picture'=>$request->background->getClientOriginalName(),
             'address'=>$request->address,
+           
         ]);
         if(!empty($baiDang)){
             #quay về trang danh sách tin tức
