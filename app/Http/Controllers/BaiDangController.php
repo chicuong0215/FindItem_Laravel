@@ -15,7 +15,7 @@ class BaiDangController extends Controller
      */
     public function index()
     {
-        return view('dang-bai');
+        return view('user.dang-bai');
     }
 
     /**
@@ -25,7 +25,7 @@ class BaiDangController extends Controller
      */
     public function create()
     {
-        return view('dang-bai');
+        return view('user.dang-bai');
     }
 
     public function index2()
@@ -88,7 +88,7 @@ class BaiDangController extends Controller
     public function edit(Request $request)
     {
         $baiDang = BaiDang::all();
-        return view('chi-tiet-bai-dang', ['baiDang'=>$baiDang]);
+        return view('user.chi-tiet-bai-dang', ['baiDang'=>$baiDang]);
     }
 
     /**
@@ -116,11 +116,11 @@ class BaiDangController extends Controller
 
     public function baiDangCuaBan(){
         $lsBaiDang = BaiDang::all();
-        return view('bai-dang-cua-ban', ['lsBaiDang'=>$lsBaiDang]);
+        return view('user.bai-dang-cua-ban', ['lsBaiDang'=>$lsBaiDang]);
     } 
     public function chinhSua(Request $request){
         $baiDang = BaiDang::where('id','=',$request->id)->first();
-        return view('chinh-sua-bai-dang',['baiDang'=>$baiDang]);
+        return view('user.chinh-sua-bai-dang',['baiDang'=>$baiDang]);
     }
     public function xuLyChinhSua(Request $request){
         BaiDang::where('id', '=', $request->id)->update(array('title' => $request->title,
@@ -129,11 +129,11 @@ class BaiDangController extends Controller
     }
     public function info(Request $request){
         $baiDang=BaiDang::where('id', '=', $request->id)->first();
-        return view('chi-tiet-bai-dang',['baiDang'=>$baiDang]);
+        return view('user.chi-tiet-bai-dang',['baiDang'=>$baiDang]);
     }
     public function info2(Request $request){
         $baiDang=BaiDang::where('id', '=', $request->id)->first();
-        return view('chi-tiet-bai-dang-cua-ban',['baiDang'=>$baiDang]);
+        return view('user.chi-tiet-bai-dang-cua-ban',['baiDang'=>$baiDang]);
     }
 
 

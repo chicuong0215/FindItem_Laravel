@@ -12,22 +12,22 @@ class HomeController extends Controller
 {   
     public function index(){
         $lsBaiDang=BaiDang::all();
-        return view('trang-chu',compact('lsBaiDang'));
+        return view('user.trang-chu',compact('lsBaiDang'));
     }
     public function indexTimDo(){
         $lsBaiDang=BaiDang::where('id_type', '=', 'find')->get();
-        return view('trang-chu',compact('lsBaiDang'));
+        return view('user.trang-chu',compact('lsBaiDang'));
     }
     public function indexNhatDo(){
         $lsBaiDang=BaiDang::where('id_type', '=', 'loss')->get();
-        return view('trang-chu',compact('lsBaiDang'));
+        return view('user.trang-chu',compact('lsBaiDang'));
     }
     public function indexAdmin(){
         $lsBaiDang=BaiDang::all();
         return view('admin.trang-chu',compact('lsBaiDang'));
     }
     public function dangNhap(){
-        return view('dang-nhap');
+        return view('user.dang-nhap');
     }
     public function xuLyDangNhap(Request $request)
     {
@@ -48,7 +48,7 @@ class HomeController extends Controller
         
     }
     public function dangKy(){
-        return view('dang-ky');
+        return view('user.dang-ky');
     }
     public function xuLyDangKy(Request $request)
     {
@@ -74,17 +74,17 @@ class HomeController extends Controller
        return redirect()->route('trang-chu');
     }
     public function profile(){
-        return view('thong-tin-ca-nhan');
+        return view('user.thong-tin-ca-nhan');
     }
     public function quanLyTaiKhoan(){
         $quanTriVien = QuanTriVien::all();
         return view('admin.quan-ly-tai-khoan',['arr'=>$quanTriVien]);
     }
     public function thongBao(){
-        return view('thong-bao');
+        return view('user.thong-bao');
     }
     public function doiMatKhau(){
-        return view('doi-mat-khau');
+        return view('user.doi-mat-khau');
     }
     public function xuLyDoiMatKhau(Request $request){
         QuanTriVien::where('username', '=', $request->username)->update(array('pass' => Hash::make($request->new_pass)));
@@ -93,7 +93,7 @@ class HomeController extends Controller
     }
     public function updateInfo(Request $request){
         $quanTriVien = QuanTriVien::where('username','=',$request->id)->first();
-        return view('cap-nhat-thong-tin',['quanTriVien'=>$quanTriVien]);
+        return view('user.cap-nhat-thong-tin',['quanTriVien'=>$quanTriVien]);
     }
     public function processUpdateInfo(Request $request){
         QuanTriVien::where('username', '=', $request->id)->update(array('fullname' => $request->fullname,'phone'=>$request->phone,'address'=>$request->address));
@@ -102,9 +102,9 @@ class HomeController extends Controller
     public function quanTam(Request $request){
         if(Auth::user()!=null){
         $lsPost = QuanTam::where('id_account', '=', Auth::user()->username);
-        return view('quan-tam',['lsBaiDang'=>$lsPost]);
+        return view('user.quan-tam',['lsBaiDang'=>$lsPost]);
         }
-        return view('quan-tam');
+        return view('user.quan-tam');
         
     }
     public function xuLyQuanTam(Request $request){
