@@ -5,21 +5,22 @@
 try{
     $check =Auth::user()->id;
     ?>
-<a href="{{route('profile')}}" id="technology" class="h1">{{Auth::user()->fullname}}</a>
+<a href="{{route('profile')}}" id="technology" class="h1">Tài khoản: {{Auth::user()->username}}</a>
 <a href="{{route('dang-xuat')}}" id="technology" class="h1">Thoát</a>
 <br />
 <br />
-<div class="title">THÔNG TIN BÀI ĐĂNG</div>
+<div class="title">CHỈNH SỬA BÀI ĐĂNG</div>
 <div class="baidang">
     <div class="register-form">
         <div class="item-form">
-            <form action="{{route('xl-dang-bai')}}" method="POST">
+            <form action="{{route('xl-chinh-sua-bai-dang')}}" method="POST">
                 @csrf
                 <input type="hidden" value="{{Auth::user()->username}}" name="username">
+                <input type="hidden" value="{{$baiDang['id']}}" name="id">
                 <div class="form-group">
                     <div class="text">Tiêu đề</div>
                     <br />
-                    <input type="text" class="input" name="title">
+                    <input type="text" class="input" name="title" value="{{$baiDang['title']}}">
                 </div>
                 <br />
                 <div class="form-group text">
@@ -30,12 +31,12 @@ try{
                 <br />
                 <div class="form-group">
                     <div class="text">Nội dung</div>
-                    <textarea name="content" class="input-rectangle"></textarea>
+                    <textarea name="content" class="input-rectangle">{{$baiDang['content']}}</textarea>
                 </div>
                 <br />
                 <div class="form-group">
                     <div class="text">Địa chỉ liên hệ</div>
-                    <input type="text" name="address" class="input-rectangle">
+                    <input type="text" name="address" class="input-rectangle" value="{{$baiDang['content']}}">
                 </div>
                 <br />
                 <img class="icon" src="icons/lock.png" />
@@ -45,7 +46,7 @@ try{
                         
                 <br />
                 <div class="form-group tm-text-right text">
-                    <button type="submit" class="btn-feature">Đăng Bài</button>
+                    <button type="submit" class="btn-feature">Cập Nhật</button>
                 </div>
             </form>
             <div class="item-form">

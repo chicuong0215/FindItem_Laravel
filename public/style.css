@@ -228,13 +228,29 @@ del {
 }
 
 .buy:hover {
-    background-color: #0011ff;
+    background-color: #6CA6E1;
     padding: 10px 25px 10px 25px;
     color: white;
     border-width: 0px;
     border-radius: 30px;
 }
 
+.buy2 {
+    background-color: #6CA6E1;
+    padding: 10px 25px 10px 25px;
+    color: white;
+    border-width: 0px;
+    transition: 0.4s background-color;
+    border-radius: 30px;
+}
+
+.buy2:hover {
+    background-color: #0011ff;
+    padding: 10px 25px 10px 25px;
+    color: white;
+    border-width: 0px;
+    border-radius: 30px;
+}
 .add {
     background-color: yellow;
     padding: 10px 25px 10px 25px;

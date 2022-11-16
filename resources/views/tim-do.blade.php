@@ -23,7 +23,6 @@ try{
 <br />
 <?php
             foreach ($lsBaiDang as $data) {
-                if($data['active']==1 && $data['stt']==1){
             ?>
 @csrf
 <div id="listphone">
@@ -44,4 +43,4 @@ try{
 
     </div>
 </div>
-<?php }} ?>
+<?php } ?>

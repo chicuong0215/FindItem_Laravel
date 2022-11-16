@@ -14,9 +14,10 @@ class CreateQuanTriVien extends Migration
     public function up()
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->string('id');
+            $table->id();
             $table->string('username');
             $table->string('pass');
+            $table->string('permission');
             $table->string('fullname');
             $table->integer('sex');
             $table->string('phone');

@@ -14,8 +14,7 @@ class CreateBaiDang extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->string('id');
-            $table->string('id_post');
+            $table->id();
             $table->string('id_account');
             $table->string('id_type');
             $table->string('id_object');
@@ -25,6 +24,7 @@ class CreateBaiDang extends Migration
             $table->string('address');
             $table->integer('like')->default(0);
             $table->boolean('is_found')->default(false);
+            $table->boolean('active')->default(false);
             $table->boolean('stt')->default(true);
             $table->timestamps();
             $table->softDeletes();

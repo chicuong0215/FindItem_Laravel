@@ -5,7 +5,7 @@
 try{
     $check =Auth::user()->id;
     ?>
-<a href="{{route('profile')}}" id="technology" class="h1">{{Auth::user()->fullname}}</a>
+<a href="{{route('profile')}}" id="technology" class="h1">Tài khoản: {{Auth::user()->username}}</a>
 <a href="{{route('dang-xuat')}}" id="technology" class="h1">Thoát</a>
 <br />
 <br />
@@ -19,7 +19,7 @@ try{
                 <div class="form-group">
                     <div class="text">Tiêu đề</div>
                     <br />
-                    <input type="text" class="input" name="title">
+                    <input type="text" class="input-rectangle" name="title" maxlength="200">
                 </div>
                 <br />
                 <div class="form-group text">
@@ -30,19 +30,19 @@ try{
                 <br />
                 <div class="form-group">
                     <div class="text">Nội dung</div>
-                    <textarea name="content" class="input-rectangle"></textarea>
+                    <input name="content" class="input-rectangle">
                 </div>
                 <br />
                 <div class="form-group">
                     <div class="text">Địa chỉ liên hệ</div>
-                    <input type="text" name="address" class="input-rectangle">
+                    <input type="text" name="address" class="input-rectangle" maxlength="200">
                 </div>
                 <br />
                 <img class="icon" src="icons/lock.png" />
                 <div class="text" style="display:inline-block">ẢNH</div>
-                <br/>
+                <br />
                 <input type="file" name="background" class="input-rectangle" />
-                        
+
                 <br />
                 <div class="form-group tm-text-right text">
                     <button type="submit" class="btn-feature">Đăng Bài</button>
@@ -62,8 +62,8 @@ try{
 
 }catch(Exception $e){
     ?>
-    <div class="text">Vui lòng đăng nhập để sử dụng đầy đủ tính năng</div>
-    <br/>
+<div class="text">Vui lòng đăng nhập để sử dụng đầy đủ tính năng</div>
+<br />
 <a href="{{route('dang-nhap')}}" id="technology" class="h1">Đăng Nhập</a>
 <?php
 }

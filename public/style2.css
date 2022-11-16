@@ -228,6 +228,23 @@ del {
 }
 
 .buy:hover {
+    background-color: #6CA6E1;
+    padding: 10px 25px 10px 25px;
+    color: white;
+    border-width: 0px;
+    border-radius: 30px;
+}
+
+.buy2 {
+    background-color: #6CA6E1;
+    padding: 10px 25px 10px 25px;
+    color: white;
+    border-width: 0px;
+    transition: 0.4s background-color;
+    border-radius: 30px;
+}
+
+.buy2:hover {
     background-color: #0011ff;
     padding: 10px 25px 10px 25px;
     color: white;
@@ -429,6 +446,18 @@ form {
     font-size: 15pt;
     padding: 10px;
     width: 200px;
+    height: 45px;
+    margin: 10px;
+}
+.btn-feature2 {
+    color: white;
+    background-color: #6CD1E1;
+    border: solid 0px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 15pt;
+    padding: 10px;
+    width: 250px;
     height: 45px;
     margin: 10px;
 }

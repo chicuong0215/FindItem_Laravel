@@ -13,9 +13,9 @@ class QuanTriVien extends Authenticatable
     use SoftDeletes;
     protected $table="accounts";
     protected $fillable=[
-        'id',
         'username',
         'pass',
+        'permission',
         'fullname',
         'sex',
         'phone',
