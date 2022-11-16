@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký tài khoản</title>
+    <title>Cập nhật thông tin</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div>
         <div class="register-form">
-            <form action="{{ route('xl-cap-nhat-thong-tin')}}" method="post">
+            <form action="{{ route('xl-cap-nhat-thong-tin')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="item-form">
                     <input type="hidden" value="{{Auth::user()->username}}" name="id" />

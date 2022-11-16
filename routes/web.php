@@ -80,7 +80,7 @@ Route::post('admin/dang-bai',[BaiDangController::class,'xuLyDangBaiAdmin'])->nam
 
 Route::get('admin/quan-ly-tai-khoan',[HomeController::class,'quanLyTaiKhoan'])->name('quan-ly-tai-khoan');
 
-Route::get('admin/chi-tiet-bai-dang',[BaiDangController::class,'infoAdmin'])->name('chi-tiet-bai-dang-admin');
+Route::get('admin/chi-tiet-bai-dang',[BaiDangController::class,'chiTietBaiDangAdmin'])->name('chi-tiet-bai-dang-admin');
 
 Route::get('admin/doi-mat-khau',[HomeController::class,'doiMatKhauAdmin'])->name('doi-mat-khau-admin');
 Route::post('admin/doi-mat-khau',[HomeController::class,'xuLyDoiMatKhauAdmin'])->name('xl-doi-mat-khau-admin');
@@ -96,4 +96,6 @@ Route::get('admin/xoa-tai-khoan',[HomeController::class,'xoaTaiKhoan'])->name('x
 Route::get('admin/thong-bao',[HomeController::class,'thongBaoAdmin'])->name('thong-bao-admin');
 
 Route::get('admin/xoa-thong-bao',[HomeController::class,'xoaThongBao'])->name('xoa-thong-bao');
+
+Route::get('admin/xoa-tra-loi',[BaiDangController::class,'xoaTraLoi'])->name('xoa-tra-loi');
 

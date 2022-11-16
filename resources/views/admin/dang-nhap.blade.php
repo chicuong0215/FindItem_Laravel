@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Nhập|Tìm Đồ</title>
+    <title>Đăng nhập | Admin</title>
     <link rel="stylesheet" href="/style2.css">
 </head>
 
@@ -41,7 +41,7 @@
             @endif
         </div>
         <a href="{{route('dang-ky-admin')}}"><button class="btn-feature2">Cấp Tài Khoản Admin</button></a>
-        <a href="#"><button class="btn-feature">Quên Mật Khẩu</button></a>
+        <!-- <a href="#"><button class="btn-feature">Quên Mật Khẩu</button></a> -->
         <a href="{{route('trang-chu-admin')}}"><button class="btn-feature">Trở Về</button></a>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

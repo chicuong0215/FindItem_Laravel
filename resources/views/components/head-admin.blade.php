@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/style2.css">
     <link rel="shortcut icon" href="/img/logoPHP.png">
-    <title>Tìm đồ</title>
+    <title>Tìm đồ | Admin</title>
 </head>
 
 <body>

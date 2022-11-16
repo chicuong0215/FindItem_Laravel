@@ -152,10 +152,6 @@ class BaiDangController extends Controller
 
 
     //admin
-     public function infoAdmin(Request $request){
-        $baiDang=BaiDang::where('id', '=', $request->id)->first();
-        return view('admin.chi-tiet-bai-dang',['baiDang'=>$baiDang]);
-    }
     public function xoaBaiDangAdmin(Request $request){
         $check =BaiDang::where('id', '=', $request->id)->first();
         if($check['stt']==1){
@@ -197,5 +193,15 @@ class BaiDangController extends Controller
         }
         #Thông báo thêm không thành công
         return redirect()->route('thong-bao-admin');
+    }
+    public function chiTietBaiDangAdmin(Request $request){
+        $baiDang=BaiDang::where('id', '=', $request->id)->first();
+        $binhLuan=Comments::where('id_post', '=', $request->id)->get();
+        $taiKhoan=QuanTriVien::all();
+        return view('admin.chi-tiet-bai-dang',['baiDang'=>$baiDang,'binhLuan'=>$binhLuan, 'taiKhoan'=>$taiKhoan]);
+    }
+    public function xoaTraLoi(Request $request){
+        $result = Comments::where('id','=',$request->id)->delete();
+        return redirect()->route('chi-tiet-bai-dang-admin',['id'=>$request->id_post]);
     }
 }

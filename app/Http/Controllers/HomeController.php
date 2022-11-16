@@ -99,7 +99,12 @@ class HomeController extends Controller
         return view('user.cap-nhat-thong-tin',['quanTriVien'=>$quanTriVien]);
     }
     public function processUpdateInfo(Request $request){
-        QuanTriVien::where('username', '=', $request->id)->update(array('fullname' => $request->fullname,'phone'=>$request->phone,'address'=>$request->address));
+        if($request->hasFile('background'))
+        {
+            $files = $request->file('background');
+            $files->move('anhavatar',$files->getClientOriginalName(),'public');
+        }
+        QuanTriVien::where('username', '=', $request->id)->update(array('fullname' => $request->fullname,'phone'=>$request->phone,'address'=>$request->address, 'picture'=>$request->background->getClientOriginalName()));
        return redirect()->route('profile');  
     }
     public function quanTam(Request $request){
