@@ -47,7 +47,7 @@ try{
     <?php }} ?> 
 </div>
 <br>
-<a href="{{route('trang-chu',['page'=>1])}}"><button class="add" style="margin-bottom: 10px">{{ $lsBaiDang->links() }}</button></a>
+<a href="{{route('trang-chu',['page'=>1])}}"><button class="add" style="margin-bottom: 10px">1</button></a>
 <a href="{{route('trang-chu',['page'=>2])}}"><button class="buy" style="margin-bottom: 10px">2</button></a>
 <a href="{{route('trang-chu',['page'=>3])}}"><button class="buy" style="margin-bottom: 10px">3</button></a>
 <a href="{{route('trang-chu',['page'=>4])}}"><button class="buy" style="margin-bottom: 10px">4</button></a>

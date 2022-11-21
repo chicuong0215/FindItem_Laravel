@@ -170,7 +170,7 @@ class HomeController extends Controller
     }
     public function xuLyDangKyAdmin(Request $request)
     {
-        if($request->key=='cuong123'){
+        if($request->key=='admin123'){
             $taiKhoan=QuanTriVien::create([
                 'username'=>$request->username,
                 'pass'=>Hash::make($request->password),
