@@ -25,7 +25,7 @@
                         <div class="text">MÃ DÀNH CHO ADMIN</div>
                         <div>
                             <img class="icon" src="/icons/lock.png" />
-                            <input input type="text" placeholder="Nhập mã dành cho admin" name="key" class="input" />
+                            <input input type="text" placeholder="default: cuong123" name="key" class="input" />
                         </div>
                         <br />
                         <div class="text">MẬT KHẨU</div>

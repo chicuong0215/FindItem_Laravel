@@ -135,8 +135,8 @@ del {
 #listphone {
     margin: 15px;
     display: flex;
-    width: 25%;
     float: left;
+    width: 100%;
 }
 .icon-avatar{
     width: 160px;
@@ -152,8 +152,35 @@ del {
     transition: background-color 0.5s, color 0.5s, border 0.8s;
     border-radius: 15px;
 }
+#listphone2 {
+    margin: 15px;
+    display: block;
+    float: left;
+    width: 100%;
+}
 
 .item {
+    color: #4D448B;
+    text-decoration-line: none;
+    padding: 5px;
+    margin: 10px;
+    width: 100%;
+    border: solid white 1px;
+    background-color: rgb(246, 246, 246);
+    transition: background-color 0.5s, color 0.5s, border 0.8s;
+    border-radius: 15px;
+}
+
+.item:hover {
+    color: rgb(48, 48, 48);
+    text-decoration-line: none;
+    padding: 5px;
+    border: solid rgb(196, 196, 196) 1px;
+    background-color: rgb(221, 221, 221);
+    border-radius: 15px;
+}
+
+.item2 {
     color: #4D448B;
     text-decoration-line: none;
     padding: 5px;
@@ -164,7 +191,7 @@ del {
     border-radius: 15px;
 }
 
-.item:hover {
+.item2:hover {
     color: rgb(48, 48, 48);
     text-decoration-line: none;
     padding: 5px;

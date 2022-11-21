@@ -16,6 +16,7 @@ use App\Http\Controllers\BaiDangController;
 */
 
 Route::get('/',[HomeController::class,'index'])->name('trang-chu');
+
 Route::get('nhat-do',[HomeController::class,'indexNhatDo'])->name('nhat-do');
 Route::get('tim-do',[HomeController::class,'indexTimDo'])->name('tim-do');
 

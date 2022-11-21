@@ -10,20 +10,21 @@ try{
 <a href="{{route('dang-xuat')}}" id="technology" class="h1">Thoát</a>
 <br />
 <br />
+<div id="listphone2">
 <?php
             foreach ($lsBaiDang as $data) {
                 if($data['id_account']==Auth::user()->username&&$data['stt']==1){
+                
             ?>
 @csrf
-<div id="listphone">
-    <div class="item">
+
+    <div class="item2">
         </br>
         <img src="anhavatar/{{Auth::user()->picture}}" class="icon" />
         <b>Người đăng: {{$data['id_account']}}</b>
-        <h4 class="name">Tiêu đề:<br />{{$data['title']}}</h4>
-        <h5 class="details">Nội dung:<br />{{$data['content']}}</h5>
-        <h5 class="details">Địa chỉ:<br />{{$data['address']}}</h5>
-        <img src="anhbaidang/{{ $data['picture'] }}" class="device" />
+        <h4 class="name">Tiêu đề: {{$data['title']}}</h4>
+        <h5 class="details">Nội dung: {{$data['content']}} -  Địa chỉ:<br />{{$data['address']}}</h5>
+        <img src="anhbaidang/{{ $data['picture'] }}" width="100px" heigh="100px"/>
         <h5 class="name"></h5>
         <b>Ngày đăng: {{$data['created_at']}}</b>
         <br /><br />
@@ -33,10 +34,10 @@ try{
                 style="margin-bottom: 10px">Chi tiết</button></a>
         <a href="{{route('xoa-bai-dang',['id'=>$data['id']])}}"><button class="buy"
                 style="margin-bottom: 10px;background-color:red">Xóa bài đăng</button></a>
-    </div>
+ 
 </div>
 <?php }} ?>
-
+</div>
 <?php
 }catch(Exception $e){
 ?>

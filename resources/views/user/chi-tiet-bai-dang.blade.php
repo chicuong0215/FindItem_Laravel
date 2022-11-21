@@ -55,8 +55,8 @@
                 <span style="color:blue;margin-left:10px">đã trả lời: <b>{{$data['id_account_rep']}}</b></span>
                 @endif
         <div class="rate">
-            <div>{{$data['content']}}</div>
-            <img src="img/galaxys21.png" width="100px" height="100px" />
+            <div class="rate2">{{$data['content']}}</div>
+            <!-- <img src="img/galaxys21.png" width="100px" height="100px" /> -->
             <br>
             <form action="{{route('xl-binh-luan-rep')}}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -68,6 +68,7 @@
                 Chọn hình
                 <input type="file" name="picture" class="">
                 <button class="buy">Trả lời</button>
+                
                 <br>
             </form>
         </div>

@@ -12,17 +12,18 @@ use App\Models\Comments;
 
 class HomeController extends Controller
 {   
-    public function index(){
-        $lsBaiDang=BaiDang::all();
-        return view('user.trang-chu',compact('lsBaiDang'));
+    
+    public function index(Request $request){
+        $lsBaiDang=BaiDang::where('active','=',1)->where('stt','=',1)->paginate(3)->fragment('pg');
+        return view('user.trang-chu',['lsBaiDang'=>$lsBaiDang,'page'=>$request->page]);
     }
     public function indexTimDo(){
-        $lsBaiDang=BaiDang::where('id_type', '=', 'find')->get();
-        return view('user.trang-chu',compact('lsBaiDang'));
+        $lsBaiDang=BaiDang::where('id_type', '=', 'find')->paginate(3);
+        return view('user.tim-do',compact('lsBaiDang'));
     }
     public function indexNhatDo(){
-        $lsBaiDang=BaiDang::where('id_type', '=', 'loss')->get();
-        return view('user.trang-chu',compact('lsBaiDang'));
+        $lsBaiDang=BaiDang::where('id_type', '=', 'loss')->paginate(3);
+        return view('user.nhat-do',compact('lsBaiDang'));
     }
 
     public function dangNhap(){
@@ -169,7 +170,7 @@ class HomeController extends Controller
     }
     public function xuLyDangKyAdmin(Request $request)
     {
-        if($request->key=='admin123'){
+        if($request->key=='cuong123'){
             $taiKhoan=QuanTriVien::create([
                 'username'=>$request->username,
                 'pass'=>Hash::make($request->password),
