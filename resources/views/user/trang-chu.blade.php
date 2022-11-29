@@ -29,7 +29,8 @@ try{
     @csrf
     <div class="item">
         </br>
-        <img src="icons/image.png" class="icon" />
+       
+        <img src="anhavatar/" class="icon" />
         <b>Người đăng: {{$data['id_account']}}</b>
         <h4 class="name">Tiêu đề:<br />{{$data['title']}}</h4>
         <h5 class="details">Nội dung:<br />{{$data['content']}}</h5>

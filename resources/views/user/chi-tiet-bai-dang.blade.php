@@ -2,7 +2,7 @@
 
 <body style="text-align:left">
     <div class="main_device">
-        <img src="img/galaxys21.png" class="left" />
+        <img src="anhbaidang/{{ $baiDang['picture'] }}" class="left" />
         <div class="right">
             <h4 class="name">Người đăng: {{$baiDang['id_account']}}</h4>
             <h4 class="name">Tiêu đề: {{$baiDang['title']}}</h4>
@@ -32,10 +32,7 @@
             @csrf
             <h2>Bình luận của bạn:</h2>
             <input type="hidden" name="id" value="{{$baiDang['id']}}">
-            <input type="text" name="content" class="input-rectangle">
-            <br><br>
-            <input type="file" name="picture" class="input-rectangle">
-            <br><br>
+            <input type="text" name="content" class="input">
             <button class="buy">Đăng</button>
             <br>
         </form>
@@ -51,24 +48,27 @@
         <img src="img/galaxys21.png" class="icon" />
         <span style="margin-left:10px;font-weight:bold">Tài khoản:
             {{$data['id_account']}}</span>
-            @if($data['id_account_rep']!='null')
-                <span style="color:blue;margin-left:10px">đã trả lời: <b>{{$data['id_account_rep']}}</b></span>
-                @endif
+        @if($data['id_account_rep']!='null')
+        <span style="color:blue;margin-left:10px">đã trả lời: <b>{{$data['id_account_rep']}}</b></span>
+        @endif
         <div class="rate">
             <div class="rate2">{{$data['content']}}</div>
             <!-- <img src="img/galaxys21.png" width="100px" height="100px" /> -->
             <br>
-            <form action="{{route('xl-binh-luan-rep')}}" method="POST" enctype="multipart/form-data">
+            <button class="add" onclick="rep({{$data['id']}})">Trả lời</button>
+            <br>
+            <form style="display:none" id="{{$data['id']}}" action="{{route('xl-binh-luan-rep')}}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 Nội dung
+                <br>
+                <br>
                 <input type="hidden" name="id" value="{{$baiDang['id']}}">
-                
+
                 <input type="hidden" name="rep" value="{{$data['id_account']}}">
-                <input type="text" name="content" class="">
-                Chọn hình
-                <input type="file" name="picture" class="">
+                <input type="text" name="content" class="input">
                 <button class="buy">Trả lời</button>
-                
+
                 <br>
             </form>
         </div>
@@ -76,5 +76,15 @@
         <?php } ?>
 
     </div>
+    <script>
+    function rep(id) {
+        var e = document.getElementById(id);
+        if (e.style.display == 'none') {
+            e.style.display = 'block';
+        } else {
+            e.style.display = 'none';
+        }
+    }
+    </script>
 
 </body>

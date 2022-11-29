@@ -22,10 +22,13 @@ try{
                     <input type="text" class="input" name="title">
                 </div>
                 <br />
-                <div class="form-group text">
-                    <div class="text">Loại tin</div>
-                    <input name="id_type" type="radio" value="loss"> Tin mất đồ <br>
-                    <input name="id_type" type="radio" value="find"> Tin nhặt đồ
+                <div>
+                    <select class="input" name="id_type">
+                        <option class="input" value="loss">Tin mất đồ
+                        </option>
+                        <option class="input" value="find">Tin nhặt đồ
+                        </option>
+                    </select>
                 </div>
                 <br />
                 <div class="form-group">

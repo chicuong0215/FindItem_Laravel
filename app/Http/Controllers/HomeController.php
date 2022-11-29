@@ -32,18 +32,22 @@ class HomeController extends Controller
     public function xuLyDangNhap(Request $request)
     {
         $tk = QuanTriVien::where('username', '=',$request->username)->first();
-        if($tk['stt']==1){
-            $lsBaiDang=BaiDang::all();
-            $credentials=$request->only('username','password');
-            if(Auth::attempt($credentials)){
-                return redirect()->route('profile');
-            }else{
-                return redirect()->back()->with("error","Đăng nhập không thành công!");
+        if($tk!=NULL){
+            if($tk['stt']==1){
+                $lsBaiDang=BaiDang::all();
+                $credentials=$request->only('username','password');
+                if(Auth::attempt($credentials)){
+                    return redirect()->route('profile');
+                }else{
+                    return redirect()->back()->with("error","Đăng nhập không thành công!");
+                }
+               
             }
-           
-        }
-        else{
-            return redirect()->back()->with("error","Tài khoản đã bị xóa!");
+            else{
+                return redirect()->back()->with("error","Tài khoản đã bị xóa!");
+            }
+        }else{
+            return redirect()->back()->with("error","Đăng nhập không thành công!");
         }
         
     }
