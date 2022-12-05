@@ -11,24 +11,26 @@ use App\Models\Notifications;
 use App\Models\Comments;
 
 class HomeController extends Controller
-{   
-    
+{
     public function index(Request $request){
-        $lsBaiDang=BaiDang::where('active','=',1)->where('stt','=',1)->paginate(3)->fragment('pg');
+        $lsBaiDang=BaiDang::where('active','=',1)->where('stt','=',1)->paginate(3);
         return view('user.trang-chu',['lsBaiDang'=>$lsBaiDang,'page'=>$request->page]);
     }
+
     public function indexTimDo(){
-        $lsBaiDang=BaiDang::where('id_type', '=', 'find')->paginate(3);
+        $lsBaiDang=BaiDang::where('id_type', '=', 'find')->where('active','=',1)->where('stt','=',1)->paginate(3);
         return view('user.tim-do',compact('lsBaiDang'));
     }
+
     public function indexNhatDo(){
-        $lsBaiDang=BaiDang::where('id_type', '=', 'loss')->paginate(3);
+        $lsBaiDang=BaiDang::where('id_type', '=', 'loss')->where('active','=',1)->where('stt','=',1)->paginate(3);
         return view('user.nhat-do',compact('lsBaiDang'));
     }
 
     public function dangNhap(){
         return view('user.dang-nhap');
     }
+
     public function xuLyDangNhap(Request $request)
     {
         $tk = QuanTriVien::where('username', '=',$request->username)->first();
@@ -37,7 +39,7 @@ class HomeController extends Controller
                 $lsBaiDang=BaiDang::all();
                 $credentials=$request->only('username','password');
                 if(Auth::attempt($credentials)){
-                    return redirect()->route('profile');
+                    return redirect()->route('thong-tin-ca-nhan');
                 }else{
                     return redirect()->back()->with("error","Đăng nhập không thành công!");
                 }
@@ -51,9 +53,11 @@ class HomeController extends Controller
         }
         
     }
+
     public function dangKy(){
         return view('user.dang-ky');
     }
+
     public function xuLyDangKy(Request $request)
     {
         if($request->hasFile('background'))
@@ -73,17 +77,17 @@ class HomeController extends Controller
             'address'=>$request->address,
         ]);
         if(!empty($taiKhoan)){
-            #quay về trang danh sách tin tức
             return redirect()->route('dang-nhap');
         }
-        #Thông báo thêm không thành công
         return "Thêm mới tài khoản không thành công";
     }
+
     public function dangXuat(){
        Auth::logout();
        return redirect()->route('trang-chu');
     }
-    public function profile(){
+
+    public function thongTinCaNhan(){
         return view('user.thong-tin-ca-nhan');
     }
 
@@ -91,27 +95,32 @@ class HomeController extends Controller
         $thongBao = Notifications::all();
         return view('user.thong-bao',['thongBao'=>$thongBao]);
     }
+    
     public function doiMatKhau(){
         return view('user.doi-mat-khau');
     }
+
     public function xuLyDoiMatKhau(Request $request){
         QuanTriVien::where('username', '=', $request->username)->update(array('pass' => Hash::make($request->new_pass)));
         Auth::logout();
        return redirect()->route('trang-chu');  
     }
-    public function updateInfo(Request $request){
+
+    public function capNhatThongTin(Request $request){
         $quanTriVien = QuanTriVien::where('username','=',$request->id)->first();
         return view('user.cap-nhat-thong-tin',['quanTriVien'=>$quanTriVien]);
     }
-    public function processUpdateInfo(Request $request){
+
+    public function xuLyCapNhatThongTin(Request $request){
         if($request->hasFile('background'))
         {
             $files = $request->file('background');
             $files->move('anhavatar',$files->getClientOriginalName(),'public');
         }
         QuanTriVien::where('username', '=', $request->id)->update(array('fullname' => $request->fullname,'phone'=>$request->phone,'address'=>$request->address, 'picture'=>$request->background->getClientOriginalName()));
-       return redirect()->route('profile');  
+       return redirect()->route('thong-tin-ca-nhan');  
     }
+
     public function quanTam(Request $request){
         if(Auth::user()!=null){
         $lsPost = QuanTam::where('id_account', '=', Auth::user()->username);
@@ -120,6 +129,7 @@ class HomeController extends Controller
         return view('user.quan-tam');
         
     }
+
     public function xuLyQuanTam(Request $request){
         $baiDang=BaiDang::where('id', '=', $request->id)->first();
         $quanTam=QuanTam::create([
@@ -131,13 +141,6 @@ class HomeController extends Controller
         }
         return redirect()->route('trang-chu');
     }
-   
-
-
-
-
-
-
     
     //////////////////////////////////
     //admin
@@ -145,9 +148,11 @@ class HomeController extends Controller
         $lsBaiDang=BaiDang::all();
         return view('admin.trang-chu',compact('lsBaiDang'));
     }
+
     public function dangNhapAdmin(){
         return view('admin.dang-nhap');
     }
+
     public function xuLyDangNhapAdmin(Request $request)
     {
         $lsBaiDang=BaiDang::all();
@@ -172,6 +177,7 @@ class HomeController extends Controller
     public function dangKyAdmin(){
         return view('admin.dang-ky');
     }
+
     public function xuLyDangKyAdmin(Request $request)
     {
         if($request->key=='admin123'){
@@ -196,10 +202,12 @@ class HomeController extends Controller
         }
         
     }
+
     public function dangXuatAdmin(){
        Auth::logout();
        return redirect()->route('trang-chu-admin');
     }
+
     public function profileAdmin(){
         return view('admin.thong-tin-ca-nhan');
     }
@@ -207,11 +215,13 @@ class HomeController extends Controller
     public function doiMatKhauAdmin(){
         return view('admin.doi-mat-khau');
     }
+
     public function xuLyDoiMatKhauAdmin(Request $request){
         QuanTriVien::where('username', '=', $request->username)->update(array('pass' => Hash::make($request->new_pass)));
         Auth::logout();
        return redirect()->route('trang-chu-admin');  
     }
+
     public function pheDuyet(Request $request){
         
         $check =BaiDang::where('id', '=', $request->id)->first();
@@ -219,17 +229,16 @@ class HomeController extends Controller
             BaiDang::where('id', '=', $request->id)->update(array('active' => 1));
         }
         return redirect()->route('trang-chu-admin');
-        
     }
+
     public function pheDuyet2(Request $request){
-        
         $check =BaiDang::where('id', '=', $request->id)->first();
         if($check['active']==0){
             BaiDang::where('id', '=', $request->id)->update(array('active' => 1));
         }
         return redirect()->route('chi-tiet-bai-dang-admin',['id'=>$request->id]);
-        
     }
+
     public function xoaTaiKhoan(Request $request){
         $check =QuanTriVien::where('username', '=', $request->id)->first();
         if($check['stt']==1){
@@ -239,14 +248,17 @@ class HomeController extends Controller
         }
         return redirect()->route('quan-ly-tai-khoan');
     }
+
     public function quanLyTaiKhoan(){
         $quanTriVien = QuanTriVien::all();
         return view('admin.quan-ly-tai-khoan',['arr'=>$quanTriVien]);
     }
+
     public function thongBaoAdmin(){
         $thongBao = Notifications::all();
         return view('admin.thong-bao',['thongBao'=>$thongBao]);
     }
+
     public function xoaThongBao(Request $request){
         $result = Notifications::where('id','=', $request->id)->delete();
         return redirect()->route('thong-bao-admin');

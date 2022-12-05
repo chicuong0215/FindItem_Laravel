@@ -12,31 +12,16 @@ use DateTime;
 
 class BaiDangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('user.dang-bai');
     }
 
-    /**s
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function dangBai()
     {
         return view('user.dang-bai');
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function xuLyDangBai(Request $request)
     {
         $lsBaiDang=BaiDang::all();
@@ -73,7 +58,6 @@ class BaiDangController extends Controller
         $baiDang = BaiDang::all();
         return view('user.chi-tiet-bai-dang', ['baiDang'=>$baiDang]);
     }
-
 
     public function baiDangCuaBan(){
         $lsBaiDang = BaiDang::all();

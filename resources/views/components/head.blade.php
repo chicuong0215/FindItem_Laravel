@@ -23,7 +23,7 @@
         <a href="{{route('trang-chu')}}" id="phone" class="h2">BẢN TIN</a>
         <a href="{{route('tim-do')}}" id="phone" class="h2">TÌM ĐỒ</a>
         <a href="{{route('nhat-do')}}" id="phone" class="h2">NHẶT ĐỒ</a>
-        <a href="{{route('profile')}}" id="laptop" class="h2">TRANG CÁ NHÂN</a>
+        <a href="{{route('thong-tin-ca-nhan')}}" id="laptop" class="h2">TRANG CÁ NHÂN</a>
         <a href="{{route('quan-tam')}}" id="tablet" class="h2">QUAN TÂM</a>
         <a href="{{route('bai-dang-cua-ban')}}" id="accessories" class="h2">BÀI ĐĂNG CỦA BẠN</a>
         <a href="{{route('thong-bao')}}" id="smartwatch" class="h2">THÔNG BÁO</a>

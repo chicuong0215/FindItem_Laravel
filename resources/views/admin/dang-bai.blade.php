@@ -1,15 +1,12 @@
 @include('components.head-admin')
 <br />
 <br />
-<?php
-try{
-    $check =Auth::user()->id;
-    ?>
+@if(Auth::user())
 <a href="{{route('profile-admin')}}" id="technology" class="h1">Tài khoản: {{Auth::user()->username}}</a>
 <a href="{{route('dang-xuat-admin')}}" id="technology" class="h1">Thoát</a>
 <br />
 <br />
-<div class="title">THÔNG TIN BÀI ĐĂNG</div>
+<div class="title">ĐĂNG THÔNG BÁO</div>
 <div class="baidang">
     <div class="register-form">
         <div class="item-form">
@@ -35,22 +32,15 @@ try{
             </div>
         </div>
 
-
     </div>
 
 </div>
 
 </div>
-<?php
-
-}catch(Exception $e){
-    ?>
+@else
 <div class="text">Vui lòng đăng nhập để sử dụng đầy đủ tính năng</div>
-    <br/>
-    <a href="{{route('dang-nhap-admin')}}" id="technology" class="h1">Đăng Nhập</a>
-    <a href="{{route('dang-ky-admin')}}" id="technology" class="h1">Cấp Tài Khoản Admin</a>
+<br />
+<a href="{{route('dang-nhap-admin')}}" id="technology" class="h1">Đăng Nhập</a>
+<a href="{{route('dang-ky-admin')}}" id="technology" class="h1">Cấp Tài Khoản Admin</a>
 <a href="{{route('trang-chu')}}" id="technology" class="h1">Đăng Nhập với quyền người dùng</a>
-<?php
-}
-
-?>
+@endif

@@ -41,7 +41,6 @@
             @endif
         </div>
         <a href="{{route('dang-ky-admin')}}"><button class="btn-feature2">Cấp Tài Khoản Admin</button></a>
-        <!-- <a href="#"><button class="btn-feature">Quên Mật Khẩu</button></a> -->
         <a href="{{route('trang-chu-admin')}}"><button class="btn-feature">Trở Về</button></a>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

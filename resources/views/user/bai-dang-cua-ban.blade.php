@@ -6,7 +6,7 @@
 try{
     $check =Auth::user()->id;
 ?>
-<a href="{{route('profile')}}" id="technology" class="h1">Tài khoản: {{Auth::user()->username}}</a>
+<a href="{{route('thong-tin-ca-nhan')}}" id="technology" class="h1">Tài khoản: {{Auth::user()->username}}</a>
 <a href="{{route('dang-xuat')}}" id="technology" class="h1">Thoát</a>
 <br />
 <br />

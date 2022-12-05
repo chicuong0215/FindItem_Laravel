@@ -71,7 +71,7 @@
 
                 </div>
             </form>
-            <a href="{{route('profile')}}"><button class="btn-feature" id="btn" type="submit">Trở về</button></a>
+            <a href="{{route('thong-tin-ca-nhan')}}"><button class="btn-feature" id="btn" type="submit">Trở về</button></a>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

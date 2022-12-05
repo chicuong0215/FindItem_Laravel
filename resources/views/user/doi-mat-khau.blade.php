@@ -36,7 +36,7 @@
             <button type="submit" class="btn-feature" style="width:300px">Thay Đổi Mật Khẩu</button>
         </form>
     </div>
-    <a href="{{route('profile')}}"><button class="btn-feature-2">Trở Về</button></a>
+    <a href="{{route('thong-tin-ca-nhan')}}"><button class="btn-feature-2">Trở Về</button></a>
 </body>
 
 </html>

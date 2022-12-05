@@ -30,12 +30,12 @@ Route::post('dang-ky',[HomeController::class,'xuLyDangKy'])->name('xl-dang-ky')-
 
 Route::get('dang-xuat',[HomeController::class,'dangXuat'])->name('dang-xuat')->middleware('auth');
 
-Route::get('cap-nhat-thong-tin',[HomeController::class,'updateInfo'])->name('cap-nhat-thong-tin');
-Route::post('cap-nhat-thong-tin',[HomeController::class,'processUpdateInfo'])->name('xl-cap-nhat-thong-tin');
+Route::get('cap-nhat-thong-tin',[HomeController::class,'capNhatThongTin'])->name('cap-nhat-thong-tin');
+Route::post('cap-nhat-thong-tin',[HomeController::class,'xuLyCapNhatThongTin'])->name('xl-cap-nhat-thong-tin');
 
 Route::get('quan-tam',[HomeController::class,'quanTam'])->name('quan-tam');
 
-Route::get('profile',[HomeController::class,'profile'])->name('profile');
+Route::get('thong-tin-ca-nhan',[HomeController::class,'thongTinCaNhan'])->name('thong-tin-ca-nhan');
 
 Route::get('dang-bai',[BaiDangController::class,'dangBai'])->name('dang-bai');
 Route::post('dang-bai',[BaiDangController::class,'xuLyDangBai'])->name('xl-dang-bai');

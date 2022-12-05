@@ -1,11 +1,8 @@
 @include('components.head')
 <br />
 <br />
-<?php
-try{
-    $check =Auth::user()->id;
-    ?>
-<a href="{{route('profile')}}" id="technology" class="h1">Tài khoản: {{Auth::user()->username}}</a>
+@if(Auth::user()!=NULL)
+<a href="{{route('thong-tin-ca-nhan')}}" id="technology" class="h1">Tài khoản: {{Auth::user()->username}}</a>
 <a href="{{route('dang-xuat')}}" id="technology" class="h1">Thoát</a>
 <br />
 <br />
@@ -62,14 +59,8 @@ try{
 </div>
 
 </div>
-<?php
-
-}catch(Exception $e){
-    ?>
+@else
 <div class="text">Vui lòng đăng nhập để sử dụng đầy đủ tính năng</div>
 <br />
 <a href="{{route('dang-nhap')}}" id="technology" class="h1">Đăng Nhập</a>
-<?php
-}
-
-?>
+@endif
