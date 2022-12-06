@@ -13,7 +13,7 @@
 <br />
 <br />
 <div id="listphone">
-    @foreach($lsBaiDang as $data)
+    @foreach($lsPost as $data)
     @if($data['active']==1 && $data['stt']==1)
     <div class="item">
         <img src="anhavatar/" class="icon" />

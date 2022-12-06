@@ -3,28 +3,28 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\QuanTriVien;
+use App\Models\Accounts;
 use Illuminate\Support\Facades\Hash;
-use App\Models\BaiDang;
-use App\Models\QuanTam;
+use App\Models\Posts;
+use App\Models\Cares;
 use App\Models\Notifications;
 use App\Models\Comments;
 
 class HomeController extends Controller
 {
     public function index(Request $request){
-        $lsBaiDang=BaiDang::where('active','=',1)->where('stt','=',1)->paginate(3);
-        return view('user.trang-chu',['lsBaiDang'=>$lsBaiDang,'page'=>$request->page]);
+        $lsPost=Posts::where('active','=',1)->where('stt','=',1)->paginate(3);
+        return view('user.trang-chu',['lsPost'=>$lsPost,'page'=>$request->page]);
     }
 
     public function indexTimDo(){
-        $lsBaiDang=BaiDang::where('id_type', '=', 'find')->where('active','=',1)->where('stt','=',1)->paginate(3);
-        return view('user.tim-do',compact('lsBaiDang'));
+        $lsPost=Posts::where('id_type', '=', 'find')->where('active','=',1)->where('stt','=',1)->paginate(3);
+        return view('user.tim-do',compact('lsPost'));
     }
 
     public function indexNhatDo(){
-        $lsBaiDang=BaiDang::where('id_type', '=', 'loss')->where('active','=',1)->where('stt','=',1)->paginate(3);
-        return view('user.nhat-do',compact('lsBaiDang'));
+        $lsPost=Posts::where('id_type', '=', 'loss')->where('active','=',1)->where('stt','=',1)->paginate(3);
+        return view('user.nhat-do',compact('lsPost'));
     }
 
     public function dangNhap(){
@@ -33,23 +33,15 @@ class HomeController extends Controller
 
     public function xuLyDangNhap(Request $request)
     {
-        $tk = QuanTriVien::where('username', '=',$request->username)->first();
-        if($tk!=NULL){
-            if($tk['stt']==1){
-                $lsBaiDang=BaiDang::all();
+        if(Accounts::where('username', '=',$request->username)->where('stt','=','1')->first()!=NULL){
                 $credentials=$request->only('username','password');
                 if(Auth::attempt($credentials)){
                     return redirect()->route('thong-tin-ca-nhan');
                 }else{
                     return redirect()->back()->with("error","Đăng nhập không thành công!");
                 }
-               
-            }
-            else{
-                return redirect()->back()->with("error","Tài khoản đã bị xóa!");
-            }
         }else{
-            return redirect()->back()->with("error","Đăng nhập không thành công!");
+            return redirect()->back()->with("error","Tài khoản không tồn tại trên hệ thống!");
         }
         
     }
@@ -60,26 +52,31 @@ class HomeController extends Controller
 
     public function xuLyDangKy(Request $request)
     {
-        if($request->hasFile('background'))
-        {
-            $files = $request->file('background');
-            $files->move('anhavatar',$files->getClientOriginalName(),'public');
+        if(Accounts::where('username', '=',$request->username)->first()!=NULL){
+            if($request->hasFile('background'))
+            {
+                $files = $request->file('background');
+                $files->move('anhavatar',$files->getClientOriginalName(),'public');
+            }
+            $taiKhoan=Accounts::create([
+                'username'=>$request->tai_khoan,
+                'pass'=>Hash::make($request->mat_khau),
+                'permission'=>'0',
+                'fullname'=>$request->ho_ten,
+                'sex'=>$request->sex,
+                'phone'=>$request->dien_thoai,
+                'picture'=>$request->background->getClientOriginalName(),
+                'birthday'=>$request->birthday,
+                'address'=>$request->address,
+            ]);
+            if(!empty($taiKhoan)){
+                return redirect()->route('dang-nhap');
+            }
+            return "Thêm mới tài khoản không thành công";
+        }else{
+            return redirect()->back()->with("error","Tài khoản đã tồn tại!");
         }
-        $taiKhoan=QuanTriVien::create([
-            'username'=>$request->tai_khoan,
-            'pass'=>Hash::make($request->mat_khau),
-            'permission'=>'0',
-            'fullname'=>$request->ho_ten,
-            'sex'=>$request->sex,
-            'phone'=>$request->dien_thoai,
-            'picture'=>$request->background->getClientOriginalName(),
-            'birthday'=>$request->birthday,
-            'address'=>$request->address,
-        ]);
-        if(!empty($taiKhoan)){
-            return redirect()->route('dang-nhap');
-        }
-        return "Thêm mới tài khoản không thành công";
+        
     }
 
     public function dangXuat(){
@@ -101,14 +98,14 @@ class HomeController extends Controller
     }
 
     public function xuLyDoiMatKhau(Request $request){
-        QuanTriVien::where('username', '=', $request->username)->update(array('pass' => Hash::make($request->new_pass)));
+        Accounts::where('username', '=', $request->username)->update(array('pass' => Hash::make($request->new_pass)));
         Auth::logout();
        return redirect()->route('trang-chu');  
     }
 
     public function capNhatThongTin(Request $request){
-        $quanTriVien = QuanTriVien::where('username','=',$request->id)->first();
-        return view('user.cap-nhat-thong-tin',['quanTriVien'=>$quanTriVien]);
+        $account = Accounts::where('username','=',$request->id)->first();
+        return view('user.cap-nhat-thong-tin',['account'=>$account]);
     }
 
     public function xuLyCapNhatThongTin(Request $request){
@@ -117,24 +114,24 @@ class HomeController extends Controller
             $files = $request->file('background');
             $files->move('anhavatar',$files->getClientOriginalName(),'public');
         }
-        QuanTriVien::where('username', '=', $request->id)->update(array('fullname' => $request->fullname,'phone'=>$request->phone,'address'=>$request->address, 'picture'=>$request->background->getClientOriginalName()));
+        Accounts::where('username', '=', $request->id)->update(array('fullname' => $request->fullname,'phone'=>$request->phone,'address'=>$request->address, 'picture'=>$request->background->getClientOriginalName()));
        return redirect()->route('thong-tin-ca-nhan');  
     }
 
     public function quanTam(Request $request){
         if(Auth::user()!=null){
-        $lsPost = QuanTam::where('id_account', '=', Auth::user()->username);
-        return view('user.quan-tam',['lsBaiDang'=>$lsPost]);
+        $lsPost = Cares::where('id_account', '=', Auth::user()->username);
+        return view('user.quan-tam',['lsPost'=>$lsPost]);
         }
         return view('user.quan-tam');
         
     }
 
     public function xuLyQuanTam(Request $request){
-        $baiDang=BaiDang::where('id', '=', $request->id)->first();
-        $quanTam=QuanTam::create([
-            'id_account'=>$baiDang['id_account'],
-            'id_post'=>$baiDang['id'],
+        $post=Posts::where('id', '=', $request->id)->first();
+        $quanTam=Cares::create([
+            'id_account'=>$post['id_account'],
+            'id_post'=>$post['id'],
         ]);
         if(!empty($quanTam)){
             return redirect()->route('trang-chu');
@@ -145,8 +142,8 @@ class HomeController extends Controller
     //////////////////////////////////
     //admin
     public function indexAdmin(){
-        $lsBaiDang=BaiDang::all();
-        return view('admin.trang-chu',compact('lsBaiDang'));
+        $lsPost=Posts::all();
+        return view('admin.trang-chu',compact('lsPost'));
     }
 
     public function dangNhapAdmin(){
@@ -155,9 +152,9 @@ class HomeController extends Controller
 
     public function xuLyDangNhapAdmin(Request $request)
     {
-        $lsBaiDang=BaiDang::all();
+        $lsPost=Posts::all();
         $credentials=$request->only('username','password');
-        $permisstion = QuanTriVien::where('username','=',$request->username)->first();
+        $permisstion = Accounts::where('username','=',$request->username)->first();
         if($permisstion!=null){
             if($permisstion['permission']=='1'){
                 if(Auth::attempt($credentials)){
@@ -181,7 +178,7 @@ class HomeController extends Controller
     public function xuLyDangKyAdmin(Request $request)
     {
         if($request->key=='admin123'){
-            $taiKhoan=QuanTriVien::create([
+            $taiKhoan=Accounts::create([
                 'username'=>$request->username,
                 'pass'=>Hash::make($request->password),
                 'permission'=>1,
@@ -217,41 +214,41 @@ class HomeController extends Controller
     }
 
     public function xuLyDoiMatKhauAdmin(Request $request){
-        QuanTriVien::where('username', '=', $request->username)->update(array('pass' => Hash::make($request->new_pass)));
+        Accounts::where('username', '=', $request->username)->update(array('pass' => Hash::make($request->new_pass)));
         Auth::logout();
        return redirect()->route('trang-chu-admin');  
     }
 
     public function pheDuyet(Request $request){
         
-        $check =BaiDang::where('id', '=', $request->id)->first();
+        $check =Posts::where('id', '=', $request->id)->first();
         if($check['active']==0){
-            BaiDang::where('id', '=', $request->id)->update(array('active' => 1));
+            Posts::where('id', '=', $request->id)->update(array('active' => 1));
         }
         return redirect()->route('trang-chu-admin');
     }
 
     public function pheDuyet2(Request $request){
-        $check =BaiDang::where('id', '=', $request->id)->first();
+        $check =Posts::where('id', '=', $request->id)->first();
         if($check['active']==0){
-            BaiDang::where('id', '=', $request->id)->update(array('active' => 1));
+            Posts::where('id', '=', $request->id)->update(array('active' => 1));
         }
         return redirect()->route('chi-tiet-bai-dang-admin',['id'=>$request->id]);
     }
 
     public function xoaTaiKhoan(Request $request){
-        $check =QuanTriVien::where('username', '=', $request->id)->first();
+        $check =Accounts::where('username', '=', $request->id)->first();
         if($check['stt']==1){
-            QuanTriVien::where('username', '=', $request->id)->update(array('stt' => 0));
+            Accounts::where('username', '=', $request->id)->update(array('stt' => 0));
         }else{
-            QuanTriVien::where('username', '=', $request->id)->update(array('stt' => 1));
+            Accounts::where('username', '=', $request->id)->update(array('stt' => 1));
         }
         return redirect()->route('quan-ly-tai-khoan');
     }
 
     public function quanLyTaiKhoan(){
-        $quanTriVien = QuanTriVien::all();
-        return view('admin.quan-ly-tai-khoan',['arr'=>$quanTriVien]);
+        $account = Accounts::all();
+        return view('admin.quan-ly-tai-khoan',['arr'=>$account]);
     }
 
     public function thongBaoAdmin(){

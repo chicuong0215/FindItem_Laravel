@@ -23,7 +23,7 @@
                         <div>
                             <img class="icon" src="icons/lock.png" />
                             <input input type="text" placeholder="Nhập họ tên" name="fullname" class="input"
-                                value="{{$quanTriVien['fullname']}}" />
+                                value="{{$account['fullname']}}" />
                         </div>
                         <br />
 
@@ -31,7 +31,7 @@
                         <div>
                             <img class="icon" src="icons/lock.png" />
                             <input placeholder="Nhập số điện thoại" type="text" name="phone" class="input"
-                                value="{{$quanTriVien['phone']}}" />
+                                value="{{$account['phone']}}" />
                         </div>
                         <br />
                     </tr>
@@ -58,7 +58,7 @@
                         <div>
                             <img class="icon" src="icons/lock.png" />
                             <input placeholder="Nhập địa chỉ" type="text" name="address" class="input"
-                                value="{{$quanTriVien['address']}}" />
+                                value="{{$account['address']}}" />
                         </div>
                         <br />
                         <div class="text">ẢNH</div>

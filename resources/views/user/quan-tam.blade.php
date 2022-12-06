@@ -2,20 +2,14 @@
 <br />
 <br />
 
-<?php
-try{
-    $check =Auth::user()->id;
-?>
+@if(Auth::user())
 <a href="{{route('thong-tin-ca-nhan')}}" id="technology" class="h1">Tài khoản: {{Auth::user()->username}}</a>
 <a href="{{route('dang-xuat')}}" id="technology" class="h1">Thoát</a>
 
 <br />
 <br />
 
-
-<?php
-            foreach ($lsBaiDang as $data) {
-            ?>
+@foreach ($lsPost as $data)
 @csrf
 <div id="listphone">
     <div class="item">
@@ -35,15 +29,11 @@ try{
     </div>
 </div>
 
-<?php } ?>
-<?php
-}catch(Exception $e){
-?>
+@endforeach
+@else
 <div class="text">Vui lòng đăng nhập để sử dụng đầy đủ tính năng</div>
 <br />
 <a href="{{route('dang-nhap')}}" id="technology" class="h1">Đăng Nhập</a>
 <a href="{{route('dang-ky')}}" id="technology" class="h1">Đăng Ký</a>
 <a href="{{route('trang-chu-admin')}}" id="technology" class="h1">Đăng nhập với quyền quản trị viên</a>
-<?php
-}
-?>
+@endif

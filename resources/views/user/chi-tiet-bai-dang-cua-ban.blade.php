@@ -2,17 +2,17 @@
 
 <body style="text-align:left">
     <div class="main_device">
-        <img src="anhbaidang/{{$baiDang['picture']}}" class="left" />
+        <img src="anhbaidang/{{$post['picture']}}" class="left" />
         <div class="right">
-        <h4 class="name">Người đăng: {{$baiDang['id_account']}}</h4>
-            <h4 class="name">Tiêu đề: {{$baiDang['title']}}</h4>
-            <h5 class="details">Nội dung:<br />{{$baiDang['content']}}</h5>
-            <h5 class="details"><b>Ngày đăng: {{$baiDang['created_at']}}</b><br>
+        <h4 class="name">Người đăng: {{$post['id_account']}}</h4>
+            <h4 class="name">Tiêu đề: {{$post['title']}}</h4>
+            <h5 class="details">Nội dung:<br />{{$post['content']}}</h5>
+            <h5 class="details"><b>Ngày đăng: {{$post['created_at']}}</b><br>
                 <br>
                 
             </h5>
-            <a href="{{route('chinh-sua-bai-dang',['id'=>$baiDang['id']])}}"><button class="buy" onclick="">Chỉnh sửa</button></a>
-            <a href="{{route('xoa-bai-dang-2',['id'=>$baiDang['id']])}}"><button class="buy"
+            <a href="{{route('chinh-sua-bai-dang',['id'=>$post['id']])}}"><button class="buy" onclick="">Chỉnh sửa</button></a>
+            <a href="{{route('xoa-bai-dang-2',['id'=>$post['id']])}}"><button class="buy"
                 style="margin-bottom: 10px;background-color:red">Xóa bài đăng</button></a>
         </div>
         <img src="" class="bg" />

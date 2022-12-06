@@ -68,7 +68,7 @@ return [
     'providers' => [
         'admin' => [
             'driver' => 'eloquent',
-            'model' => App\Models\QuanTriVien::class,
+            'model' => App\Models\Accounts::class,
         ],
 
         // 'users' => [

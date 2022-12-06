@@ -7,7 +7,7 @@
 <br>
 <br>
 <div id="listphone2">
-    @foreach ($lsBaiDang as $data)
+    @foreach ($lsPost as $data)
     <div class="item">
         </br>
         <img src="icons/image.png" class="icon" />
@@ -19,14 +19,14 @@
         <br /><br />
         @if($data['active']==0)
         <a href="{{route('phe-duyet',['id'=>$data['id']])}}"><button class="{{$data['active']==1?'buy':'buy2'}}"
-                style="margin-bottom: 10px;">{{$data['active']==1?'Đã phê duyệt':'Chưa phê duyệt'}}</button><a />
-            @endif
-            @if($data['active']==1)
-            <a href="{{route('xoa-bai-dang-admin',['id'=>$data['id']])}}"><button class="buy"
-                    style="margin-bottom: 10px;background-color:{{$data['stt']==1?'red':'blue'}}">{{$data['stt']==1?'Xóa bài đăng':'Khôi phục'}}</button></a>
-            @endif
-            <a href="{{route('chi-tiet-bai-dang-admin',['id'=>$data['id']])}}"><button class="add"
-                    style="margin-bottom: 10px">Chi tiết</button></a>
+                style="margin-bottom: 10px;">{{$data['active']==1?'Đã phê duyệt':'Chưa phê duyệt'}}</button></a>
+        @endif
+        @if($data['active']==1)
+        <a href="{{route('xoa-bai-dang-admin',['id'=>$data['id']])}}"><button class="buy"
+                style="margin-bottom: 10px;background-color:{{$data['stt']==1?'red':'blue'}}">{{$data['stt']==1?'Xóa bài đăng':'Khôi phục'}}</button></a>
+        @endif
+        <a href="{{route('chi-tiet-bai-dang-admin',['id'=>$data['id']])}}"><button class="add"
+                style="margin-bottom: 10px">Chi tiết</button></a>
     </div>
 
     @endforeach

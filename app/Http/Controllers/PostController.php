@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\BaiDang;
+use App\Models\Posts;
 use App\Models\Notifications;
 use App\Models\Comments;
-use App\Models\QuanTriVien;
+use App\Models\Accounts;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
 
-class BaiDangController extends Controller
+class PostController extends Controller
 {
     public function index()
     {
@@ -24,7 +24,7 @@ class BaiDangController extends Controller
 
     public function xuLyDangBai(Request $request)
     {
-        $lsBaiDang=BaiDang::all();
+        $lsPost=Posts::all();
         $dt = new DateTime();
         $dt2 = $dt->format('dmY');
         if($request->hasFile('background'))
@@ -32,7 +32,7 @@ class BaiDangController extends Controller
             $files = $request->file('background');
             $files->move('anhbaidang',$files->getClientOriginalName(),'public');
         }
-        $baiDang=BaiDang::create([
+        $post=Posts::create([
             'id'=>"acc_".$dt2,
             'id_post'=>"acc_".$dt2,
             'id_account'=>$request->username,
@@ -44,9 +44,9 @@ class BaiDangController extends Controller
             'address'=>$request->address,
            
         ]);
-        if(!empty($baiDang)){
+        if(!empty($post)){
             #quay về trang danh sách tin tức
-            // return view('trang-chu',compact('lsBaiDang'));
+            // return view('trang-chu',compact('lsPost'));
             return redirect()->route('bai-dang-cua-ban');
         }
         #Thông báo thêm không thành công
@@ -55,54 +55,54 @@ class BaiDangController extends Controller
 
     public function edit(Request $request)
     {
-        $baiDang = BaiDang::all();
-        return view('user.chi-tiet-bai-dang', ['baiDang'=>$baiDang]);
+        $post = Posts::all();
+        return view('user.chi-tiet-bai-dang', ['post'=>$post]);
     }
 
     public function baiDangCuaBan(){
-        $lsBaiDang = BaiDang::all();
-        return view('user.bai-dang-cua-ban', ['lsBaiDang'=>$lsBaiDang]);
+        $lsPost = Posts::all();
+        return view('user.bai-dang-cua-ban', ['lsPost'=>$lsPost]);
     } 
     public function chinhSua(Request $request){
-        $baiDang = BaiDang::where('id','=',$request->id)->first();
-        return view('user.chinh-sua-bai-dang',['baiDang'=>$baiDang]);
+        $post = Posts::where('id','=',$request->id)->first();
+        return view('user.chinh-sua-bai-dang',['post'=>$post]);
     }
     public function xuLyChinhSua(Request $request){
-        BaiDang::where('id', '=', $request->id)->update(array('title' => $request->title,
+        Posts::where('id', '=', $request->id)->update(array('title' => $request->title,
     'content'=>$request->content,'address'=>$request->address));
        return redirect()->route('bai-dang-cua-ban');  
     }
     public function chiTietBaiDang(Request $request){
-        $baiDang=BaiDang::where('id', '=', $request->id)->first();
-        $binhLuan=Comments::where('id_post', '=', $request->id)->get();
-        $taiKhoan=QuanTriVien::all();
-        return view('user.chi-tiet-bai-dang',['baiDang'=>$baiDang,'binhLuan'=>$binhLuan, 'taiKhoan'=>$taiKhoan]);
+        $post=Posts::where('id', '=', $request->id)->first();
+        $comment=Comments::where('id_post', '=', $request->id)->get();
+        $taiKhoan=Accounts::all();
+        return view('user.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment, 'taiKhoan'=>$taiKhoan]);
     }
     public function chiTietBaiDang2(Request $request){
-        $baiDang=BaiDang::where('id', '=', $request->id)->first();
-        return view('user.chi-tiet-bai-dang-cua-ban',['baiDang'=>$baiDang]);
+        $post=Posts::where('id', '=', $request->id)->first();
+        return view('user.chi-tiet-bai-dang-cua-ban',['post'=>$post]);
     }
 
     public function xoaBaiDang(Request $request){
-        $check =BaiDang::where('id', '=', $request->id)->first();
+        $check =Posts::where('id', '=', $request->id)->first();
         if($check['stt']==1){
-            BaiDang::where('id', '=', $request->id)->update(array('stt' => 0));
+            Posts::where('id', '=', $request->id)->update(array('stt' => 0));
         }else{
-            BaiDang::where('id', '=', $request->id)->update(array('stt' => 1));
+            Posts::where('id', '=', $request->id)->update(array('stt' => 1));
         }
         return redirect()->route('bai-dang-cua-ban');
     }
     public function xoaBaiDang2(Request $request){
-        $check =BaiDang::where('id', '=', $request->id)->first();
+        $check =Posts::where('id', '=', $request->id)->first();
         if($check['stt']==1){
-            BaiDang::where('id', '=', $request->id)->update(array('stt' => 0));
+            Posts::where('id', '=', $request->id)->update(array('stt' => 0));
         }else{
-            BaiDang::where('id', '=', $request->id)->update(array('stt' => 1));
+            Posts::where('id', '=', $request->id)->update(array('stt' => 1));
         }
         return redirect()->route('bai-dang-cua-ban',['id'=>$request->id]);
     }
     public function xuLyBinhLuan(Request $request){
-        $binhLuan=Comments::create(
+        $comment=Comments::create(
             [
                 'id_post'=>$request->id,
                 'id_account'=>Auth::user()->username,
@@ -111,14 +111,14 @@ class BaiDangController extends Controller
                 'id_account_rep'=>'null'
             ]
         );
-        if(!empty($binhLuan)){
+        if(!empty($comment)){
             return redirect()->route('chi-tiet-bai-dang',['id'=>$request->id]);
         }
         return redirect()->route('chi-tiet-bai-dang',['id'=>$request->id]);
     }
 
     public function xuLyBinhLuanRep(Request $request){
-        $binhLuan=Comments::create(
+        $comment=Comments::create(
             [
                 'id_post'=>$request->id,
                 'id_account'=>Auth::user()->username,
@@ -127,30 +127,29 @@ class BaiDangController extends Controller
                 'id_account_rep'=>$request->rep
             ]
         );
-        if(!empty($binhLuan)){
+        if(!empty($comment)){
             return redirect()->route('chi-tiet-bai-dang',['id'=>$request->id]);
         }
         return redirect()->route('chi-tiet-bai-dang',['id'=>$request->id]);
     }
 
 
-
     //admin
     public function xoaBaiDangAdmin(Request $request){
-        $check =BaiDang::where('id', '=', $request->id)->first();
+        $check =Posts::where('id', '=', $request->id)->first();
         if($check['stt']==1){
-            BaiDang::where('id', '=', $request->id)->update(array('stt' => 0));
+            Posts::where('id', '=', $request->id)->update(array('stt' => 0));
         }else{
-            BaiDang::where('id', '=', $request->id)->update(array('stt' => 1));
+            Posts::where('id', '=', $request->id)->update(array('stt' => 1));
         }
         return redirect()->route('trang-chu-admin');
     }
     public function xoaBaiDangAdmin2(Request $request){
-        $check =BaiDang::where('id', '=', $request->id)->first();
+        $check =Posts::where('id', '=', $request->id)->first();
         if($check['stt']==1){
-            BaiDang::where('id', '=', $request->id)->update(array('stt' => 0));
+            Posts::where('id', '=', $request->id)->update(array('stt' => 0));
         }else{
-            BaiDang::where('id', '=', $request->id)->update(array('stt' => 1));
+            Posts::where('id', '=', $request->id)->update(array('stt' => 1));
         }
         return redirect()->route('chi-tiet-bai-dang-admin',['id'=>$request->id]);
     }
@@ -172,17 +171,17 @@ class BaiDangController extends Controller
         ]);
         if(!empty($thongBao)){
             #quay về trang danh sách tin tức
-            // return view('trang-chu',compact('lsBaiDang'));
+            // return view('trang-chu',compact('lsPost'));
             return redirect()->route('thong-bao-admin');
         }
         #Thông báo thêm không thành công
         return redirect()->route('thong-bao-admin');
     }
     public function chiTietBaiDangAdmin(Request $request){
-        $baiDang=BaiDang::where('id', '=', $request->id)->first();
-        $binhLuan=Comments::where('id_post', '=', $request->id)->get();
-        $taiKhoan=QuanTriVien::all();
-        return view('admin.chi-tiet-bai-dang',['baiDang'=>$baiDang,'binhLuan'=>$binhLuan, 'taiKhoan'=>$taiKhoan]);
+        $post=Posts::where('id', '=', $request->id)->first();
+        $comment=Comments::where('id_post', '=', $request->id)->get();
+        $taiKhoan=Accounts::all();
+        return view('admin.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment, 'taiKhoan'=>$taiKhoan]);
     }
     public function xoaTraLoi(Request $request){
         $result = Comments::where('id','=',$request->id)->delete();

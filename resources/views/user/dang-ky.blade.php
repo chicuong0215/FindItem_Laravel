@@ -12,7 +12,7 @@
 <body>
     <div>
         <div class="register-form">
-            <form action="{{ route('xl-dang-ky')}}" method="post"  enctype="multipart/form-data">
+            <form action="{{ route('xl-dang-ky')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="item-form">
                     <div class="title">ĐĂNG KÝ</div>
@@ -47,6 +47,9 @@
                         </div>
                         <br />
                     </tr>
+                    @if(session('error'))
+                    <p>{{session('error')}}</p>
+                    @endif
                     <a href="#"><button class="btn-feature" id="btn" type="submit">Đăng Ký</button></a>
                 </div>
 
@@ -54,7 +57,7 @@
                     <tr>
                         <div class="text">NGÀY SINH</div>
                         <div><img class="icon" src="icons/person.png" />
-                            <input type="date" name="birthday" class="input"/>
+                            <input type="date" name="birthday" class="input" />
                         </div>
                         <br />
                         <div class="text">GIỚI TÍNH</div>
@@ -79,7 +82,7 @@
                         </div>
                         <br />
                     </tr>
-                    
+
                 </div>
             </form>
             <a href="{{route('trang-chu')}}"><button class="btn-feature" id="btn" type="submit">Trở về</button></a>

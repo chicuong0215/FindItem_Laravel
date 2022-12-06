@@ -7,17 +7,17 @@
 <br />
 <br />
 <div class="title">CHỈNH SỬA BÀI ĐĂNG</div>
-<div class="baidang">
+<div class="post">
     <div class="register-form">
         <div class="item-form">
             <form action="{{route('xl-chinh-sua-bai-dang')}}" method="POST">
                 @csrf
                 <input type="hidden" value="{{Auth::user()->username}}" name="username">
-                <input type="hidden" value="{{$baiDang['id']}}" name="id">
+                <input type="hidden" value="{{$post['id']}}" name="id">
                 <div class="form-group">
                     <div class="text">Tiêu đề</div>
                     <br />
-                    <input type="text" class="input" name="title" value="{{$baiDang['title']}}">
+                    <input type="text" class="input" name="title" value="{{$post['title']}}">
                 </div>
                 <br />
                 <div class="form-group text">
@@ -28,12 +28,12 @@
                 <br />
                 <div class="form-group">
                     <div class="text">Nội dung</div>
-                    <textarea name="content" class="input-rectangle">{{$baiDang['content']}}</textarea>
+                    <textarea name="content" class="input-rectangle">{{$post['content']}}</textarea>
                 </div>
                 <br />
                 <div class="form-group">
                     <div class="text">Địa chỉ liên hệ</div>
-                    <input type="text" name="address" class="input-rectangle" value="{{$baiDang['content']}}">
+                    <input type="text" name="address" class="input-rectangle" value="{{$post['content']}}">
                 </div>
                 <br />
                 <img class="icon" src="icons/lock.png" />

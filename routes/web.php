@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\BaiDangController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,27 +37,27 @@ Route::get('quan-tam',[HomeController::class,'quanTam'])->name('quan-tam');
 
 Route::get('thong-tin-ca-nhan',[HomeController::class,'thongTinCaNhan'])->name('thong-tin-ca-nhan');
 
-Route::get('dang-bai',[BaiDangController::class,'dangBai'])->name('dang-bai');
-Route::post('dang-bai',[BaiDangController::class,'xuLyDangBai'])->name('xl-dang-bai');
+Route::get('dang-bai',[PostController::class,'dangBai'])->name('dang-bai');
+Route::post('dang-bai',[PostController::class,'xuLyDangBai'])->name('xl-dang-bai');
 
-Route::get('chi-tiet-bai-dang',[BaiDangController::class,'chiTietBaiDang'])->name('chi-tiet-bai-dang');
-Route::get('chi-tiet-bai-dang-cua-ban',[BaiDangController::class,'chiTietBaiDang2'])->name('chi-tiet-bai-dang-cua-ban');
+Route::get('chi-tiet-bai-dang',[PostController::class,'chiTietBaiDang'])->name('chi-tiet-bai-dang');
+Route::get('chi-tiet-bai-dang-cua-ban',[PostController::class,'chiTietBaiDang2'])->name('chi-tiet-bai-dang-cua-ban');
 
-Route::get('bai-dang-cua-ban',[BaiDangController::class,'baiDangCuaBan'])->name('bai-dang-cua-ban');
+Route::get('bai-dang-cua-ban',[PostController::class,'baiDangCuaBan'])->name('bai-dang-cua-ban');
 Route::get('thong-bao',[HomeController::class,'thongBao'])->name('thong-bao');
 
 Route::get('doi-mat-khau',[HomeController::class,'doiMatKhau'])->name('doi-mat-khau');
 Route::post('doi-mat-khau',[HomeController::class,'xuLyDoiMatKhau'])->name('xl-doi-mat-khau');
 
 
-Route::get('chinh-sua-bai-dang',[BaiDangController::class,'chinhSua'])->name('chinh-sua-bai-dang');
-Route::post('chinh-sua-bai-dang',[BaiDangController::class,'xuLyChinhSua'])->name('xl-chinh-sua-bai-dang');
+Route::get('chinh-sua-bai-dang',[PostController::class,'chinhSua'])->name('chinh-sua-bai-dang');
+Route::post('chinh-sua-bai-dang',[PostController::class,'xuLyChinhSua'])->name('xl-chinh-sua-bai-dang');
 
-Route::get('xoa-bai-dang',[BaiDangController::class,'xoaBaiDang'])->name('xoa-bai-dang');
-Route::get('xoa-bai-dang-2',[BaiDangController::class,'xoaBaiDang2'])->name('xoa-bai-dang-2');
+Route::get('xoa-bai-dang',[PostController::class,'xoaBaiDang'])->name('xoa-bai-dang');
+Route::get('xoa-bai-dang-2',[PostController::class,'xoaBaiDang2'])->name('xoa-bai-dang-2');
 
-Route::post('binh-luan',[BaiDangController::class,'xuLyBinhLuan'])->name('xl-binh-luan');
-Route::post('binh-luan-rep',[BaiDangController::class,'xuLyBinhLuanRep'])->name('xl-binh-luan-rep');
+Route::post('binh-luan',[PostController::class,'xuLyBinhLuan'])->name('xl-binh-luan');
+Route::post('binh-luan-rep',[PostController::class,'xuLyBinhLuanRep'])->name('xl-binh-luan-rep');
 
 
 
@@ -76,12 +76,12 @@ Route::get('admin/dang-xuat',[HomeController::class,'dangXuatAdmin'])->name('dan
 
 Route::get('admin/profile',[HomeController::class,'profileAdmin'])->name('profile-admin');
 
-Route::get('admin/dang-bai',[BaiDangController::class,'dangBaiAdmin'])->name('dang-bai-admin');
-Route::post('admin/dang-bai',[BaiDangController::class,'xuLyDangBaiAdmin'])->name('xl-dang-bai-admin');
+Route::get('admin/dang-bai',[PostController::class,'dangBaiAdmin'])->name('dang-bai-admin');
+Route::post('admin/dang-bai',[PostController::class,'xuLyDangBaiAdmin'])->name('xl-dang-bai-admin');
 
 Route::get('admin/quan-ly-tai-khoan',[HomeController::class,'quanLyTaiKhoan'])->name('quan-ly-tai-khoan');
 
-Route::get('admin/chi-tiet-bai-dang',[BaiDangController::class,'chiTietBaiDangAdmin'])->name('chi-tiet-bai-dang-admin');
+Route::get('admin/chi-tiet-bai-dang',[PostController::class,'chiTietBaiDangAdmin'])->name('chi-tiet-bai-dang-admin');
 
 Route::get('admin/doi-mat-khau',[HomeController::class,'doiMatKhauAdmin'])->name('doi-mat-khau-admin');
 Route::post('admin/doi-mat-khau',[HomeController::class,'xuLyDoiMatKhauAdmin'])->name('xl-doi-mat-khau-admin');
@@ -89,8 +89,8 @@ Route::post('admin/doi-mat-khau',[HomeController::class,'xuLyDoiMatKhauAdmin'])-
 Route::get('admin/phe-duyet',[HomeController::class,'pheDuyet'])->name('phe-duyet');
 Route::get('admin/phe-duyet2',[HomeController::class,'pheDuyet2'])->name('phe-duyet-2');
 
-Route::get('admin/xoa-bai-dang-admin',[BaiDangController::class,'xoaBaiDangAdmin'])->name('xoa-bai-dang-admin');
-Route::get('admin/xoa-bai-dang-admin-2',[BaiDangController::class,'xoaBaiDangAdmin2'])->name('xoa-bai-dang-admin-2');
+Route::get('admin/xoa-bai-dang-admin',[PostController::class,'xoaBaiDangAdmin'])->name('xoa-bai-dang-admin');
+Route::get('admin/xoa-bai-dang-admin-2',[PostController::class,'xoaBaiDangAdmin2'])->name('xoa-bai-dang-admin-2');
 
 
 Route::get('admin/xoa-tai-khoan',[HomeController::class,'xoaTaiKhoan'])->name('xoa-tai-khoan');
@@ -98,5 +98,4 @@ Route::get('admin/thong-bao',[HomeController::class,'thongBaoAdmin'])->name('tho
 
 Route::get('admin/xoa-thong-bao',[HomeController::class,'xoaThongBao'])->name('xoa-thong-bao');
 
-Route::get('admin/xoa-tra-loi',[BaiDangController::class,'xoaTraLoi'])->name('xoa-tra-loi');
-
+Route::get('admin/xoa-tra-loi',[PostController::class,'xoaTraLoi'])->name('xoa-tra-loi');

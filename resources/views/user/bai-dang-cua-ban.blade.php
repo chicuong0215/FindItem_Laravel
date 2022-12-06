@@ -12,7 +12,7 @@ try{
 <br />
 <div id="listphone2">
 <?php
-            foreach ($lsBaiDang as $data) {
+            foreach ($lsPost as $data) {
                 if($data['id_account']==Auth::user()->username&&$data['stt']==1){
                 
             ?>
