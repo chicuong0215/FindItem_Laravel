@@ -228,7 +228,7 @@ class HomeController extends Controller
                     return redirect()->route('trang-chu-admin');
                 }else{
                     return redirect()->back()->with("error","Đăng nhập không thành công!"); 
-                }
+                }   
             }
             else{
                 return redirect()->back()->with("error","Tài khoản không tồn tại trên hệ thống!"); 

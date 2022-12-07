@@ -12,11 +12,6 @@ use DateTime;
 
 class PostController extends Controller
 {
-    public function index()
-    {
-        return view('user.dang-bai');
-    }
-
     public function dangBai()
     {
         return view('user.dang-bai');
@@ -93,17 +88,17 @@ class PostController extends Controller
                 
                 $update = Posts::where('id', '=', $request->id)->update(array('title' => $request->title,'content'=>$request->content,'address'=>$request->address, 'id_type'=>$request->id_type, 'picture'=>$request->background->getClientOriginalName()));
                 if(!empty($post)){
-                return redirect()->route('bai-dang-cua-ban');
+                return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);
                 }
             }
             else{
                 $update = Posts::where('id', '=', $request->id)->update(array('title' => $request->title,'content'=>$request->content,'address'=>$request->address, 'id_type'=>$request->id_type));
                 if(!empty($post)){
-                    return redirect()->route('bai-dang-cua-ban');
+                    return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);
                 }
             }
             
-            return redirect()->route('bai-dang-cua-ban');  
+            return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);  
         }
     }
 
@@ -141,6 +136,7 @@ class PostController extends Controller
         return redirect()->route('bai-dang-cua-ban',['id'=>$request->id]);
     }
 
+    //binh luan
     public function xuLyBinhLuan(Request $request){
         $comment=Comments::create(
             [
@@ -173,6 +169,7 @@ class PostController extends Controller
 
 
     //admin
+    //bai dang
     public function xoaBaiDangAdmin(Request $request){
         $check =Posts::where('id', '=', $request->id)->first();
         if($check['stt']==1){
@@ -193,7 +190,19 @@ class PostController extends Controller
         return redirect()->route('chi-tiet-bai-dang-admin',['id'=>$request->id]);
     }
 
+    public function chiTietBaiDangAdmin(Request $request){
+        $post=Posts::where('id', '=', $request->id)->first();
+        $comment=Comments::where('id_post', '=', $request->id)->get();
+        $taiKhoan=Accounts::all();
+        return view('admin.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment, 'taiKhoan'=>$taiKhoan]);
+    }
+
+    public function xoaTraLoi(Request $request){
+        $result = Comments::where('id','=',$request->id)->delete();
+        return redirect()->route('chi-tiet-bai-dang-admin',['id'=>$request->id_post]);
+    }
     
+    //thong bao
     public function dangBaiAdmin()
     {
         return view('admin.dang-bai');
@@ -218,18 +227,6 @@ class PostController extends Controller
             return redirect()->route('thong-bao-admin');
         }
         
-    }
-
-    public function chiTietBaiDangAdmin(Request $request){
-        $post=Posts::where('id', '=', $request->id)->first();
-        $comment=Comments::where('id_post', '=', $request->id)->get();
-        $taiKhoan=Accounts::all();
-        return view('admin.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment, 'taiKhoan'=>$taiKhoan]);
-    }
-
-    public function xoaTraLoi(Request $request){
-        $result = Comments::where('id','=',$request->id)->delete();
-        return redirect()->route('chi-tiet-bai-dang-admin',['id'=>$request->id_post]);
     }
 
     public function thongBaoAdmin(){

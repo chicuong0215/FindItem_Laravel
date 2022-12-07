@@ -27,7 +27,7 @@
             <h4 class="details"><b>Tiêu đề:</b> {{$post['title']}}</h4>
             <h4 class="details"><b>Nội dung:</b> {{$post['content']}}</h4>
             <h4 class="details"><b>Loại:</b> {{$post['id_type']=='find'?'Tìm đồ':'Nhặt đồ'}}</h4>
-            <h4 class="details"><b>Nội dung:</b> {{$post['content']}}</h4>
+            <h4 class="details"><b>Địa chỉ:</b> {{$post['address']}}</h4>
             <b>Ngày đăng:</b> {{$post['created_at']}}<br>
             <br>
             <button class="add" onclick="">Nhắn tin</button>

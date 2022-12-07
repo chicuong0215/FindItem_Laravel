@@ -25,7 +25,7 @@
                         <div class="text">MÃ DÀNH CHO ADMIN</div>
                         <div>
                             <img class="icon" src="/icons/lock.png" />
-                            <input placeholder="Mã code để tạo tài khoản admin" type="text" name="key" class="input" />
+                            <input placeholder="Mã code tạo tài khoản admin" type="text" name="key" class="input" />
                         </div>
                         <br />
                         <div class="text">MẬT KHẨU</div>

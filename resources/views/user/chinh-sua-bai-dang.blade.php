@@ -38,7 +38,7 @@
                 <br />
                 <div class="form-group">
                     <div class="text">Địa chỉ liên hệ</div>
-                    <textarea type="text" name="address" class="input-rectangle">{{$post['content']}}</textarea>
+                    <textarea type="text" name="address" class="input-rectangle">{{$post['address']}}</textarea>
                 </div>
                 <br />
                 <img class="icon" src="icons/lock.png" />

@@ -13,7 +13,7 @@
 <br />
 <br />
 
-<body style="text-align:left">
+<body style="text-align:center">
     <div class="main_device">
         @if($post['picture']!='null')
         <img src="anhbaidang/{{$post['picture']}}" class="left" />
@@ -21,13 +21,11 @@
         <i>Không có hình ảnh</i>
         @endif
         <div class="right">
-            <img src="anhavatar/" class="icon" />
             <br>
-            <b>Người đăng:</b> {{$post['id_account']}}
             <h4 class="details"><b>Tiêu đề:</b> {{$post['title']}}</h4>
             <h4 class="details"><b>Nội dung:</b> {{$post['content']}}</h4>
             <h4 class="details"><b>Loại:</b> {{$post['id_type']=='find'?'Tìm đồ':'Nhặt đồ'}}</h4>
-            <h4 class="details"><b>Nội dung:</b> {{$post['content']}}</h4>
+            <h4 class="details"><b>Địa chỉ:</b> {{$post['address']}}</h4>
             <b>Ngày đăng:</b> {{$post['created_at']}}<br>
             <br>
             <a href="{{route('chinh-sua-bai-dang',['id'=>$post['id']])}}"><button class="buy" onclick="">Chỉnh
@@ -39,59 +37,61 @@
     <hr>
 
     <!-- bình luận -->
-    <h2 class="rate">Bình luận:</h2>
+    <div style="text-align:left">
+        <h2 class="rate">Bình luận:</h2>
 
-    <!-- parent -->
-    <div class="rate">
-        @if(Auth::user()!=NULL)
-        <form action="{{route('xl-binh-luan')}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <h2>Bình luận của bạn:</h2>
-            <input type="hidden" name="id" value="{{$post['id']}}">
-            <input type="text" name="content" class="input">
-            <button class="buy">Đăng</button>
-            <br>
-        </form>
-        @endif
-        <hr>
-        <!-- danh sách bình luận-->
-
-        <div style="font-weight:bold">Danh sách bình luận:</div>
-        <br>
-
-        @foreach($comment as $data)
-        <b>Tài khoản:</b> {{$data['id_account']}}
-        @if($data['id_account_rep']!='null')
-        <span style="color:blue">đã trả lời <b style="color:black">Tài khoản: </b><span
-                style="color:black">{{$data['id_account_rep']}}</span></span>
-        @endif
+        <!-- parent -->
         <div class="rate">
-            <div class="rate2">{{$data['content']}}</div>
-            <br>
-
             @if(Auth::user()!=NULL)
-            <button class="add" onclick="rep({{$data['id']}})">Trả lời</button>
-            @else
-            <button class="add"> <a href="{{route('dang-nhap')}}"
-                    style="color:while;text-decoration:none;font-weight:bold">Đăng nhập để bình luận </a></button>
-            @endif
-            <br>
-
-            <form style="display:none" id="{{$data['id']}}" action="{{route('xl-binh-luan-rep')}}" method="POST">
+            <form action="{{route('xl-binh-luan')}}" method="POST" enctype="multipart/form-data">
                 @csrf
-                Nội dung
-                <br>
-                <br>
+                <h2>Bình luận của bạn:</h2>
                 <input type="hidden" name="id" value="{{$post['id']}}">
-                <input type="hidden" name="rep" value="{{$data['id_account']}}">
                 <input type="text" name="content" class="input">
-                <button class="buy">Trả lời</button>
+                <button class="buy">Đăng</button>
                 <br>
             </form>
+            @endif
+            <hr>
+            <!-- danh sách bình luận-->
 
+            <div style="font-weight:bold">Danh sách bình luận:</div>
+            <br>
+
+            @foreach($comment as $data)
+            <b>Tài khoản:</b> {{$data['id_account']}}
+            @if($data['id_account_rep']!='null')
+            <span style="color:blue">đã trả lời <b style="color:black">Tài khoản: </b><span
+                    style="color:black">{{$data['id_account_rep']}}</span></span>
+            @endif
+            <div class="rate">
+                <div class="rate2">{{$data['content']}}</div>
+                <br>
+
+                @if(Auth::user()!=NULL)
+                <button class="add" onclick="rep({{$data['id']}})">Trả lời</button>
+                @else
+                <button class="add"> <a href="{{route('dang-nhap')}}"
+                        style="color:while;text-decoration:none;font-weight:bold">Đăng nhập để bình luận </a></button>
+                @endif
+                <br>
+
+                <form style="display:none" id="{{$data['id']}}" action="{{route('xl-binh-luan-rep')}}" method="POST">
+                    @csrf
+                    Nội dung
+                    <br>
+                    <br>
+                    <input type="hidden" name="id" value="{{$post['id']}}">
+                    <input type="hidden" name="rep" value="{{$data['id_account']}}">
+                    <input type="text" name="content" class="input">
+                    <button class="buy">Trả lời</button>
+                    <br>
+                </form>
+
+            </div>
+            <hr>
+            @endforeach
         </div>
-        <hr>
-        @endforeach
     </div>
     <script>
     function rep(id) {
