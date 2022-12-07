@@ -13,7 +13,13 @@ use App\Models\Comments;
 class HomeController extends Controller
 {
     public function index(Request $request){
-        $lsPost=Posts::where('active','=',1)->where('stt','=',1)->paginate(3);
+        if(Auth::user()!=null){
+            if(Auth::user()->permission==1){
+                Auth::logout();
+                return redirect()->route('trang-chu');
+            }
+        }
+        $lsPost=Posts::where('active','=',1)->where('stt','=',1)->paginate(5);
         return view('user.trang-chu',['lsPost'=>$lsPost,'page'=>$request->page]);
     }
 
@@ -33,15 +39,20 @@ class HomeController extends Controller
 
     public function xuLyDangNhap(Request $request)
     {
-        if(Accounts::where('username', '=',$request->username)->where('stt','=','1')->first()!=NULL){
-                $credentials=$request->only('username','password');
-                if(Auth::attempt($credentials)){
-                    return redirect()->route('thong-tin-ca-nhan');
-                }else{
-                    return redirect()->back()->with("error","Đăng nhập không thành công!");
-                }
+        if(empty($request->username) || empty($request->password)){
+            return redirect()->back()->with("error","Nhập đầy đủ thông tin!"); 
         }else{
-            return redirect()->back()->with("error","Tài khoản không tồn tại trên hệ thống!");
+            $account = Accounts::where('username', '=',$request->username)->where('stt','=','1')->where('permission','=','0')->first();
+            if($account!=null){
+                    $credentials=$request->only('username','password');
+                    if(Auth::attempt($credentials)){
+                        return redirect()->route('thong-tin-ca-nhan');
+                    }else{
+                        return redirect()->back()->with("error","Đăng nhập không thành công!");
+                    }
+            }else{
+                return redirect()->back()->with("error","Tài khoản không tồn tại trên hệ thống!");
+            }
         }
         
     }
@@ -52,29 +63,45 @@ class HomeController extends Controller
 
     public function xuLyDangKy(Request $request)
     {
-        if(Accounts::where('username', '=',$request->username)->first()!=NULL){
-            if($request->hasFile('background'))
+        if(empty($request->tai_khoan)||
+        empty($request->ho_ten) ||
+        empty($request->mat_khau)||
+        empty($request->re_password||
+        empty($request->dien_thoai)||
+        empty($request->birthday)||
+        empty($request->sex)||
+        empty($request->address))){
+            return redirect()->back()->with("error","Vui lòng nhập và chọn đầy đủ thông tin!"); 
+        }else{
+            if($request->mat_khau != $request->re_password){
+                return redirect()->back()->with("error","Mật khẩu nhập lại không đúng!");
+            }else{
+                if($request->hasFile('background'))
             {
                 $files = $request->file('background');
-                $files->move('anhavatar',$files->getClientOriginalName(),'public');
+                
+                if($files->getClientOriginalName()!=null){
+                    $files->move('anhavatar',$files->getClientOriginalName(),'public');
+
+                    $taiKhoan=Accounts::create([
+                        'username'=>$request->tai_khoan,
+                        'pass'=>Hash::make($request->mat_khau),
+                        'permission'=>'0',
+                        'fullname'=>$request->ho_ten,
+                        'sex'=>$request->sex,
+                        'phone'=>$request->dien_thoai,
+                        'picture'=>$request->background->getClientOriginalName(),
+                        'birthday'=>$request->birthday,
+                        'address'=>$request->address,
+                    ]);
+                    if(!empty($taiKhoan)){
+                        return redirect()->route('dang-nhap');
+                    }
+                }
+                return redirect()->back()->with("error","Vui lòng nhập và chọn đầy đủ thông tin!"); 
             }
-            $taiKhoan=Accounts::create([
-                'username'=>$request->tai_khoan,
-                'pass'=>Hash::make($request->mat_khau),
-                'permission'=>'0',
-                'fullname'=>$request->ho_ten,
-                'sex'=>$request->sex,
-                'phone'=>$request->dien_thoai,
-                'picture'=>$request->background->getClientOriginalName(),
-                'birthday'=>$request->birthday,
-                'address'=>$request->address,
-            ]);
-            if(!empty($taiKhoan)){
-                return redirect()->route('dang-nhap');
+            return redirect()->back()->with("error","Vui lòng nhập và chọn đầy đủ thông tin!");
             }
-            return "Thêm mới tài khoản không thành công";
-        }else{
-            return redirect()->back()->with("error","Tài khoản đã tồn tại!");
         }
         
     }
@@ -109,13 +136,43 @@ class HomeController extends Controller
     }
 
     public function xuLyCapNhatThongTin(Request $request){
-        if($request->hasFile('background'))
-        {
-            $files = $request->file('background');
-            $files->move('anhavatar',$files->getClientOriginalName(),'public');
+        if(empty($request->ho_ten)||
+        empty($request->phone)||
+        empty($request->birthday)||
+        empty($request->address)){
+            return redirect()->back()->with("error","Vui lòng nhập và chọn đầy đủ thông tin!"); 
         }
-        Accounts::where('username', '=', $request->id)->update(array('fullname' => $request->fullname,'phone'=>$request->phone,'address'=>$request->address, 'picture'=>$request->background->getClientOriginalName()));
-       return redirect()->route('thong-tin-ca-nhan');  
+        else{
+            if($request->hasFile('background'))
+            {
+                $files = $request->file('background');
+
+                if($files->getClientOriginalName()!=null){
+                    $files->move('anhavatar',$files->getClientOriginalName(),'public');
+
+                    Accounts::where('username', '=', $request->id)->update(
+                        array('fullname' => $request->ho_ten,
+                        'phone'=>$request->phone,
+                        'birthday'=>$request->birthday,
+                        'address'=>$request->address,
+                        'sex'=>$request->sex,
+                        'picture'=>$request->background->getClientOriginalName())
+                    );
+                    return redirect()->route('thong-tin-ca-nhan');
+                }
+            }else{
+                Accounts::where('username', '=', $request->id)->update(
+                    array('fullname' => $request->ho_ten,
+                    'phone'=>$request->phone,
+                    'birthday'=>$request->birthday,
+                    'address'=>$request->address,
+                    'sex'=>$request->sex)
+                );
+                return redirect()->route('thong-tin-ca-nhan');
+            }
+            
+        }
+         
     }
 
     public function quanTam(Request $request){
@@ -141,7 +198,15 @@ class HomeController extends Controller
     
     //////////////////////////////////
     //admin
+    //////////////////////////////////
+
     public function indexAdmin(){
+        if(Auth::user()!=null){
+            if(Auth::user()->permission==0){
+                Auth::logout();
+                return redirect()->route('trang-chu-admin');
+            }
+        }
         $lsPost=Posts::all();
         return view('admin.trang-chu',compact('lsPost'));
     }
@@ -152,21 +217,22 @@ class HomeController extends Controller
 
     public function xuLyDangNhapAdmin(Request $request)
     {
-        $lsPost=Posts::all();
-        $credentials=$request->only('username','password');
-        $permisstion = Accounts::where('username','=',$request->username)->first();
-        if($permisstion!=null){
-            if($permisstion['permission']=='1'){
+        if(empty($request->username) || empty($request->password)){
+            return redirect()->back()->with("error","Nhập đầy đủ thông tin!"); 
+        }
+        else{
+            $account = Accounts::where('username','=',$request->username)->where('permission', '=', '1')->first();
+            if($account!=null){
+                $credentials=$request->only('username','password');
                 if(Auth::attempt($credentials)){
                     return redirect()->route('trang-chu-admin');
                 }else{
                     return redirect()->back()->with("error","Đăng nhập không thành công!"); 
                 }
             }
-            return redirect()->back()->with("error","Đăng nhập không thành công!"); 
-        }
-        else{
-            return redirect()->back()->with("error","Đăng nhập không thành công!"); 
+            else{
+                return redirect()->back()->with("error","Tài khoản không tồn tại trên hệ thống!"); 
+            }
         }
         
     }
@@ -177,25 +243,35 @@ class HomeController extends Controller
 
     public function xuLyDangKyAdmin(Request $request)
     {
-        if($request->key=='admin123'){
-            $taiKhoan=Accounts::create([
-                'username'=>$request->username,
-                'pass'=>Hash::make($request->password),
-                'permission'=>1,
-                'fullname'=>'admin',
-                'picture'=>'admin',
-                'sex'=>'1',
-                'phone'=>'1',
-                'address'=>'1',
-            ]);
-            if(!empty($taiKhoan)){
-                #quay về trang danh sách tin tức
-                return redirect()->route('dang-nhap-admin');
-            }
-            #Thông báo thêm không thành công
-            return "Thêm mới tài khoản không thành công";
+        if(
+        empty($request->username)||
+        empty($request->key)||
+        empty($request->password)||
+        empty($request->re_password)){
+            return redirect()->back()->with('error', 'Vui lòng nhập đầy đủ thông tin!');
         }else{
-            return "Thêm mới tài khoản không thành công";
+            if($request->key=='admin123'){
+                if($request->password != $request->re_password){
+                    return redirect()->back()->with('error', 'Mật khẩu nhập lại không đúng!');
+                }else{
+                    $taiKhoan=Accounts::create([
+                        'username'=>$request->username,
+                        'pass'=>Hash::make($request->password),
+                        'permission'=>1,
+                        'fullname'=>'admin',
+                        'picture'=>'admin',
+                        'sex'=>'1',
+                        'phone'=>'1',
+                        'address'=>'1',
+                        'active'=>1
+                    ]);
+                    if(!empty($taiKhoan)){
+                        return redirect()->route('dang-nhap-admin');
+                    }
+                }
+            }else{
+                return redirect()->back()->with('error', 'Sai key');
+            }
         }
         
     }
@@ -214,9 +290,22 @@ class HomeController extends Controller
     }
 
     public function xuLyDoiMatKhauAdmin(Request $request){
-        Accounts::where('username', '=', $request->username)->update(array('pass' => Hash::make($request->new_pass)));
-        Auth::logout();
-       return redirect()->route('trang-chu-admin');  
+        if(empty($request->old_pass) || empty($request->new_pass) || empty($request->re_new_pass)){
+            return redirect()->back()->with("error","Nhập đầy đủ thông tin!"); 
+        }else{
+            $account = Accounts::where('username', '=', $request->username)->first();
+            if(Hash::make($request->old_pass) == $account['pass']){
+                dd("trung");
+                Accounts::where('username', '=', $request->username)->update(array('pass' => Hash::make($request->new_pass)));
+                Auth::logout();
+                return redirect()->route('trang-chu-admin');  
+                
+            }else{
+                dd("khac");
+                return redirect()->back()->with("error","Mật khẩu cũ sai!"); 
+            }
+        }
+        
     }
 
     public function pheDuyet(Request $request){
@@ -251,13 +340,5 @@ class HomeController extends Controller
         return view('admin.quan-ly-tai-khoan',['arr'=>$account]);
     }
 
-    public function thongBaoAdmin(){
-        $thongBao = Notifications::all();
-        return view('admin.thong-bao',['thongBao'=>$thongBao]);
-    }
-
-    public function xoaThongBao(Request $request){
-        $result = Notifications::where('id','=', $request->id)->delete();
-        return redirect()->route('thong-bao-admin');
-    }
+    
 }

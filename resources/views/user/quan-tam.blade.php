@@ -35,5 +35,4 @@
 <br />
 <a href="{{route('dang-nhap')}}" id="technology" class="h1">Đăng Nhập</a>
 <a href="{{route('dang-ky')}}" id="technology" class="h1">Đăng Ký</a>
-<a href="{{route('trang-chu-admin')}}" id="technology" class="h1">Đăng nhập với quyền quản trị viên</a>
 @endif

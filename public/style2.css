@@ -472,6 +472,18 @@ form {
     width: 200px;
     margin: 10px;
 }
+.btn-feature2:hover {
+    color: white;
+    background-color: #51c6d8;
+    border: solid 0px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 15pt;
+    padding: 10px;
+    width: 250px;
+    height: 45px;
+    margin: 10px;
+}
 
 .btn-feature-2 {
     color: white;

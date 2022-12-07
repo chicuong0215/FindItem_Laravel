@@ -33,6 +33,9 @@
                 <input type="text" name="re_new_pass" class="input" />
             </div>
             <br />
+            @if(session('error'))
+            <p>{{session('error')}}</p>
+            @endif
             <button type="submit" class="btn-feature" style="width:300px">Thay Đổi Mật Khẩu</button>
         </form>
     </div>

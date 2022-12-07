@@ -17,12 +17,10 @@ class CreateBaiDang extends Migration
             $table->id();
             $table->string('id_account');
             $table->string('id_type');
-            $table->string('id_object');
             $table->string('title');
             $table->string('content');
             $table->string('picture');
             $table->string('address');
-            $table->integer('like')->default(0);
             $table->boolean('is_found')->default(false);
             $table->boolean('active')->default(false);
             $table->boolean('stt')->default(true);

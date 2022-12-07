@@ -15,7 +15,6 @@ class Comments extends Model
         'id_post',
         'id_account',
         'content',
-        'picture',
         'id_account_rep'
     ];
 }

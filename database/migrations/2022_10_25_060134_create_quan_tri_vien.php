@@ -24,6 +24,7 @@ class CreateQuanTriVien extends Migration
             $table->string('picture');
             $table->datetime('birthday')->useCurrent();
             $table->string('address');
+            $table->boolean('active')->default(false);
             $table->boolean('stt')->default(true);
             $table->timestamps();
             $table->softDeletes();

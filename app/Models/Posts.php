@@ -14,7 +14,6 @@ class Posts extends Model
     protected $fillable=[
         'id_account',
         'id_type',
-        'id_object',
         'title',
         'content',
         'picture',

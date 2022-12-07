@@ -10,7 +10,7 @@
     <img src="anhavatar/{{Auth::user()->picture}}" class="icon-avatar" />
     <div>
         <h1>Họ tên: {{Auth::user()->fullname}}</h1>
-        <h3>Ngày sinh: {{Auth::user()->birthday}}</h3>
+        <h3>Ngày sinh: {{date('d/m/Y', strtotime(Auth::user()->birthday))}}</h3>
         <h3>Giới tính: {{Auth::user()->sex==1?'Nam':'Nữ'}}</h3>
         <h3>Số điện thoại: {{Auth::user()->phone}}</h3>
         <h3>Địa chỉ: {{Auth::user()->address}}</h3>

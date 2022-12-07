@@ -74,14 +74,13 @@ Route::post('admin/dang-ky',[HomeController::class,'xuLyDangKyAdmin'])->name('xl
 
 Route::get('admin/dang-xuat',[HomeController::class,'dangXuatAdmin'])->name('dang-xuat-admin')->middleware('auth');
 
-Route::get('admin/profile',[HomeController::class,'profileAdmin'])->name('profile-admin');
+Route::get('admin/thong-tin-tai-khoan',[HomeController::class,'profileAdmin'])->name('profile-admin');
 
-Route::get('admin/dang-bai',[PostController::class,'dangBaiAdmin'])->name('dang-bai-admin');
-Route::post('admin/dang-bai',[PostController::class,'xuLyDangBaiAdmin'])->name('xl-dang-bai-admin');
+
 
 Route::get('admin/quan-ly-tai-khoan',[HomeController::class,'quanLyTaiKhoan'])->name('quan-ly-tai-khoan');
 
-Route::get('admin/chi-tiet-bai-dang',[PostController::class,'chiTietBaiDangAdmin'])->name('chi-tiet-bai-dang-admin');
+
 
 Route::get('admin/doi-mat-khau',[HomeController::class,'doiMatKhauAdmin'])->name('doi-mat-khau-admin');
 Route::post('admin/doi-mat-khau',[HomeController::class,'xuLyDoiMatKhauAdmin'])->name('xl-doi-mat-khau-admin');
@@ -89,13 +88,17 @@ Route::post('admin/doi-mat-khau',[HomeController::class,'xuLyDoiMatKhauAdmin'])-
 Route::get('admin/phe-duyet',[HomeController::class,'pheDuyet'])->name('phe-duyet');
 Route::get('admin/phe-duyet2',[HomeController::class,'pheDuyet2'])->name('phe-duyet-2');
 
+Route::get('admin/xoa-tai-khoan',[HomeController::class,'xoaTaiKhoan'])->name('xoa-tai-khoan');
+
+Route::get('admin/dang-bai',[PostController::class,'dangBaiAdmin'])->name('dang-bai-admin');
+Route::post('admin/dang-bai',[PostController::class,'xuLyDangBaiAdmin'])->name('xl-dang-bai-admin');
+
 Route::get('admin/xoa-bai-dang-admin',[PostController::class,'xoaBaiDangAdmin'])->name('xoa-bai-dang-admin');
 Route::get('admin/xoa-bai-dang-admin-2',[PostController::class,'xoaBaiDangAdmin2'])->name('xoa-bai-dang-admin-2');
 
+Route::get('admin/chi-tiet-bai-dang',[PostController::class,'chiTietBaiDangAdmin'])->name('chi-tiet-bai-dang-admin');
+Route::get('admin/thong-bao',[PostController::class,'thongBaoAdmin'])->name('thong-bao-admin');
 
-Route::get('admin/xoa-tai-khoan',[HomeController::class,'xoaTaiKhoan'])->name('xoa-tai-khoan');
-Route::get('admin/thong-bao',[HomeController::class,'thongBaoAdmin'])->name('thong-bao-admin');
-
-Route::get('admin/xoa-thong-bao',[HomeController::class,'xoaThongBao'])->name('xoa-thong-bao');
+Route::get('admin/xoa-thong-bao',[PostController::class,'xoaThongBao'])->name('xoa-thong-bao');
 
 Route::get('admin/xoa-tra-loi',[PostController::class,'xoaTraLoi'])->name('xoa-tra-loi');

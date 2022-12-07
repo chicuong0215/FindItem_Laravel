@@ -21,7 +21,7 @@ class Accounts extends Authenticatable
         'picture',
         'phone',
         'birhday',
-        'address'
+        'address',
     ];
     public function getPasswordAttribute(){
         return $this->pass;

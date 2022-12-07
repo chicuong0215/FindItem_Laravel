@@ -19,7 +19,6 @@ class CreateCommentsTable extends Migration
             $table->string('id_account');
             $table->string('id_account_rep');
             $table->string('content');
-            $table->string('picture');
             $table->timestamps();
             $table->softDeletes();
         });

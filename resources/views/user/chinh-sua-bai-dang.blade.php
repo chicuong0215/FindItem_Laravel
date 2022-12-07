@@ -10,7 +10,7 @@
 <div class="post">
     <div class="register-form">
         <div class="item-form">
-            <form action="{{route('xl-chinh-sua-bai-dang')}}" method="POST">
+            <form action="{{route('xl-chinh-sua-bai-dang')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="{{Auth::user()->username}}" name="username">
                 <input type="hidden" value="{{$post['id']}}" name="id">
@@ -20,10 +20,15 @@
                     <input type="text" class="input" name="title" value="{{$post['title']}}">
                 </div>
                 <br />
-                <div class="form-group text">
-                    <div class="text">Loại tin</div>
-                    <input name="id_type" type="radio" value="loss"> Tin mất đồ <br>
-                    <input name="id_type" type="radio" value="find"> Tin nhặt đồ
+                <div>
+                    <select class="input" name="id_type">
+                        <option class="input" value="find">Tin tìm đồ</option>
+                        @if($post['id_type']=='loss')
+                        <option class="input" value="loss" selected>Tin nhặt đồ</option>
+                        @else
+                        <option class="input" value="loss">Tin nhặt đồ</option>
+                        @endif
+                    </select>
                 </div>
                 <br />
                 <div class="form-group">
@@ -33,15 +38,17 @@
                 <br />
                 <div class="form-group">
                     <div class="text">Địa chỉ liên hệ</div>
-                    <input type="text" name="address" class="input-rectangle" value="{{$post['content']}}">
+                    <textarea type="text" name="address" class="input-rectangle">{{$post['content']}}</textarea>
                 </div>
                 <br />
                 <img class="icon" src="icons/lock.png" />
                 <div class="text" style="display:inline-block">ẢNH</div>
                 <br />
                 <input type="file" name="background" class="input-rectangle" />
-
                 <br />
+                @if(session('error'))
+                <p>{{session('error')}}</p>
+                @endif
                 <div class="form-group tm-text-right text">
                     <button type="submit" class="btn-feature">Cập Nhật</button>
                 </div>

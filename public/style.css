@@ -133,9 +133,9 @@ del {
 }
 
 #listphone {
-    margin: 15px;
     display: flex;
     float: left;
+    justify-items: center;
     width: 100%;
 }
 .icon-avatar{
@@ -153,9 +153,6 @@ del {
     border-radius: 15px;
 }
 #listphone2 {
-    margin: 15px;
-    display: block;
-    float: left;
     width: 100%;
 }
 
@@ -184,7 +181,7 @@ del {
     color: #4D448B;
     text-decoration-line: none;
     padding: 5px;
-    width: 100%;
+    margin: 30px;
     border: solid white 1px;
     background-color: rgb(246, 246, 246);
     transition: background-color 0.5s, color 0.5s, border 0.8s;

@@ -4,17 +4,17 @@
     <div class="main_device">
         <img src="/anhbaidang/{{$post['picture']}}" class="left" />
         <div class="right">
-            <h4 class="name">Người đăng: {{$post['id_account']}}</h4>
-            <h4 class="name">Tiêu đề: {{$post['title']}}</h4>
-            <h5 class="details">Nội dung:<br />{{$post['content']}}</h5>
-            <h5 class="details">Loại: {{$post['id_type']=='find'?'Tìm đồ':'Nhặt đồ'}}</h5>
-            <h5 class="details"><b>Ngày đăng: {{$post['created_at']}}</b><br>
-                <br>
-
-            </h5>
+            <img src="anhavatar/" class="icon" />
+            <br>
+            <b>Người đăng:</b> {{$post['id_account']}}
+            <h4 class="details"><b>Tiêu đề:</b> {{$post['title']}}</h4>
+            <h4 class="details"><b>Nội dung:</b> {{$post['content']}}</h4>
+            <h4 class="details"><b>Loại:</b> {{$post['id_type']=='find'?'Tìm đồ':'Nhặt đồ'}}</h4>
+            <h4 class="details"><b>Nội dung:</b> {{$post['content']}}</h4>
+            <b>Ngày đăng:</b> {{$post['created_at']}}<br>
+            <br>
             @if($post['active']==0)
-            <a href="{{route('phe-duyet-2',['id'=>$post['id']])}}"><button
-                    class="{{$post['active']==1?'buy':'buy2'}}"
+            <a href="{{route('phe-duyet-2',['id'=>$post['id']])}}"><button class="{{$post['active']==1?'buy':'buy2'}}"
                     style="margin-bottom: 10px;">{{$post['active']==1?'Đã phê duyệt':'Chưa phê duyệt'}}</button><a />
                 @endif
                 @if($post['active']==1)

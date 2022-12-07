@@ -24,6 +24,9 @@
                 <input type="file" name="background" class="input-rectangle" />
 
                 <br />
+                @if(session('error'))
+                <p>{{session('error')}}</p>
+                @endif
                 <div class="form-group tm-text-right text">
                     <button type="submit" class="btn-feature">Đăng Bài</button>
                 </div>

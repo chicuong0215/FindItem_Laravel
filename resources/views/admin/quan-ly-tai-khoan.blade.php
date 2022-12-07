@@ -10,12 +10,23 @@
 @foreach ($arr as $data)
 @if($data['permission']=='0')
 @csrf
-<div id="">
-    <hr />
+<div class="line">
     <img src="/anhavatar/{{$data['picture']}}" class="icon" />
-    <b>Tài khoản: {{$data['username']}}</b>
-    <div class="">Họ và tên: {{$data['fullname']}} - Giới tính: {{$data['sex']==1?'Nam':'Nữ'}} - Điện thoại:
-        {{$data['phone']}} - Sinh nhật: {{$data['birthday']}}</div>
+    <br>
+    <div class="">
+        <b>Tài khoản: </b>{{$data['username']}}
+        <br>
+        <b>Họ và tên: </b> {{$data['fullname']}}
+        <br>
+        <b>Giới tính: </b>{{$data['sex']==1?'Nam':'Nữ'}}
+        <br>
+        <b>Điện thoại: </b>{{$data['phone']}}
+        <br>
+        <b>Sinh nhật: </b>{{date('d/m/Y', strtotime($data['birthday']))}}
+        <br>
+        <b>Ngày tạo: </b>{{$data['created_at']}}
+    </div>
+    <br>
     <a href="{{route('xoa-tai-khoan',['id'=>$data['username']])}}"><button class="buy"
             style="margin-bottom: 10px;background-color:{{$data['stt']==1?'red':'blue'}}">{{$data['stt']==1?'Xóa tài khoản':'Khôi phục tài khoản'}}</button></a>
 </div>

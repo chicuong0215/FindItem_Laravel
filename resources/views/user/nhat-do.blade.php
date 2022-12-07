@@ -14,7 +14,6 @@
 <br />
 <div id="listphone">
     @foreach($lsPost as $data)
-    @if($data['active']==1 && $data['stt']==1)
     <div class="item">
         <img src="anhavatar/" class="icon" />
         <h4><b>Người đăng:</b> {{$data['id_account']}}</h4>
@@ -22,7 +21,11 @@
         <h4 class="details"><b>Nội dung:</b> {{$data['content']}}</h4>
         <h4 class="details"><b>Loại:</b> {{$data['id_type']=='find'?'Tìm đồ':'Nhặt đồ'}}</h4>
         <h4 class="details"><b>Địa chỉ:</b> {{$data['address']}}</h4>
+        @if($data['picture']!='null')
         <img src="anhbaidang/{{$data['picture']}}" class="device" />
+        @else
+        <i>Không có hình ảnh</i>
+        @endif
         <h5 class="name"></h5>
         <b>Ngày đăng:</b> {{$data['created_at']}}
         <br /><br />
@@ -31,7 +34,6 @@
         <a href="{{route('chi-tiet-bai-dang',['id'=>$data['id']])}}"><button class="add" style="margin-bottom: 10px">Chi
                 tiết</button></a>
     </div>
-    @endif
     @endforeach
 </div>
 <br>

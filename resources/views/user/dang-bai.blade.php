@@ -21,9 +21,9 @@
                 <br />
                 <div>
                     <select class="input" name="id_type">
-                        <option class="input" value="loss">Tin mất đồ
+                        <option class="input" value="find">Tin tìm đồ
                         </option>
-                        <option class="input" value="find">Tin nhặt đồ
+                        <option class="input" value="loss">Tin nhặt đồ
                         </option>
                     </select>
                 </div>
@@ -43,7 +43,9 @@
                 <input type="file" name="background" class="input-rectangle" />
 
                 <br />
-                <img class="icon" src="icons/lock.png" />
+                @if(session('error'))
+                <p>{{session('error')}}</p>
+                @endif
 
                 <div class="form-group tm-text-right text">
                     <button type="submit" class="btn-feature">Đăng Bài</button>
@@ -63,4 +65,5 @@
 <div class="text">Vui lòng đăng nhập để sử dụng đầy đủ tính năng</div>
 <br />
 <a href="{{route('dang-nhap')}}" id="technology" class="h1">Đăng Nhập</a>
+<a href="{{route('dang-ky')}}" id="technology" class="h1">Đăng Ký</a>
 @endif

@@ -25,7 +25,7 @@
                         <div class="text">MÃ DÀNH CHO ADMIN</div>
                         <div>
                             <img class="icon" src="/icons/lock.png" />
-                            <input input type="text" placeholder="" name="key" class="input" />
+                            <input placeholder="Mã code để tạo tài khoản admin" type="text" name="key" class="input" />
                         </div>
                         <br />
                         <div class="text">MẬT KHẨU</div>
@@ -40,12 +40,16 @@
                             <input placeholder="Nhập lại mật khẩu" type="text" name="re_password" class="input" />
                         </div>
                         <br />
+                        @if(session('error'))
+                        <p>{{session('error')}}</p>
+                        @endif
                     </tr>
                     <a href="#"><button class="btn-feature" id="btn" type="submit">Tạo</button></a>
                 </div>
 
             </form>
-            <a href="{{route('trang-chu-admin')}}"><button class="btn-feature" id="btn" type="submit">Trở về</button></a>
+            <a href="{{route('trang-chu-admin')}}"><button class="btn-feature" id="btn" type="submit">Trở
+                    về</button></a>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
