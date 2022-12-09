@@ -12,12 +12,12 @@ class Cares extends Model
     use SoftDeletes;
     protected $table="cares";
     protected $fillable=[
-        'id_account',
-        'id_post',
+        'account_id',
+        'post_id',
         'stt'
     ];
     public function post()
     {
-        return $this->belongsTo(Posts::class, 'id_post', 'id');
+        return $this->belongsTo(Posts::class, 'post_id', 'id');
     }
 }

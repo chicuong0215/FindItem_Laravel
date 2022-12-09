@@ -18,13 +18,14 @@
 @endif
 <div id="listphone">
     @foreach ($lsPost as $data)
+        {{ $data->care}}
         <div class="item">
-            <a href="{{ route('thong-tin-ca-nhan-2', ['id' => $data['id_account']]) }}"><img
+            <a href="{{ route('thong-tin-ca-nhan-2', ['id' => $data['account_id']]) }}"><img
                     src="anhavatar/{{ $data->user->picture }}" class="icon" /></a>
             <h4><b>Người đăng:</b> {{ $data->user->fullname }}</h4>
             <h4 class="details"><b>Tiêu đề:</b> {{ $data['title'] }}</h4>
             <h4 class="details"><b>Nội dung:</b> {{ $data['content'] }}</h4>
-            <h4 class="details"><b>Loại:</b> {{ $data['id_type'] == 1 ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
+            <h4 class="details"><b>Loại:</b> {{ $data['type_id'] == 1 ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
             <h4 class="details"><b>Địa chỉ:</b> {{ $data['address'] }}</h4>
             @if ($data['picture'] != 'null')
                 <img src="anhbaidang/{{ $data['picture'] }}" class="device" />
@@ -36,8 +37,8 @@
             <br /><br />
             @if (Auth::user() != null)
                 <a href="{{ route('xl-quan-tam', ['id' => $data['id']]) }}"><button class="buy"
-                        style="margin-bottom: 10px">Quan
-                        tâm</button></a>
+                        style="margin-bottom: 10px">
+                        {{ true ? 'Đã quan tâm' : 'Quan tâm' }}</button></a>
             @endif
             <a href="{{ route('chi-tiet-bai-dang', ['id' => $data['id']]) }}"><button class="add"
                     style="margin-bottom: 10px">Chi

@@ -20,7 +20,7 @@
                 </div>
                 <br />
                 <div>
-                    <select class="input" name="id_type">
+                    <select class="input" name="type_id">
                         <option class="input" value="1">Tin tìm đồ
                         </option>
                         <option class="input" value="0">Tin nhặt đồ

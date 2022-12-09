@@ -16,7 +16,7 @@
         <h3>Địa chỉ: {{Auth::user()->address}}</h3>
     </div>
 
-    <a href="{{route('cap-nhat-thong-tin',['id'=>Auth::user()->username])}}"><button class="buy"
+    <a href="{{route('cap-nhat-thong-tin',['id'=>Auth::user()->id])}}"><button class="buy"
             style="margin-bottom: 10px">Cập nhật thông tin</button></a>
     <a href="{{route('doi-mat-khau')}}"><button class="add" style="margin-bottom: 10px">Đổi mật khẩu</button></a>
 </div>
@@ -25,4 +25,4 @@
 <br />
 <a href="{{route('dang-nhap')}}" id="technology" class="h1">Đăng Nhập</a>
 <a href="{{route('dang-ky')}}" id="technology" class="h1">Đăng Ký</a>
-@endif  
+@endif

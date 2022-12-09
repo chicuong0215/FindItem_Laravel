@@ -18,7 +18,7 @@
                 <br>
                 <b>Nội dung: </b>{{ $data['content'] }}
                 <br>
-                <b>Loại: </b> {{ $data['id_type'] == 1 ? 'Tìm đồ' : 'Nhặt đồ' }}
+                <b>Loại: </b> {{ $data['type_id'] == 1 ? 'Tìm đồ' : 'Nhặt đồ' }}
                 <br>
                 <b>Địa chỉ: </b>{{ $data['address'] }}
                 <br>

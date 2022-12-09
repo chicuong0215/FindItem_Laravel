@@ -55,7 +55,6 @@ Route::get('thong-bao',[HomeController::class,'thongBao'])->name('thong-bao');
 Route::get('doi-mat-khau',[HomeController::class,'doiMatKhau'])->name('doi-mat-khau');
 Route::post('doi-mat-khau',[HomeController::class,'xuLyDoiMatKhau'])->name('xl-doi-mat-khau');
 
-
 Route::get('chinh-sua-bai-dang',[PostController::class,'chinhSua'])->name('chinh-sua-bai-dang');
 Route::post('chinh-sua-bai-dang',[PostController::class,'xuLyChinhSua'])->name('xl-chinh-sua-bai-dang');
 
@@ -65,6 +64,8 @@ Route::get('xoa-bai-dang-2',[PostController::class,'xoaBaiDang2'])->name('xoa-ba
 Route::post('binh-luan',[PostController::class,'xuLyBinhLuan'])->name('xl-binh-luan');
 Route::post('binh-luan-rep',[PostController::class,'xuLyBinhLuanRep'])->name('xl-binh-luan-rep');
 
+Route::get('nhan-tin',[HomeController::class,'nhanTin'])->name('nhan-tin');
+Route::post('nhan-tin',[HomeController::class,'xuLyNhanTin'])->name('xl-nhan-tin');
 
 
 ///////////////////////////////////////////////////////////////////////

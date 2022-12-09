@@ -21,9 +21,9 @@
                     </div>
                     <br />
                     <div>
-                        <select class="input" name="id_type">
+                        <select class="input" name="type_id">
                             <option class="input" value="1">Tin tìm đồ</option>
-                            @if ($post['id_type'] == 0)
+                            @if ($post['type_id'] == 0)
                                 <option class="input" value="0" selected>Tin nhặt đồ</option>
                             @else
                                 <option class="input" value="0">Tin nhặt đồ</option>

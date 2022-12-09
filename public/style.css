@@ -140,7 +140,7 @@ del {
 }
 .icon-avatar{
     width: 160px;
-    height: 160px;  
+    height: 160px;
 }
 .profile {
     display: inline-block;
@@ -216,6 +216,14 @@ del {
     display: inline-block;
     padding: 20px;
     border-radius: 15px;
+    background-color: rgb(236, 236, 236);
+}
+.main_device2 {
+    margin-left: 300px;
+    margin-right: 300px;
+    display: block;
+    border-radius: 15px;
+    text-align: center;
     background-color: rgb(236, 236, 236);
 }
 

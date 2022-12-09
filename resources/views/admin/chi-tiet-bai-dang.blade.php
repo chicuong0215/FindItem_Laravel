@@ -13,7 +13,7 @@
             <b>Người đăng:</b> {{ $post->user->username }}
             <h4 class="details"><b>Tiêu đề:</b> {{ $post['title'] }}</h4>
             <h4 class="details"><b>Nội dung:</b> {{ $post['content'] }}</h4>
-            <h4 class="details"><b>Loại:</b> {{ $post['id_type'] == 1 ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
+            <h4 class="details"><b>Loại:</b> {{ $post['type_id'] == 1 ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
             <h4 class="details"><b>Nội dung:</b> {{ $post['content'] }}</h4>
             <b>Ngày đăng:</b> {{ $post['created_at'] }}<br>
             <br>
@@ -53,7 +53,7 @@
                 @endif
                 <div class="rate">
                     <div style="display:inline">{{ $data['content'] }}</div>
-                    <a href="{{ route('xoa-tra-loi', ['id' => $data['id'], 'id_post' => $data['id_post']]) }}"> <button
+                    <a href="{{ route('xoa-tra-loi', ['id' => $data['id'], 'post_id' => $data['post_id']]) }}"> <button
                             class="buy" style="background-color:red">Xóa trả lời</button></a>
                 </div>
                 <hr>

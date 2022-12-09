@@ -9,13 +9,13 @@
     <br />
     <div id="listphone2">
         @foreach ($lsPost as $data)
-            @if ($data['id_account'] == Auth::user()->id && $data['stt'] == 1)
+            @if ($data['account_id'] == Auth::user()->id && $data['stt'] == 1)
                 @csrf
                 <div class="item2">
                     <i>{{ $data['active'] != 1 ? 'Đang chờ phê duyệt' : '' }}</i>
                     <h4 class="details"><b>Tiêu đề:</b> {{ $data['title'] }}</h4>
                     <h4 class="details"><b>Nội dung:</b> {{ $data['content'] }}</h4>
-                    <h4 class="details"><b>Loại:</b> {{ $data['id_type'] == 'find' ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
+                    <h4 class="details"><b>Loại:</b> {{ $data['type_id'] == 'find' ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
                     <h4 class="details"><b>Địa chỉ:</b> {{ $data['address'] }}</h4>
                     @if ($data['picture'] != 'null')
                         <img src="anhbaidang/{{ $data['picture'] }}" class="icon" />

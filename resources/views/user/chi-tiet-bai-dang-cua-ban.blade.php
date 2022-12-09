@@ -24,7 +24,7 @@
             <br>
             <h4 class="details"><b>Tiêu đề:</b> {{ $post['title'] }}</h4>
             <h4 class="details"><b>Nội dung:</b> {{ $post['content'] }}</h4>
-            <h4 class="details"><b>Loại:</b> {{ $post['id_type'] == 1 ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
+            <h4 class="details"><b>Loại:</b> {{ $post['type_id'] == 1 ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
             <h4 class="details"><b>Địa chỉ:</b> {{ $post['address'] }}</h4>
             <b>Ngày đăng:</b> {{ $post['created_at'] }}<br>
             <br>
@@ -61,7 +61,7 @@
 
             @foreach ($comment as $data)
                 <b>Tài khoản:</b> {{ $data->user->username }}
-                @if ($data['id_account_rep'] != -1)
+                @if ($data['account_rep_id'] != -1)
                     <span style="color:blue">đã trả lời <b style="color:black">Tài khoản: </b><span
                             style="color:black">{{ $data->userRep->username }}</span></span>
                 @endif
@@ -85,7 +85,7 @@
                         <br>
                         <br>
                         <input type="hidden" name="id" value="{{ $post['id'] }}">
-                        <input type="hidden" name="rep" value="{{ $data['id_account'] }}">
+                        <input type="hidden" name="rep" value="{{ $data['account_id'] }}">
                         <input type="text" name="content" class="input">
                         <button class="buy">Trả lời</button>
                         <br>

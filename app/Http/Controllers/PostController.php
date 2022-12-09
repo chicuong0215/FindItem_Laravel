@@ -29,8 +29,8 @@ class PostController extends Controller
             if($files->getClientOriginalName()!=null){
                 $files->move('anhbaidang',$files->getClientOriginalName(),'public');
                 $post=Posts::create([
-                    'id_account'=>$request->username,
-                    'id_type'=>$request->id_type,
+                    'account_id'=>$request->username,
+                    'type_id'=>$request->type_id,
                     'title'=>$request->title,
                     'content'=>$request->content,
                     'picture'=>$request->background->getClientOriginalName(),
@@ -43,8 +43,8 @@ class PostController extends Controller
             }
         }else{
             $post=Posts::create([
-                'id_account'=>$request->username,
-                'id_type'=>$request->id_type,
+                'account_id'=>$request->username,
+                'type_id'=>$request->type_id,
                 'title'=>$request->title,
                 'content'=>$request->content,
                 'picture'=>"null",
@@ -85,13 +85,13 @@ class PostController extends Controller
                 $files = $request->file('background');
                 $files->move('anhbaidang',$files->getClientOriginalName(),'public');
 
-                $update = Posts::where('id', '=', $request->id)->update(array('title' => $request->title,'content'=>$request->content,'address'=>$request->address, 'id_type'=>$request->id_type, 'picture'=>$request->background->getClientOriginalName()));
+                $update = Posts::where('id', '=', $request->id)->update(array('title' => $request->title,'content'=>$request->content,'address'=>$request->address, 'type_id'=>$request->type_id, 'picture'=>$request->background->getClientOriginalName()));
                 if(!empty($post)){
                 return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);
                 }
             }
             else{
-                $update = Posts::where('id', '=', $request->id)->update(array('title' => $request->title,'content'=>$request->content,'address'=>$request->address, 'id_type'=>$request->id_type));
+                $update = Posts::where('id', '=', $request->id)->update(array('title' => $request->title,'content'=>$request->content,'address'=>$request->address, 'type_id'=>$request->type_id));
                 if(!empty($post)){
                     return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);
                 }
@@ -103,13 +103,13 @@ class PostController extends Controller
 
     public function chiTietBaiDang(Request $request){
         $post=Posts::where('id', '=', $request->id)->first();
-        $comment=Comments::where('id_post', '=', $request->id)->get();
+        $comment=Comments::where('post_id', '=', $request->id)->get();
         return view('user.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment]);
     }
 
     public function chiTietBaiDang2(Request $request){
         $post=Posts::where('id', '=', $request->id)->first();
-        $comment=Comments::where('id_post', '=', $request->id)->get();
+        $comment=Comments::where('post_id', '=', $request->id)->get();
         return view('user.chi-tiet-bai-dang-cua-ban',['post'=>$post,'comment'=>$comment]);
     }
 
@@ -137,10 +137,10 @@ class PostController extends Controller
     public function xuLyBinhLuan(Request $request){
         $comment=Comments::create(
             [
-                'id_post'=>$request->id,
-                'id_account'=>Auth::user()->id,
+                'post_id'=>$request->id,
+                'account_id'=>Auth::user()->id,
                 'content'=>$request->content,
-                'id_account_rep'=>-1
+                'account_rep_id'=>-1
             ]
         );
         if(!empty($comment)){
@@ -152,10 +152,10 @@ class PostController extends Controller
     public function xuLyBinhLuanRep(Request $request){
         $comment=Comments::create(
             [
-                'id_post'=>$request->id,
-                'id_account'=>Auth::user()->id,
+                'post_id'=>$request->id,
+                'account_id'=>Auth::user()->id,
                 'content'=>$request->content,
-                'id_account_rep'=>$request->rep
+                'account_rep_id'=>$request->rep
             ]
         );
         if(!empty($comment)){
@@ -189,13 +189,13 @@ class PostController extends Controller
 
     public function chiTietBaiDangAdmin(Request $request){
         $post=Posts::where('id', '=', $request->id)->first();
-        $comment=Comments::where('id_post', '=', $request->id)->get();
+        $comment=Comments::where('post_id', '=', $request->id)->get();
         return view('admin.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment]);
     }
 
     public function xoaTraLoi(Request $request){
         $result = Comments::where('id','=',$request->id)->delete();
-        return redirect()->route('chi-tiet-bai-dang-admin',['id'=>$request->id_post]);
+        return redirect()->route('chi-tiet-bai-dang-admin',['id'=>$request->post_id]);
     }
 
     //thong bao

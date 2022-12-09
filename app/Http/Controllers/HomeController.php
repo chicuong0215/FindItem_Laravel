@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Accounts;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Posts;
+use App\Models\Message;
 use App\Models\Cares;
 use App\Models\Notifications;
 use App\Models\Comments;
@@ -45,7 +46,7 @@ class HomeController extends Controller
 
     public function indexTimDo(){
         $lsPost = Posts::where([
-            'id_type'=> 1,
+            'type_id'=> 1,
             'active'=> 1,
             'stt' => 1
         ])->paginate(3);
@@ -53,7 +54,7 @@ class HomeController extends Controller
     }
 
     public function indexNhatDo(){
-        $lsPost=Posts::where('id_type', '=', '0')->where('active','=',1)->where('stt','=',1)->paginate(3);
+        $lsPost=Posts::where('type_id', '=', '0')->where('active','=',1)->where('stt','=',1)->paginate(3);
         return view('user.nhat-do',compact('lsPost'));
     }
 
@@ -184,7 +185,7 @@ class HomeController extends Controller
     }
 
     public function capNhatThongTin(Request $request){
-        $account = Accounts::where('username','=',$request->id)->first();
+        $account = Accounts::where('id','=',$request->id)->first();
         return view('user.cap-nhat-thong-tin',['account'=>$account]);
     }
 
@@ -230,18 +231,18 @@ class HomeController extends Controller
 
     public function quanTam(Request $request){
         if(Auth::user()!=null){
-        $lsCare = Cares::where('id_account', '=', Auth::user()->id)->where('stt','=',1)->get();
+        $lsCare = Cares::where('account_id', '=', Auth::user()->id)->where('stt','=',1)->get();
         return view('user.quan-tam',['lsCare'=>$lsCare]);
         }
         return view('user.quan-tam');
     }
 
     public function xuLyQuanTam(Request $request){
-        $check = Cares::where('id_post','=', $request->id)->where('id_account','=', Auth::user()->id)->first();
+        $check = Cares::where('post_id','=', $request->id)->where('account_id','=', Auth::user()->id)->first();
         if($check==null){
             $quanTam=Cares::create([
-                'id_account'=>Auth::user()->id,
-                'id_post'=>$request->id,
+                'account_id'=>Auth::user()->id,
+                'post_id'=>$request->id,
             ]);
             if(!empty($quanTam)){
                 return redirect()->route('trang-chu');
@@ -249,11 +250,11 @@ class HomeController extends Controller
             return redirect()->route('trang-chu');
         }else{
             if($check['stt']==1){
-                Cares::where('id_post','=', $request->id)->where('id_account','=', Auth::user()->id)->update(
+                Cares::where('post_id','=', $request->id)->where('account_id','=', Auth::user()->id)->update(
                     array('stt'=> 0)
                 );
             }else{
-                Cares::where('id_post','=', $request->id)->where('id_account','=', Auth::user()->id)->update(
+                Cares::where('post_id','=', $request->id)->where('account_id','=', Auth::user()->id)->update(
                     array('stt'=> 1)
                 );
             }
@@ -262,11 +263,11 @@ class HomeController extends Controller
 
     }
     public function xuLyQuanTam2(Request $request){
-        $check = Cares::where('id_post','=', $request->id)->where('id_account','=', Auth::user()->id)->first();
+        $check = Cares::where('post_id','=', $request->id)->where('account_id','=', Auth::user()->id)->first();
         if($check==null){
             $quanTam=Cares::create([
-                'id_account'=>Auth::user()->id,
-                'id_post'=>$request->id,
+                'account_id'=>Auth::user()->id,
+                'post_id'=>$request->id,
             ]);
             if(!empty($quanTam)){
                 return redirect()->route('quan-tam');
@@ -274,11 +275,11 @@ class HomeController extends Controller
             return redirect()->route('quan-tam');
         }else{
             if($check['stt']==1){
-                Cares::where('id_post','=', $request->id)->where('id_account','=', Auth::user()->id)->update(
+                Cares::where('post_id','=', $request->id)->where('account_id','=', Auth::user()->id)->update(
                     array('stt'=> 0)
                 );
             }else{
-                Cares::where('id_post','=', $request->id)->where('id_account','=', Auth::user()->id)->update(
+                Cares::where('post_id','=', $request->id)->where('account_id','=', Auth::user()->id)->update(
                     array('stt'=> 1)
                 );
             }
@@ -286,6 +287,40 @@ class HomeController extends Controller
         }
 
     }
+    public function nhanTin(Request $request){
+        $lsMessage = Message::where([
+            'account_id'=>Auth::user()->id,
+            'account_id_2'=>$request->id
+        ])->get();
+
+        $lsMessage2 = Message::where([
+            'account_id'=>$request->id,
+            'account_id_2'=>Auth::user()->id,
+        ])->get();
+
+        $account1 = Accounts::where('id','=',Auth::user()->id)->first();
+        $account2 = Accounts::where('id', '=', $request->id)->first();
+
+        return view('user.nhan-tin',['lsMessage'=>$lsMessage, 'account1'=>$account1, 'account2'=>$account2]);
+    }
+    public function xuLyNhanTin(Request $request){
+        $result = Message::create([
+            'account_id'=>$request->account1,
+            'account_id_2'=>$request->account2,
+            'content'=>$request->message,
+            'content_2'=>''
+        ]);
+
+        if(!empty($result)){
+            return redirect()->route('nhan-tin',['id'=>$request->account2]);
+        }
+        return redirect()->route('nhan-tin',['id', $request->account2]);
+    }
+
+
+
+
+
     //////////////////////////////////
     //admin
     //////////////////////////////////

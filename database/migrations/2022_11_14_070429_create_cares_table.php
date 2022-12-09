@@ -15,8 +15,8 @@ class CreateCaresTable extends Migration
     {
         Schema::create('cares', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_account');
-            $table->integer('id_post');
+            $table->integer('account_id');
+            $table->integer('post_id');
             $table->boolean('stt')->default(true);
             $table->timestamps();
             $table->softDeletes();

@@ -12,16 +12,16 @@ class Comments extends Model
     use SoftDeletes;
     protected $table="comments";
     protected $fillable=[
-        'id_post',
-        'id_account',
+        'post_id',
+        'account_id',
         'content',
-        'id_account_rep'
+        'account_rep_id'
     ];
     public function user(){
-        return $this->belongsTo(Accounts::class, 'id_account', 'id');
+        return $this->belongsTo(Accounts::class, 'account_id', 'id');
     }
 
     public function userRep(){
-        return $this->belongsTo(Accounts::class, 'id_account_rep', 'id');
+        return $this->belongsTo(Accounts::class, 'account_rep_id', 'id');
      }
 }

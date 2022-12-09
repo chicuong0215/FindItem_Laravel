@@ -12,16 +12,16 @@ class Posts extends Model
     use SoftDeletes;
     protected $table="posts";
     protected $fillable=[
-        'id_account',
-        'id_type',
+        'account_id',
+        'type_id',
         'title',
         'content',
         'picture',
         'address',
-        
+
     ];
 
     public function user(){
-       return $this->belongsTo(Accounts::class, 'id_account', 'id');
+       return $this->belongsTo(Accounts::class, 'account_id', 'id');
     }
 }
