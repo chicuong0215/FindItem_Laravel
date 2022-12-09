@@ -17,6 +17,7 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->string('picture');
             $table->string('content');
+            $table->boolean('stt')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

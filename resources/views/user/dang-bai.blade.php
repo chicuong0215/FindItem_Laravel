@@ -12,7 +12,7 @@
         <div class="item-form">
             <form action="{{route('xl-dang-bai')}}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" value="{{Auth::user()->username}}" name="username">
+                <input type="hidden" value="{{Auth::user()->id}}" name="username">
                 <div class="form-group">
                     <div class="text">Tiêu đề</div>
                     <br />
@@ -21,9 +21,9 @@
                 <br />
                 <div>
                     <select class="input" name="id_type">
-                        <option class="input" value="find">Tin tìm đồ
+                        <option class="input" value="1">Tin tìm đồ
                         </option>
-                        <option class="input" value="loss">Tin nhặt đồ
+                        <option class="input" value="0">Tin nhặt đồ
                         </option>
                     </select>
                 </div>

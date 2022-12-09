@@ -17,10 +17,14 @@ use App\Http\Controllers\PostController;
 
 Route::get('/',[HomeController::class,'index'])->name('trang-chu');
 
+Route::get('/tim-kiem',[HomeController::class,'xuLyTimKiem'])->name('xl-tim-kiem');
+Route::get('/tim-kiem-admin',[HomeController::class,'xuLyTimKiemAdmin'])->name('xl-tim-kiem-2');
+
 Route::get('nhat-do',[HomeController::class,'indexNhatDo'])->name('nhat-do');
 Route::get('tim-do',[HomeController::class,'indexTimDo'])->name('tim-do');
 
 Route::get('qt',[HomeController::class,'xuLyQuanTam'])->name('xl-quan-tam');
+Route::get('qt2',[HomeController::class,'xuLyQuanTam2'])->name('xl-quan-tam-2');
 
 Route::get('dang-nhap',[HomeController::class,'dangNhap'])->name('dang-nhap')->middleware('guest');
 Route::post('dang-nhap',[HomeController::class,'xuLyDangNhap'])->name('xl-dang-nhap')->middleware('guest');
@@ -36,6 +40,8 @@ Route::post('cap-nhat-thong-tin',[HomeController::class,'xuLyCapNhatThongTin'])-
 Route::get('quan-tam',[HomeController::class,'quanTam'])->name('quan-tam');
 
 Route::get('thong-tin-ca-nhan',[HomeController::class,'thongTinCaNhan'])->name('thong-tin-ca-nhan');
+
+Route::get('thong-tin-ca-nhan-2',[HomeController::class,'thongTinCaNhan2'])->name('thong-tin-ca-nhan-2');
 
 Route::get('dang-bai',[PostController::class,'dangBai'])->name('dang-bai');
 Route::post('dang-bai',[PostController::class,'xuLyDangBai'])->name('xl-dang-bai');

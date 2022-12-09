@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuanTriVien extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateQuanTriVien extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('pass');
-            $table->string('permission');
-            $table->string('fullname');
-            $table->integer('sex');
-            $table->string('phone');
+            $table->integer('id_account');
+            $table->integer('id_type');
+            $table->string('title');
+            $table->string('content');
             $table->string('picture');
-            $table->datetime('birthday')->useCurrent();
             $table->string('address');
+            $table->boolean('is_found')->default(false);
             $table->boolean('active')->default(false);
             $table->boolean('stt')->default(true);
             $table->timestamps();
@@ -38,7 +36,7 @@ class CreateQuanTriVien extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('posts');
         $table->dropColumn('deleted_at');
     }
 }

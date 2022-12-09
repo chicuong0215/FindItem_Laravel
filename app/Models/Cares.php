@@ -13,6 +13,11 @@ class Cares extends Model
     protected $table="cares";
     protected $fillable=[
         'id_account',
-        'id_post'
+        'id_post',
+        'stt'
     ];
+    public function post()
+    {
+        return $this->belongsTo(Posts::class, 'id_post', 'id');
+    }
 }

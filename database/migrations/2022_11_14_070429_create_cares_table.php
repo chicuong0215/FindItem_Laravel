@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Cares extends Migration
+class CreateCaresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,9 @@ class Cares extends Migration
     {
         Schema::create('cares', function (Blueprint $table) {
             $table->id();
-            $table->string('id_account');
+            $table->integer('id_account');
             $table->integer('id_post');
+            $table->boolean('stt')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

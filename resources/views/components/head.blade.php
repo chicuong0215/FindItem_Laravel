@@ -13,8 +13,8 @@
 <body>
     <div id="head1">
         <a href="{{route('trang-chu')}}" id="main"><img src="img/logoPHP.png" id="logo" /></a>
-        <form>
-            <input id="edt_search" name="edt_search" type="text" placeholder="Bạn tìm gì...">
+        <form action="{{route('xl-tim-kiem')}}" method="get">
+            <input id="edt_search" name="search" type="text" placeholder="Tìm bài đăng theo tiêu đề">
             <button class="buy">Search</button>
         </form>
         <a href="{{route('dang-bai')}}"> <button id="cart" class="h1a">ĐĂNG BÀI</button></a>

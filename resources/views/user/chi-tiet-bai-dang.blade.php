@@ -21,17 +21,20 @@
         <i>Không có hình ảnh</i>
         @endif
         <div class="right">
-            <img src="anhavatar/" class="icon" />
+            <a href="{{route('thong-tin-ca-nhan-2',['id'=>$post['id_account']])}}"><img
+                    src="anhavatar/{{$post->user->picture}}" class="icon" /></a>
             <br>
-            <b>Người đăng:</b> {{$post['id_account']}}
+            <b>Người đăng:</b> {{$post->user->username}}
             <h4 class="details"><b>Tiêu đề:</b> {{$post['title']}}</h4>
             <h4 class="details"><b>Nội dung:</b> {{$post['content']}}</h4>
-            <h4 class="details"><b>Loại:</b> {{$post['id_type']=='find'?'Tìm đồ':'Nhặt đồ'}}</h4>
+            <h4 class="details"><b>Loại:</b> {{$post['id_type']==1?'Tìm đồ':'Nhặt đồ'}}</h4>
             <h4 class="details"><b>Địa chỉ:</b> {{$post['address']}}</h4>
             <b>Ngày đăng:</b> {{$post['created_at']}}<br>
             <br>
+            @if(Auth::user()!=null)
             <button class="add" onclick="">Nhắn tin</button>
             <button class="buy" onclick="">Quan tâm bài viết</button>
+            @endif
         </div>
     </div>
     <hr>
@@ -59,10 +62,10 @@
             <br>
 
             @foreach($comment as $data)
-            <b>Tài khoản:</b> {{$data['id_account']}}
-            @if($data['id_account_rep']!='null')
+            <b>Tài khoản:</b> {{$data->user->username}}
+            @if($data['id_account_rep']!=-1)
             <span style="color:blue">đã trả lời <b style="color:black">Tài khoản: </b><span
-                    style="color:black">{{$data['id_account_rep']}}</span></span>
+                    style="color:black">{{$data->userRep->username}}</span></span>
             @endif
             <div class="rate">
                 <div class="rate2">{{$data['content']}}</div>

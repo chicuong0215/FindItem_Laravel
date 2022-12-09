@@ -15,11 +15,12 @@
 <div id="listphone">
     @foreach($lsPost as $data)
     <div class="item">
-        <img src="anhavatar/" class="icon" />
-        <h4><b>Người đăng:</b> {{$data['id_account']}}</h4>
+        <a href="{{route('thong-tin-ca-nhan-2',['id'=>$data['id_account']])}}"><img
+                src="anhavatar/{{$data->user->picture}}" class="icon" /></a>
+        <h4><b>Người đăng:</b> {{$data->user->username}}</h4>
         <h4 class="details"><b>Tiêu đề:</b> {{$data['title']}}</h4>
         <h4 class="details"><b>Nội dung:</b> {{$data['content']}}</h4>
-        <h4 class="details"><b>Loại:</b> {{$data['id_type']=='find'?'Tìm đồ':'Nhặt đồ'}}</h4>
+        <h4 class="details"><b>Loại:</b> {{$data['id_type']==1?'Tìm đồ':'Nhặt đồ'}}</h4>
         <h4 class="details"><b>Địa chỉ:</b> {{$data['address']}}</h4>
         @if($data['picture']!='null')
         <img src="anhbaidang/{{$data['picture']}}" class="device" />

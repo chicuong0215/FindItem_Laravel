@@ -12,10 +12,10 @@
 <body>
     <div>
         <div class="register-form">
-            <form action="{{ route('xl-cap-nhat-thong-tin')}}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('xl-cap-nhat-thong-tin') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="item-form">
-                    <input type="hidden" value="{{Auth::user()->username}}" name="id" />
+                    <input type="hidden" value="{{ Auth::user()->username }}" name="id" />
                     <div class="title">CẬP NHẬT THÔNG TIN</div>
                     <tr>
 
@@ -23,7 +23,7 @@
                         <div>
                             <img class="icon" src="icons/lock.png" />
                             <input input type="text" placeholder="Nhập họ tên" name="ho_ten" class="input"
-                                value="{{$account['fullname']}}" />
+                                value="{{ $account['fullname'] }}" />
                         </div>
                         <br />
 
@@ -31,11 +31,11 @@
                         <div>
                             <img class="icon" src="icons/lock.png" />
                             <input placeholder="Nhập số điện thoại" type="text" name="phone" class="input"
-                                value="{{$account['phone']}}" />
+                                value="{{ $account['phone'] }}" />
                         </div>
                         <br />
-                        @if(session('error'))
-                        <p>{{session('error')}}</p>
+                        @if (session('error'))
+                            <p>{{ session('error') }}</p>
                         @endif
                     </tr>
                     <button class="btn-feature" id="btn" type="submit">Cập Nhật</button>
@@ -45,7 +45,7 @@
                     <tr>
                         <div class="text">NGÀY SINH</div>
                         <div><img class="icon" src="icons/person.png" />
-                            <input type="date" name="birthday" class="input" value="{{$account['birthday']}}" />
+                            <input type="date" name="birthday" class="input" value="{{ $account['birthday'] }}" />
                         </div>
                         <br />
                         <div class="text">GIỚI TÍNH</div>
@@ -54,10 +54,10 @@
 
                             <select name="sex" id="sex" class="input">
                                 <option class="input" value="1">Nam</option>
-                                @if($account['sex']==0)
-                                <option class="input" value="0" selected>Nữ</option>
+                                @if ($account['sex'] == 0)
+                                    <option class="input" value="0" selected>Nữ</option>
                                 @else
-                                <option class="input" value="0">Nữ</option>
+                                    <option class="input" value="0">Nữ</option>
                                 @endif
                             </select>
 
@@ -67,7 +67,7 @@
                         <div>
                             <img class="icon" src="icons/lock.png" />
                             <input placeholder="Nhập địa chỉ" type="text" name="address" class="input"
-                                value="{{$account['address']}}" />
+                                value="{{ $account['address'] }}" />
                         </div>
                         <br />
                         <div class="text">ẢNH</div>
@@ -80,7 +80,7 @@
 
                 </div>
             </form>
-            <a href="{{route('thong-tin-ca-nhan')}}"><button class="btn-feature" id="btn" type="submit">Trở
+            <a href="{{ route('thong-tin-ca-nhan') }}"><button class="btn-feature" id="btn" type="submit">Trở
                     về</button></a>
         </div>
     </div>

@@ -20,4 +20,8 @@ class Posts extends Model
         'address',
         
     ];
+
+    public function user(){
+       return $this->belongsTo(Accounts::class, 'id_account', 'id');
+    }
 }

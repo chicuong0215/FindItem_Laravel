@@ -13,8 +13,8 @@
 <body>
     <div id="head1">
         <a href="{{route('trang-chu-admin')}}" id="main"><img src="/img/logoPHP.png" id="logo" /></a>
-        <form>
-            <input id="edt_search" name="edt_search" type="text" placeholder="Bạn tìm gì...">
+        <form action="{{route('xl-tim-kiem-2')}}" method="get">
+            <input id="edt_search" name="search" type="text" placeholder="Tìm bài đăng theo tiêu đề">
             <button class="buy">Search</button>
         </form>
     </div>
@@ -23,7 +23,7 @@
         <a href="{{route('dang-bai-admin')}}" id="accessories" class="h2">ĐĂNG THÔNG BÁO</a>
         <a href="{{route('thong-bao-admin')}}" id="accessories" class="h2">DANH SÁCH THÔNG BÁO</a>
         <a href="{{route('quan-ly-tai-khoan')}}" id="laptop" class="h2">QUẢN LÝ TÀI KHOẢN</a>
-        
+
 
     </div>
 

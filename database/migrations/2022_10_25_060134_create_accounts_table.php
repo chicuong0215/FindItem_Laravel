@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBaiDang extends Migration
+class CreateAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateBaiDang extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('id_account');
-            $table->string('id_type');
-            $table->string('title');
-            $table->string('content');
+            $table->string('username');
+            $table->string('pass');
+            $table->string('permission');
+            $table->string('fullname');
+            $table->integer('sex');
+            $table->string('phone');
             $table->string('picture');
+            $table->datetime('birthday')->useCurrent();
             $table->string('address');
-            $table->boolean('is_found')->default(false);
             $table->boolean('active')->default(false);
             $table->boolean('stt')->default(true);
             $table->timestamps();
@@ -36,7 +38,7 @@ class CreateBaiDang extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('accounts');
         $table->dropColumn('deleted_at');
     }
 }

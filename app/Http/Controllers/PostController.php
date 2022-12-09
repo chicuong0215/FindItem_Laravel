@@ -35,7 +35,7 @@ class PostController extends Controller
                     'content'=>$request->content,
                     'picture'=>$request->background->getClientOriginalName(),
                     'address'=>$request->address,
-                   
+
                 ]);
                 if(!empty($post)){
                     return redirect()->route('bai-dang-cua-ban');
@@ -45,12 +45,11 @@ class PostController extends Controller
             $post=Posts::create([
                 'id_account'=>$request->username,
                 'id_type'=>$request->id_type,
-                'id_object'=>$request->title,
                 'title'=>$request->title,
                 'content'=>$request->content,
                 'picture'=>"null",
                 'address'=>$request->address,
-               
+
             ]);
             if(!empty($post)){
                 return redirect()->route('bai-dang-cua-ban');
@@ -70,22 +69,22 @@ class PostController extends Controller
     public function baiDangCuaBan(){
         $lsPost = Posts::all();
         return view('user.bai-dang-cua-ban', ['lsPost'=>$lsPost]);
-    } 
-    
+    }
+
     public function chinhSua(Request $request){
         $post = Posts::where('id','=',$request->id)->first();
         return view('user.chinh-sua-bai-dang',['post'=>$post]);
     }
 
     public function xuLyChinhSua(Request $request){
-        if(empty($request->title) || empty($request->content) || empty($request->address) || empty($request->id_type)){
+        if(empty($request->title) || empty($request->content) || empty($request->address)){
             return redirect()->back()->with("error","Vui lòng nhập và chọn đầy đủ thông tin!");
         }else{
             if($request->hasFile('background'))
             {
                 $files = $request->file('background');
                 $files->move('anhbaidang',$files->getClientOriginalName(),'public');
-                
+
                 $update = Posts::where('id', '=', $request->id)->update(array('title' => $request->title,'content'=>$request->content,'address'=>$request->address, 'id_type'=>$request->id_type, 'picture'=>$request->background->getClientOriginalName()));
                 if(!empty($post)){
                 return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);
@@ -97,23 +96,21 @@ class PostController extends Controller
                     return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);
                 }
             }
-            
-            return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);  
+
+            return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);
         }
     }
 
     public function chiTietBaiDang(Request $request){
         $post=Posts::where('id', '=', $request->id)->first();
         $comment=Comments::where('id_post', '=', $request->id)->get();
-        $taiKhoan=Accounts::all();
-        return view('user.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment, 'taiKhoan'=>$taiKhoan]);
+        return view('user.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment]);
     }
 
     public function chiTietBaiDang2(Request $request){
         $post=Posts::where('id', '=', $request->id)->first();
         $comment=Comments::where('id_post', '=', $request->id)->get();
-        $taiKhoan=Accounts::all();
-        return view('user.chi-tiet-bai-dang-cua-ban',['post'=>$post,'comment'=>$comment, 'taiKhoan'=>$taiKhoan]);
+        return view('user.chi-tiet-bai-dang-cua-ban',['post'=>$post,'comment'=>$comment]);
     }
 
     public function xoaBaiDang(Request $request){
@@ -141,9 +138,9 @@ class PostController extends Controller
         $comment=Comments::create(
             [
                 'id_post'=>$request->id,
-                'id_account'=>Auth::user()->username,
+                'id_account'=>Auth::user()->id,
                 'content'=>$request->content,
-                'id_account_rep'=>'null'
+                'id_account_rep'=>-1
             ]
         );
         if(!empty($comment)){
@@ -156,7 +153,7 @@ class PostController extends Controller
         $comment=Comments::create(
             [
                 'id_post'=>$request->id,
-                'id_account'=>Auth::user()->username,
+                'id_account'=>Auth::user()->id,
                 'content'=>$request->content,
                 'id_account_rep'=>$request->rep
             ]
@@ -193,15 +190,14 @@ class PostController extends Controller
     public function chiTietBaiDangAdmin(Request $request){
         $post=Posts::where('id', '=', $request->id)->first();
         $comment=Comments::where('id_post', '=', $request->id)->get();
-        $taiKhoan=Accounts::all();
-        return view('admin.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment, 'taiKhoan'=>$taiKhoan]);
+        return view('admin.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment]);
     }
 
     public function xoaTraLoi(Request $request){
         $result = Comments::where('id','=',$request->id)->delete();
         return redirect()->route('chi-tiet-bai-dang-admin',['id'=>$request->id_post]);
     }
-    
+
     //thong bao
     public function dangBaiAdmin()
     {
@@ -226,7 +222,7 @@ class PostController extends Controller
             }
             return redirect()->route('thong-bao-admin');
         }
-        
+
     }
 
     public function thongBaoAdmin(){

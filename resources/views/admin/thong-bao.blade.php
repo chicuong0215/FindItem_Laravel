@@ -12,6 +12,8 @@
 <a href="{{route('dang-nhap-admin')}}" id="technology" class="h1">Đăng Nhập</a>
 <a href="{{route('dang-ky-admin')}}" id="technology" class="h1">Cấp Tài Khoản Admin</a>
 <a href="{{route('trang-chu')}}" id="technology" class="h1">Đăng Nhập Với Quyền Người Dùng</a>
+<br>
+<br>
 @endif
 @foreach($thongBao as $data)
 <div class="line">

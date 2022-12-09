@@ -13,30 +13,34 @@
     <div class="title">MẬT KHẨU MỚI</div>
     <div class="input-form">
 
-        <form action="{{ route('xl-doi-mat-khau')}}" method="POST">
+        <form action="{{ route('xl-doi-mat-khau') }}" method="POST">
             @csrf
-            <input type="hidden" name="username" value="{{Auth::user()->username}}">
+            <input type="hidden" name="username" value="{{ Auth::user()->username }}">
             <div class="text">MẬT KHẨU CŨ</div>
             <div><img class="icon" src="icons/person.png" />
-                <input type="text" name="old_pass" class="input" />
+                <input type="text" name="password" class="input" />
             </div>
             <br />
             <div class="text">MẬT KHẨU MỚI</div>
             <div>
                 <img class="icon" src="icons/lock.png" />
-                <input type="text" name="new_pass" class="input" />
+                <input type="text" name="new_password" class="input" />
             </div>
             <br />
             <div class="text">NHẬP LẠI MẬT KHẨU</div>
             <div>
                 <img class="icon" src="icons/lock.png" />
-                <input type="text" name="re_new_pass" class="input" />
+                <input type="text" name="renew_password" class="input" />
             </div>
+
             <br />
             <button type="submit" class="btn-feature" style="width:300px">Thay Đổi Mật Khẩu</button>
+            @if (session('error'))
+                <p>{{ session('error') }}
+            @endif
         </form>
     </div>
-    <a href="{{route('thong-tin-ca-nhan')}}"><button class="btn-feature-2">Trở Về</button></a>
+    <a href="{{ route('thong-tin-ca-nhan') }}"><button class="btn-feature-2">Trở Về</button></a>
 </body>
 
 </html>

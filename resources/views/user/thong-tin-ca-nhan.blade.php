@@ -25,4 +25,4 @@
 <br />
 <a href="{{route('dang-nhap')}}" id="technology" class="h1">Đăng Nhập</a>
 <a href="{{route('dang-ky')}}" id="technology" class="h1">Đăng Ký</a>
-@endif
+@endif  

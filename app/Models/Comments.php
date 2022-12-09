@@ -17,4 +17,11 @@ class Comments extends Model
         'content',
         'id_account_rep'
     ];
+    public function user(){
+        return $this->belongsTo(Accounts::class, 'id_account', 'id');
+    }
+
+    public function userRep(){
+        return $this->belongsTo(Accounts::class, 'id_account_rep', 'id');
+     }
 }
