@@ -24,36 +24,37 @@ class PostController extends Controller
         }else{
             if($request->hasFile('background'))
         {
-            $files = $request->file('background');
+            $background = array();
+            $path = array();
 
-            if($files->getClientOriginalName()!=null){
-                $files->move('anhbaidang',$files->getClientOriginalName(),'public');
-                $post=Posts::create([
-                    'account_id'=>$request->username,
-                    'type_id'=>$request->type_id,
-                    'title'=>$request->title,
-                    'content'=>$request->content,
-                    'picture'=>$request->background->getClientOriginalName(),
-                    'address'=>$request->address,
-
-                ]);
-                if(!empty($post)){
-                    return redirect()->route('bai-dang-cua-ban');
+            if($files = $request->file('background'))
+            {
+                foreach($files as $file)
+                {
+                    $image_name =md5(rand(1000,10000));
+                    $ext = strtolower($file->getClientOriginalExtension());
+                    $image_full_name =$image_name .'.'.$ext;
+                    $path[]=$file->move('anhbaidang',$image_full_name,'public');
+                    $background[]=$image_full_name;
                 }
+                // $files = $request->file('background');
+                // $files->move('anhbaidang',$files->getClientOriginalName(),'public');
             }
-        }else{
             $post=Posts::create([
                 'account_id'=>$request->username,
                 'type_id'=>$request->type_id,
                 'title'=>$request->title,
                 'content'=>$request->content,
-                'picture'=>"null",
+                // 'picture'=>$request->background->getClientOriginalName(),
+                'picture'=> implode('/',$background),
                 'address'=>$request->address,
 
             ]);
             if(!empty($post)){
                 return redirect()->route('bai-dang-cua-ban');
             }
+        }else{
+            return redirect()->back()->with('error','Vui lòng chọn ảnh!');
         }
 
         return redirect()->route('bai-dang-cua-ban');
@@ -81,23 +82,30 @@ class PostController extends Controller
             return redirect()->back()->with("error","Vui lòng nhập và chọn đầy đủ thông tin!");
         }else{
             if($request->hasFile('background'))
-            {
-                $files = $request->file('background');
-                $files->move('anhbaidang',$files->getClientOriginalName(),'public');
+        {
+            $background = array();
+            $path = array();
 
-                $update = Posts::where('id', '=', $request->id)->update(array('title' => $request->title,'content'=>$request->content,'address'=>$request->address, 'type_id'=>$request->type_id, 'picture'=>$request->background->getClientOriginalName()));
-                if(!empty($post)){
-                return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);
+            if($files = $request->file('background'))
+            {
+                foreach($files as $file)
+                {
+                    $image_name =md5(rand(1000,10000));
+                    $ext = strtolower($file->getClientOriginalExtension());
+                    $image_full_name =$image_name .'.'.$ext;
+                    $path[]=$file->move('anhbaidang',$image_full_name,'public');
+                    $background[]=$image_full_name;
                 }
             }
-            else{
-                $update = Posts::where('id', '=', $request->id)->update(array('title' => $request->title,'content'=>$request->content,'address'=>$request->address, 'type_id'=>$request->type_id));
-                if(!empty($post)){
+
+            $update = Posts::where('id', '=', $request->id)->update(array('title' => $request->title,'content'=>$request->content,'address'=>$request->address, 'type_id'=>$request->type_id, 'picture'=>implode('/',$background)));
+
+            if(!empty($update)){
                     return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);
                 }
-            }
-
-            return redirect()->route('chi-tiet-bai-dang-cua-ban',['id'=> $request->id]);
+            }else{
+                    return redirect()->back()->with('error','Vui lòng chọn ảnh!');
+                }
         }
     }
 

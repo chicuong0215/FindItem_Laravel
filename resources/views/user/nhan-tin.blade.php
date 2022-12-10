@@ -38,8 +38,8 @@
         @if (Auth::user() != null)
             <form action="{{ route('xl-nhan-tin') }}" method="POST">
                 @csrf
-                <input value="{{ $account1->id }}" type="hidden" name="account1">
-                <input value="{{ $account2->id }}" type="hidden" name="account2">
+                <input value="{{ Auth::user()->id }}" type="hidden" name="account1">
+                <input value="{{ $account->id }}" type="hidden" name="account2">
                 <input type="text" class="input" style="border-radius: 10px;" name="message">
                 <button class="add">Gửi</button>
             </form>

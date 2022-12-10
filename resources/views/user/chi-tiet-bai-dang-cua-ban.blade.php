@@ -15,11 +15,9 @@
 
 <body style="text-align:center">
     <div class="main_device">
-        @if ($post['picture'] != 'null')
-            <img src="anhbaidang/{{ $post['picture'] }}" class="left" />
-        @else
-            <i>Không có hình ảnh</i>
-        @endif
+        @foreach (explode('/', $post->picture) as $img)
+            <img src="anhbaidang/{{ $img }}" width="100px" height="100px" />
+        @endforeach
         <div class="right">
             <br>
             <h4 class="details"><b>Tiêu đề:</b> {{ $post['title'] }}</h4>

@@ -14,11 +14,9 @@
                 <h4 class="details"><b>Nội dung:</b> {{ $data->post->content }}</h4>
                 <h4 class="details"><b>Loại:</b> {{ $data->post->type_id == 1 ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
                 <h4 class="details"><b>Địa chỉ:</b> {{ $data->post->address }}</h4>
-                @if ($data->post->picture != 'null')
-                    <img src="anhbaidang/{{ $data->post->picture }}" class="device" />
-                @else
-                    <i>Không có hình ảnh</i>
-                @endif
+                @foreach (explode('/', $data->post->picture) as $img)
+                    <img src="anhbaidang/{{ $img }}" width="100px" height="100px" />
+                @endforeach
                 <h5 class="name"></h5>
                 <b>Ngày đăng:</b> {{ $data->created_at }}
                 <br /><br />

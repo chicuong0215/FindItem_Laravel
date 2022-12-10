@@ -17,11 +17,13 @@
                     <h4 class="details"><b>Nội dung:</b> {{ $data['content'] }}</h4>
                     <h4 class="details"><b>Loại:</b> {{ $data['type_id'] == 'find' ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
                     <h4 class="details"><b>Địa chỉ:</b> {{ $data['address'] }}</h4>
+                    @foreach(explode('/',$data->picture) as $img)
                     @if ($data['picture'] != 'null')
-                        <img src="anhbaidang/{{ $data['picture'] }}" class="icon" />
+                        <img src="anhbaidang/{{ $img }}" class="icon" />
                     @else
                         <i>Không có hình ảnh</i>
                     @endif
+                    @endforeach
                     <h5 class="name"></h5>
                     <b>Ngày đăng:</b> {{ $data['created_at'] }}
                     <br /><br />

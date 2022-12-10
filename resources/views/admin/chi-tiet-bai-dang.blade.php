@@ -2,11 +2,9 @@
 
 <body style="text-align:center">
     <div class="main_device">
-        @if ($post->picture != 'null')
-            <img src="/anhbaidang/{{ $post->picture }}" class="left" />
-        @else
-            <i>Không có hình ảnh</i>
-        @endif
+        @foreach (explode('/', $post->picture) as $img)
+            <img src="/anhbaidang/{{ $img }}" width="100px" height="100px" />
+        @endforeach
         <div class="right">
             <img src="/anhavatar/{{ $post->user->picture }}" class="icon" />
             <br>
@@ -20,9 +18,8 @@
             @if ($post['active'] == 0)
                 <a href="{{ route('phe-duyet-2', ['id' => $post['id']]) }}"><button
                         class="{{ $post['active'] == 1 ? 'buy' : 'buy2' }}"
-                        style="margin-bottom: 10px;">{{ $post['active'] == 1 ? 'Đã phê duyệt' : 'Chưa phê duyệt' }}</button><a />
-            @endif
-            @if ($post['active'] == 1)
+                        style="margin-bottom: 10px;">{{ $post['active'] == 1 ? 'Đã phê duyệt' : 'Chưa phê duyệt' }}</button></a>
+            @else
                 <a href="{{ route('xoa-bai-dang-admin-2', ['id' => $post['id']]) }}"><button class="buy"
                         style="margin-bottom: 10px;background-color:{{ $post['stt'] == 1 ? 'red' : 'blue' }}">{{ $post['stt'] == 1 ? 'Xóa bài đăng' : 'Khôi phục' }}</button></a>
             @endif

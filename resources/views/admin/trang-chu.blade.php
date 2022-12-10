@@ -10,7 +10,7 @@
         @foreach ($lsPost as $data)
             <div class="line">
                 <br>
-                <img src="/anhavatar/{{$data->user->picture}}" class="icon" />
+                <img src="/anhavatar/{{ $data->user->picture }}" class="icon" />
                 <br>
                 <b>Người đăng: </b>{{ $data->user->username }}
                 <br>
@@ -25,19 +25,15 @@
                 <b>Ngày đăng: </b>{{ $data['created_at'] }}
                 <br>
                 <br>
-                @if ($data['picture'] != 'null')
-                    <img src="anhbaidang/{{ $data['picture'] }}" width="100px" height="100px" />
-                @else
-                    <i>Không có ảnh!</i>
-                @endif
+                @foreach (explode('/', $data->picture) as $img)
+                    <img src="anhbaidang/{{ $img }}" width="100px" height="100px" />
+                @endforeach
                 <br /><br />
                 @if ($data['active'] == 0)
                     <a href="{{ route('phe-duyet', ['id' => $data['id']]) }}"><button
                             class="{{ $data['active'] == 1 ? 'buy' : 'buy2' }}"
                             style="margin-bottom: 10px;">{{ $data['active'] == 1 ? 'Đã phê duyệt' : 'Chưa phê duyệt' }}</button></a>
-                @endif
-
-                @if ($data['active'] == 1)
+                @else
                     <a href="{{ route('xoa-bai-dang-admin', ['id' => $data['id']]) }}"><button class="buy"
                             style="margin-bottom: 10px;background-color:{{ $data['stt'] == 1 ? 'red' : 'blue' }}">{{ $data['stt'] == 1 ? 'Xóa bài đăng' : 'Khôi phục' }}</button></a>
                 @endif

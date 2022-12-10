@@ -44,7 +44,7 @@
                     <img class="icon" src="icons/lock.png" />
                     <div class="text" style="display:inline-block">ẢNH</div>
                     <br />
-                    <input type="file" name="background" class="input-rectangle" />
+                    <input type="file"  name="background[]" multiple class="input-rectangle" />
                     <br />
                     @if (session('error'))
                         <p>{{ session('error') }}</p>

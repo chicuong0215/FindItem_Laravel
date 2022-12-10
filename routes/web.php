@@ -67,6 +67,7 @@ Route::post('binh-luan-rep',[PostController::class,'xuLyBinhLuanRep'])->name('xl
 Route::get('nhan-tin',[HomeController::class,'nhanTin'])->name('nhan-tin');
 Route::post('nhan-tin',[HomeController::class,'xuLyNhanTin'])->name('xl-nhan-tin');
 
+Route::get('kich-hoat-tai-khoan',[HomeController::class,'xuLyKichHoatTaiKhoan'])->name('xl-kich-hoat-tai-khoan');
 
 ///////////////////////////////////////////////////////////////////////
 //admin

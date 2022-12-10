@@ -18,7 +18,7 @@
 @endif
 <div id="listphone">
     @foreach ($lsPost as $data)
-        {{ $data->care}}
+        {{ $data->care }}
         <div class="item">
             <a href="{{ route('thong-tin-ca-nhan-2', ['id' => $data['account_id']]) }}"><img
                     src="anhavatar/{{ $data->user->picture }}" class="icon" /></a>
@@ -27,11 +27,9 @@
             <h4 class="details"><b>Nội dung:</b> {{ $data['content'] }}</h4>
             <h4 class="details"><b>Loại:</b> {{ $data['type_id'] == 1 ? 'Tìm đồ' : 'Nhặt đồ' }}</h4>
             <h4 class="details"><b>Địa chỉ:</b> {{ $data['address'] }}</h4>
-            @if ($data['picture'] != 'null')
-                <img src="anhbaidang/{{ $data['picture'] }}" class="device" />
-            @else
-                <i>Không có hình ảnh</i>
-            @endif
+            @foreach (explode('/', $data->picture) as $img)
+                <img src="anhbaidang/{{ $img }}" width="100px" height="100px" />
+            @endforeach
             <h5 class="name"></h5>
             <b>Ngày đăng:</b> {{ $data['created_at'] }}
             <br /><br />

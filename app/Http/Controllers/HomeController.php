@@ -68,19 +68,21 @@ class HomeController extends Controller
             return redirect()->back()->with("error","Nhập đầy đủ thông tin!");
         }else{
             $account = Accounts::where('username', '=',$request->username)->where('stt','=','1')->where('permission','=','0')->first();
-            if($account['active']==0){
-                return redirect()->back()->with("error","Tài khoản chưa được kích hoạt!");
-            }else{
-                if($account!=null){
-                    $credentials=$request->only('username','password');
-                    if(Auth::attempt($credentials)){
-                        return redirect()->route('thong-tin-ca-nhan');
-                    }else{
-                        return redirect()->back()->with("error","Đăng nhập không thành công!");
-                    }
+
+            if($account!=null){
+
+                if($account['active']==0){
+                    return redirect()->back()->with("error","Tài khoản chưa được kích hoạt!");
+                }
+
+                $credentials=$request->only('username','password');
+                if(Auth::attempt($credentials)){
+                    return redirect()->route('thong-tin-ca-nhan');
+                }else{
+                    return redirect()->back()->with("error","Đăng nhập không thành công!");
+                }
             }else{
                 return redirect()->back()->with("error","Tài khoản không tồn tại trên hệ thống!");
-            }
             }
 
         }
@@ -288,33 +290,32 @@ class HomeController extends Controller
 
     }
     public function nhanTin(Request $request){
-        $lsMessage = Message::where([
-            'account_id'=>Auth::user()->id,
-            'account_id_2'=>$request->id
-        ])->get();
+        $account = Accounts::where('id', '=', $request->id)->first();
 
-        $lsMessage2 = Message::where([
-            'account_id'=>$request->id,
-            'account_id_2'=>Auth::user()->id,
-        ])->get();
-
-        $account1 = Accounts::where('id','=',Auth::user()->id)->first();
-        $account2 = Accounts::where('id', '=', $request->id)->first();
-
-        return view('user.nhan-tin',['lsMessage'=>$lsMessage, 'account1'=>$account1, 'account2'=>$account2]);
+        return view('user.nhan-tin',['lsMessage'=>$lsMessage, 'account'=>$account]);
     }
     public function xuLyNhanTin(Request $request){
-        $result = Message::create([
-            'account_id'=>$request->account1,
-            'account_id_2'=>$request->account2,
-            'content'=>$request->message,
-            'content_2'=>''
-        ]);
+        $acc1=Auth::user()->id;
+        $acc2=$request->$request->id;
+        $key = $acc1+$acc2;
 
-        if(!empty($result)){
-            return redirect()->route('nhan-tin',['id'=>$request->account2]);
+        $check = Message::where('key',$key);
+        if($check){
+            dd("true");
+        }else{
+            dd('false');
         }
-        return redirect()->route('nhan-tin',['id', $request->account2]);
+        // $result = Message::create([
+        //     'account_id'=>$request->account1,
+        //     'account_2_id'=>$request->account2,
+        //     'content'=>$request->message,
+        //     'content_2'=>''
+        // ]);
+
+        // if(!empty($result)){
+        //     return redirect()->route('nhan-tin',['id'=>$request->account2]);
+        // }
+        // return redirect()->route('nhan-tin',['id', $request->account2]);
     }
 
 
@@ -471,6 +472,17 @@ class HomeController extends Controller
         $account = Accounts::all();
         return view('admin.quan-ly-tai-khoan',['arr'=>$account]);
     }
-
+    public function xuLyKichHoatTaiKhoan(Request $request){
+        $result = Accounts::where('id','=',$request->id)
+        ->update(
+            [
+                'active'=>1
+            ]
+        );
+        if(!empty($result)){
+            return redirect()->route('quan-ly-tai-khoan');
+        }
+        return redirect()->route('quan-ly-tai-khoan');
+    }
 
 }
