@@ -217,13 +217,6 @@ class HomeController extends Controller
                     return redirect()->route('thong-tin-ca-nhan');
                 }
             }else{
-                Accounts::where('username', '=', $request->id)->update(
-                    array('fullname' => $request->ho_ten,
-                    'phone'=>$request->phone,
-                    'birthday'=>$request->birthday,
-                    'address'=>$request->address,
-                    'sex'=>$request->sex)
-                );
                 return redirect()->route('thong-tin-ca-nhan');
             }
 
@@ -292,7 +285,9 @@ class HomeController extends Controller
     public function nhanTin(Request $request){
         $account = Accounts::where('id', '=', $request->id)->first();
 
-        return view('user.nhan-tin',['lsMessage'=>$lsMessage, 'account'=>$account]);
+        $lsMessage = Message::all();
+
+        return view('user.nhan-tin',['lsMessage'=>$lsMessage, 'account2'=>$account]);
     }
     public function xuLyNhanTin(Request $request){
         $acc1=Auth::user()->id;
