@@ -1,4 +1,5 @@
 @include('components.head-admin')
+
 <br />
 <br />
 
@@ -18,7 +19,7 @@
 </div>
 @else
 <div class="text">Vui lòng đăng nhập để sử dụng đầy đủ tính năng</div>
-    <br/>   
+    <br/>
 <a href="{{route('dang-nhap-admin')}}" id="technology" class="h1">Đăng Nhập</a>
 <a href="{{route('dang-ky-admin')}}" id="technology" class="h1">Đăng Ký</a>
 <a href="{{route('trang-chu-admin')}}" id="technology" class="h1">Đăng nhập với quyền quản trị viên</a>

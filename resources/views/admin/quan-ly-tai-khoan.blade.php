@@ -1,4 +1,9 @@
 @include('components.head-admin')
+<style>
+    #quanlytaikhoan{
+        background-color: white
+    }
+    </style>
 <br />
 <br />
 

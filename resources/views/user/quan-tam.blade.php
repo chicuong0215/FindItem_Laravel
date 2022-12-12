@@ -1,4 +1,9 @@
 @include('components.head')
+<style>
+    #quantam{
+        background-color: white
+    }
+    </style>
 <br />
 <br />
 @if (Auth::user() != null)
@@ -20,10 +25,6 @@
                 <h5 class="name"></h5>
                 <b>Ngày đăng:</b> {{ $data->created_at }}
                 <br /><br />
-                @if (Auth::user() != null)
-                    <a href="{{ route('xl-quan-tam-2', ['id' => $data->post_id]) }}"><button class="buy"
-                            style="margin-bottom: 10px">{{ $data->stt == 1 ? 'Bỏ quan tâm' : 'Quan tâm' }}</button></a>
-                @endif
                 <a href="{{ route('chi-tiet-bai-dang', ['id' => $data->post_id]) }}"><button class="add"
                         style="margin-bottom: 10px">Chi
                         tiết</button></a>

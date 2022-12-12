@@ -1,4 +1,9 @@
 @include('components.head')
+<style>
+    #thongbao{
+        background-color: white
+    }
+    </style>
 <br />
 <br />
 @if(Auth::user()!=NULL)

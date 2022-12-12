@@ -1,4 +1,9 @@
 @include('components.head-admin')
+<style>
+    #dangbai{
+        background-color: white
+    }
+    </style>
 <br />
 <br />
 @if(Auth::user())

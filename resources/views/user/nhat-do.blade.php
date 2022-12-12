@@ -1,4 +1,9 @@
 @include('components.head')
+<style>
+    #nhatdo{
+        background-color: white
+    }
+    </style>
 <br />
 <br />
 @if (Auth::user() != null)

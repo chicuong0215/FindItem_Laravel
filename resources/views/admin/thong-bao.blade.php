@@ -1,4 +1,10 @@
 @include('components.head-admin')
+<style>
+    #thongbao{
+        background-color: white
+    }
+    </style>
+
 <br />
 <br />
 @if(Auth::user())

@@ -1,4 +1,9 @@
 @include('components.head')
+<style>
+    #baidangcuaban{
+        background-color: white
+    }
+    </style>
 <br />
 <br />
 

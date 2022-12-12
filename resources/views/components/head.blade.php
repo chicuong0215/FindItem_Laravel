@@ -20,13 +20,13 @@
         <a href="{{route('dang-bai')}}"> <button id="cart" class="h1a">ĐĂNG BÀI</button></a>
     </div>
     <div id="head2">
-        <a href="{{route('trang-chu')}}" id="phone" class="h2">BẢN TIN</a>
-        <a href="{{route('tim-do')}}" id="phone" class="h2">TÌM ĐỒ</a>
-        <a href="{{route('nhat-do')}}" id="phone" class="h2">NHẶT ĐỒ</a>
-        <a href="{{route('thong-tin-ca-nhan')}}" id="laptop" class="h2">TRANG CÁ NHÂN</a>
-        <a href="{{route('quan-tam')}}" id="tablet" class="h2">QUAN TÂM</a>
-        <a href="{{route('bai-dang-cua-ban')}}" id="accessories" class="h2">BÀI ĐĂNG CỦA BẠN</a>
-        <a href="{{route('thong-bao')}}" id="smartwatch" class="h2">THÔNG BÁO</a>
+        <a href="{{route('trang-chu')}}" id="trangchu" class="h2">BẢN TIN</a>
+        <a href="{{route('tim-do')}}" id="timdo" class="h2">TÌM ĐỒ</a>
+        <a href="{{route('nhat-do')}}" id="nhatdo" class="h2">NHẶT ĐỒ</a>
+        <a href="{{route('thong-tin-ca-nhan')}}" id="trangcanhan" class="h2">TRANG CÁ NHÂN</a>
+        <a href="{{route('quan-tam')}}" id="quantam" class="h2">QUAN TÂM</a>
+        <a href="{{route('bai-dang-cua-ban')}}" id="baidangcuaban" class="h2">BÀI ĐĂNG CỦA BẠN</a>
+        <a href="{{route('thong-bao')}}" id="thongbao" class="h2">THÔNG BÁO</a>
 
     </div>
 

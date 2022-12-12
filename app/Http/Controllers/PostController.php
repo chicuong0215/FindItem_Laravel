@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Notifications;
 use App\Models\Comments;
+use App\Models\Cares;
 use App\Models\Accounts;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
@@ -112,7 +113,12 @@ class PostController extends Controller
     public function chiTietBaiDang(Request $request){
         $post=Posts::where('id', '=', $request->id)->first();
         $comment=Comments::where('post_id', '=', $request->id)->get();
-        return view('user.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment]);
+        $care = [];
+        if(Auth::user()!=null){
+            $care = Cares::where('post_id','=', $request->id)->where('account_id','=',Auth::user()->id)->first();
+        }
+
+        return view('user.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment, 'care'=>$care]);
     }
 
     public function chiTietBaiDang2(Request $request){

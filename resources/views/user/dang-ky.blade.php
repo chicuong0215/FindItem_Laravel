@@ -31,13 +31,13 @@
                         <div class="text">MẬT KHẨU</div>
                         <div>
                             <img class="icon" src="icons/lock.png" />
-                            <input placeholder="Nhập mật khẩu" id="pass1" name="mat_khau" class="input" />
+                            <input type="password" placeholder="Nhập mật khẩu" id="pass1" name="mat_khau" class="input" />
                         </div>
                         <br />
                         <div class="text">NHẬP LẠI MẬT KHẨU</div>
                         <div>
                             <img class="icon" src="icons/lock.png" />
-                            <input placeholder="Nhập lại mật khẩu" type="text" name="re_password" class="input" />
+                            <input type="password" placeholder="Nhập lại mật khẩu" type="text" name="re_password" class="input" />
                         </div>
                         <br />
                         <div class="text">SỐ ĐIỆN THOẠI</div>

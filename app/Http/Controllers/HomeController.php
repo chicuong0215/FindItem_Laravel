@@ -278,7 +278,7 @@ class HomeController extends Controller
                     array('stt'=> 1)
                 );
             }
-            return redirect()->route('quan-tam');
+            return redirect()->route('chi-tiet-bai-dang',['id'=>$request->id]);
         }
 
     }

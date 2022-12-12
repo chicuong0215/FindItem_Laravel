@@ -19,10 +19,10 @@
         </form>
     </div>
     <div id="head2">
-        <a href="{{route('trang-chu-admin')}}" id="phone" class="h2">DUYỆT BÀI</a>
-        <a href="{{route('dang-bai-admin')}}" id="accessories" class="h2">ĐĂNG THÔNG BÁO</a>
-        <a href="{{route('thong-bao-admin')}}" id="accessories" class="h2">DANH SÁCH THÔNG BÁO</a>
-        <a href="{{route('quan-ly-tai-khoan')}}" id="laptop" class="h2">QUẢN LÝ TÀI KHOẢN</a>
+        <a href="{{route('trang-chu-admin')}}" id="duyetbai" class="h2">DUYỆT BÀI</a>
+        <a href="{{route('dang-bai-admin')}}" id="dangbai" class="h2">ĐĂNG THÔNG BÁO</a>
+        <a href="{{route('thong-bao-admin')}}" id="thongbao" class="h2">DANH SÁCH THÔNG BÁO</a>
+        <a href="{{route('quan-ly-tai-khoan')}}" id="quanlytaikhoan" class="h2">QUẢN LÝ TÀI KHOẢN</a>
 
 
     </div>
