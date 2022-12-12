@@ -32,9 +32,15 @@
             @if (Auth::user() != null)
                 <a href="{{ route('nhan-tin', ['id' => $post->account_id]) }}"><button class="add">Nhắn
                         tin</button></a>
-                <a href="{{ route('xl-quan-tam-2', ['id' => $post['id']]) }}"><button class="buy"
-                        style="margin-bottom: 10px">
-                        {{ $care['stt'] == 1 ? 'Đã quan tâm' : 'Quan tâm' }}</button></a>
+                @if ($care != null)
+                    <a href="{{ route('xl-quan-tam-2', ['id' => $post['id']]) }}"><button class="buy"
+                            style="margin-bottom: 10px">
+                            {{ $care['stt'] == 1 ? 'Đã quan tâm' : 'Quan tâm' }}</button></a>
+                @else
+                    <a href="{{ route('xl-quan-tam-2', ['id' => $post['id']]) }}"><button class="buy"
+                            style="margin-bottom: 10px">
+                            Quan tâm</button></a>
+                @endif
             @endif
         </div>
     </div>

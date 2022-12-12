@@ -113,11 +113,10 @@ class PostController extends Controller
     public function chiTietBaiDang(Request $request){
         $post=Posts::where('id', '=', $request->id)->first();
         $comment=Comments::where('post_id', '=', $request->id)->get();
-        $care = [];
+        $care = null;
         if(Auth::user()!=null){
             $care = Cares::where('post_id','=', $request->id)->where('account_id','=',Auth::user()->id)->first();
         }
-
         return view('user.chi-tiet-bai-dang',['post'=>$post,'comment'=>$comment, 'care'=>$care]);
     }
 

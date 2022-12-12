@@ -265,9 +265,9 @@ class HomeController extends Controller
                 'post_id'=>$request->id,
             ]);
             if(!empty($quanTam)){
-                return redirect()->route('quan-tam');
+                return redirect()->route('chi-tiet-bai-dang',['id'=>$request->id]);
             }
-            return redirect()->route('quan-tam');
+            return redirect()->route('chi-tiet-bai-dang',['id'=>$request->id]);
         }else{
             if($check['stt']==1){
                 Cares::where('post_id','=', $request->id)->where('account_id','=', Auth::user()->id)->update(
