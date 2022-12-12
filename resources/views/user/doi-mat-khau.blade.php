@@ -18,19 +18,19 @@
             <input type="hidden" name="username" value="{{ Auth::user()->username }}">
             <div class="text">MẬT KHẨU CŨ</div>
             <div><img class="icon" src="icons/person.png" />
-                <input type="text" name="password" class="input" />
+                <input type="password" name="password" class="input" />
             </div>
             <br />
             <div class="text">MẬT KHẨU MỚI</div>
             <div>
                 <img class="icon" src="icons/lock.png" />
-                <input type="text" name="new_password" class="input" />
+                <input type="password" name="new_password" class="input" />
             </div>
             <br />
             <div class="text">NHẬP LẠI MẬT KHẨU</div>
             <div>
                 <img class="icon" src="icons/lock.png" />
-                <input type="text" name="renew_password" class="input" />
+                <input type="password" name="renew_password" class="input" />
             </div>
 
             <br />

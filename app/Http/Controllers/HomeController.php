@@ -25,8 +25,8 @@ class HomeController extends Controller
     }
     public function xuLyTimKiem(Request $request){
         if($request->search!=null){
-            $lsPost=Posts::where('title','=',$request->search)->where('active','=',1)->where('stt','=',1)->paginate(5);
-            return view('user.trang-chu',['lsPost'=>$lsPost,'page'=>$request->page]);
+            $lsPost=Posts::where('title','like','%'.$request->search.'%')->where('active','=',1)->where('stt','=',1)->paginate(5);
+            return view('user.trang-chu',['lsPost'=>$lsPost,'page'=>$request->page])->with('search', $request->search);
         }else{
             $lsPost=Posts::where('active','=',1)->where('stt','=',1)->paginate(5);
             return view('user.trang-chu',['lsPost'=>$lsPost,'page'=>$request->page]);
@@ -35,7 +35,7 @@ class HomeController extends Controller
     }
     public function xuLyTimKiemAdmin(Request $request){
         if($request->search!=null){
-            $lsPost=Posts::where('title','=',$request->search)->get();
+            $lsPost=Posts::where('title','like','%'.$request->search.'%')->get();
             return view('admin.trang-chu',['lsPost'=>$lsPost]);
         }else{
             $lsPost=Posts::all();
